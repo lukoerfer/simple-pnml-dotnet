@@ -1,1 +1,1 @@
-# simple-pnml-dotnet
+# SimplePNML for .NET
