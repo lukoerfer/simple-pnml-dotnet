@@ -9,5 +9,18 @@ namespace SimplePNML
 
         [XmlAttribute("y")]
         public int Y { get; set; }
+
+        public Coordinates() { }
+
+        public Coordinates(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public static Coordinates Create(int x, int y)
+        {
+            return new Coordinates(x, y);
+        }
     }
 }
