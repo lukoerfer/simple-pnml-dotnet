@@ -11,35 +11,6 @@ namespace SimplePNML
         [XmlElement("net")]
         public List<Net> Nets { get; set; } = new List<Net>();
 
-        public static PNML Create()
-        {
-            return new PNML();
-        }
-
-        public PNML AddNet(Net net)
-        {
-            Nets.Add(net);
-            return this;
-        }
-
-        public PNML AddNets(IEnumerable<Net> nets)
-        {
-            Nets.AddRange(nets);
-            return this;
-        }
-
-        public PNML AddNets(params Net[] nets)
-        {
-            Nets.AddRange(nets);
-            return this;
-        }
-
-        public PNML ClearNets()
-        {
-            Nets.Clear();
-            return this;
-        }
-
         public void Write(Stream target)
         {
             buildSerializer().Serialize(target, this);

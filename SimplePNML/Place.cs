@@ -8,13 +8,13 @@ namespace SimplePNML
         [XmlAttribute("id")]
         public string Id { get; set; }
 
-        [XmlElement("name", IsNullable = true)]
+        [XmlElement("name")]
         public Label Name { get; set; }
 
-        [XmlElement("graphics", IsNullable = true)]
+        [XmlElement("graphics")]
         public Graphics Graphics { get; set; }
 
-        [XmlElement("initialMarking", IsNullable = true)]
+        [XmlElement("initialMarking")]
         public Label InitialMarking { get; set; }
 
     }

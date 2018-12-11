@@ -17,10 +17,5 @@ namespace SimplePNML
             X = x;
             Y = y;
         }
-
-        public static Coordinates Create(int x, int y)
-        {
-            return new Coordinates(x, y);
-        }
     }
 }
