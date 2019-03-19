@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     [XmlType("net")]
-    public class Net
+    public class Net : IIdentifiable
     {
         [XmlAttribute("id")]
         public string Id { get; set; }

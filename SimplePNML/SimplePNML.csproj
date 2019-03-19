@@ -30,7 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>SimplePNML.Test</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,12 +47,15 @@
     <Compile Include="Arc.cs" />
     <Compile Include="Coordinates.cs" />
     <Compile Include="Graphics.cs" />
+    <Compile Include="IConnectable.cs" />
+    <Compile Include="IIdentifiable.cs" />
     <Compile Include="Label.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Place.cs" />
     <Compile Include="Net.cs" />
     <Compile Include="PNML.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="Transition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

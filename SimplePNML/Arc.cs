@@ -3,7 +3,7 @@
 namespace SimplePNML
 {
     [XmlType("arc")]
-    public class Arc
+    public class Arc : IIdentifiable
     {
         [XmlAttribute("id")]
         public string Id { get; set; }
@@ -16,6 +16,12 @@ namespace SimplePNML
 
         [XmlElement("inscription")]
         public Label Inscription { get; set; }
+
+        public void Connect(IConnectable source, IConnectable target)
+        {
+            Source = source.Id;
+            Target = target.Id;
+        }
 
     }
 }

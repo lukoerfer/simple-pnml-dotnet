@@ -3,7 +3,7 @@
 namespace SimplePNML
 {
     [XmlType("place")]
-    public class Place
+    public class Place : IConnectable
     {
         [XmlAttribute("id")]
         public string Id { get; set; }

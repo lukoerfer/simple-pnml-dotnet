@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     [XmlType("page")]
-    public class Page
+    public class Page : IIdentifiable
     {
         [XmlAttribute("id")]
         public string Id { get; set; }

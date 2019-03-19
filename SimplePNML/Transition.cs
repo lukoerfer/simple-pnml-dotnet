@@ -3,7 +3,7 @@
 namespace SimplePNML
 {
     [XmlType("transition")]
-    public class Transition
+    public class Transition : IConnectable
     {
         [XmlAttribute("id")]
         public string Id { get; set; }
