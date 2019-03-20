@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
@@ -8,10 +9,21 @@ namespace SimplePNML
         [XmlAttribute("id")]
         public string Id { get; set; }
 
+        [XmlElement("graphics")]
+        public Graphics Graphics { get; set; }
+
         [XmlElement("name")]
         public Label Name { get; set; }
 
-        [XmlElement("graphics")]
-        public Graphics Graphics { get; set; }
+        public static Transition Create(string id = null, Graphics graphics = null, Label name = null)
+        {
+            id = id ?? Guid.NewGuid().ToString();
+            return new Transition()
+            {
+                Id = id,
+                Graphics = graphics,
+                Name = name
+            };
+        }
     }
 }

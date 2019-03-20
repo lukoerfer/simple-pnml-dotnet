@@ -8,8 +8,19 @@ namespace SimplePNML
     [XmlRoot("pnml")]
     public class PNML
     {
+        public static PNML Create()
+        {
+            return new PNML();
+        }
+
         [XmlElement("net")]
         public List<Net> Nets { get; set; } = new List<Net>();
+
+        public PNML WithNets(params Net[] nets)
+        {
+            Nets.AddRange(nets);
+            return this;
+        }
 
         public void Write(Stream target)
         {

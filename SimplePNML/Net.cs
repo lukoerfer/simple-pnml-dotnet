@@ -16,5 +16,21 @@ namespace SimplePNML
         [XmlElement("page")]
         public List<Page> Pages { get; set; } = new List<Page>();
 
+        public static Net Create(string id = null, string type = null)
+        {
+            id = id ?? Guid.NewGuid().ToString();
+            return new Net()
+            {
+                Id = id,
+                Type = type
+            };
+        }
+
+        public Net WithPages(params Page[] pages)
+        {
+            Pages.AddRange(pages);
+            return this;
+        }
+
     }
 }
