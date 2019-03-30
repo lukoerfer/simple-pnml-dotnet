@@ -7,10 +7,12 @@ The [Petri Net Markup Language (PNML)](http://www.pnml.org/) was developed as an
 ## Installation
 
 ## Usage
-Once the library is included into the project, you can use the static methods of the `PNML` class to either read existing petri nets (from a `string`, `Stream` or `FileInfo`) or create a new petri net container:
+Once the library is included into the project, you can use the static methods of the `PNML` class to either read existing petri nets (e.g. from a `string` or `FileInfo`) or create a new petri net container:
 
-    PNML existing = PNML.Read(...);    
+    PNML existing = PNML.Read(...);
     PNML fresh = PNML.Create();
+
+The API provides some features to improve the work flow when creating new petri nets.
 
 ## License
 The software is licensed under the [MIT license](https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE).
