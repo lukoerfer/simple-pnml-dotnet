@@ -3,6 +3,9 @@ using System.Xml.Serialization;
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// Represents a place of a petri net
+    /// </summary>
     [XmlType("place")]
     public class Place : IConnectable
     {

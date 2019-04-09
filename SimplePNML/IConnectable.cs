@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// Marker interface for all elements that can be connected via arcs
+    /// </summary>
     public interface IConnectable : IIdentifiable
     {
         

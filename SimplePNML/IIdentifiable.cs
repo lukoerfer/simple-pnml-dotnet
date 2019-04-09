@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IIdentifiable
     {
+        /// <summary>
+        /// 
+        /// </summary>
         string Id { get; }
     }
 }

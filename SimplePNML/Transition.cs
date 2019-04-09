@@ -3,6 +3,9 @@ using System.Xml.Serialization;
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// Represents a transition of a petri net
+    /// </summary>
     [XmlType("transition")]
     public class Transition : IConnectable
     {

@@ -5,9 +5,16 @@ using System.Xml.Serialization;
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// Container for one or more petri nets
+    /// </summary>
     [XmlRoot("pnml")]
     public class PNML
     {
+        /// <summary>
+        /// Creates an empty container for petri nets
+        /// </summary>
+        /// <returns></returns>
         public static PNML Create()
         {
             return new PNML();
