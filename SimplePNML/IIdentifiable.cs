@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimplePNML
+﻿namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Encapsulates PNML elements that can be identified
     /// </summary>
     public interface IIdentifiable
     {
         /// <summary>
-        /// 
+        /// Returns an (at best unique) identifier
         /// </summary>
         string Id { get; }
     }

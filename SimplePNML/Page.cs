@@ -4,15 +4,54 @@ using System.Xml.Serialization;
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [XmlType("page")]
     public class Page : IIdentifiable
     {
+        /// <summary>
+        /// Gets or sets the identifier of this page
+        /// </summary>
         [XmlAttribute("id")]
         public string Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets a label describing the name of this page
+        /// </summary>
         [XmlElement("name")]
         public Label Name { get; set; }
 
+        /// <summary>
+        /// Gets a collection containing the sub-pages of this page
+        /// </summary>
+        [XmlElement("page")]
+        public List<Page> Pages { get; private set; } = new List<Page>();
+
+        /// <summary>
+        /// Gets a collection containing the places of this page
+        /// </summary>
+        [XmlElement("place")]
+        public List<Place> Places { get; private set; } = new List<Place>();
+
+        /// <summary>
+        /// Gets a collection containing the transitions of this page
+        /// </summary>
+        [XmlElement("transition")]
+        public List<Transition> Transitions { get; private set; } = new List<Transition>();
+
+        /// <summary>
+        /// Gets a collection containing the arcs of this page
+        /// </summary>
+        [XmlElement("arc")]
+        public List<Arc> Arcs { get; private set; } = new List<Arc>();
+
+        /// <summary>
+        /// Creates a new PNML page
+        /// </summary>
+        /// <param name="id">Any string, will default to a random GUID if null specified</param>
+        /// <param name="name">A label, can be null</param>
+        /// <returns>A new PNML page</returns>
         public static Page Create(string id = null, Label name = null)
         {
             id = id ?? Guid.NewGuid().ToString();
@@ -22,37 +61,45 @@ namespace SimplePNML
                 Name = name
             };
         }
-
-        [XmlElement("page")]
-        public List<Page> Pages { get; private set; } = new List<Page>();
-
+        
+        /// <summary>
+        /// Adds sub-pages to this page
+        /// </summary>
+        /// <param name="pages">Any number of pages</param>
+        /// <returns>A reference to this page</returns>
         public Page WithPages(params Page[] pages)
         {
             Pages.AddRange(pages);
             return this;
         }
 
-        [XmlElement("place")]
-        public List<Place> Places { get; private set; } = new List<Place>();
-
+        /// <summary>
+        /// Adds places to this page
+        /// </summary>
+        /// <param name="places">Any number of places</param>
+        /// <returns>A reference to this page</returns>
         public Page WithPlaces(params Place[] places)
         {
             Places.AddRange(places);
             return this;
         }
 
-        [XmlElement("transition")]
-        public List<Transition> Transitions { get; private set; } = new List<Transition>();
-
+        /// <summary>
+        /// Adds transitions to this page
+        /// </summary>
+        /// <param name="transitions">Any number of transitions</param>
+        /// <returns>A reference to this page</returns>
         public Page WithTransitions(params Transition[] transitions)
         {
             Transitions.AddRange(transitions);
             return this;
         }
 
-        [XmlElement("arc")]
-        public List<Arc> Arcs { get; private set; } = new List<Arc>();
-
+        /// <summary>
+        /// Adds arcs to this page
+        /// </summary>
+        /// <param name="arcs">Any number of arcs</param>
+        /// <returns>A reference to this page</returns>
         public Page WithArcs(params Arc[] arcs)
         {
             Arcs.AddRange(arcs);

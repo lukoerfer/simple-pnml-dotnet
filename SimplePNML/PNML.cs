@@ -6,13 +6,19 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// Container for one or more petri nets
+    /// Container for PNML nets
     /// </summary>
     [XmlRoot("pnml")]
     public class PNML
     {
         /// <summary>
-        /// Creates an empty container for petri nets
+        /// 
+        /// </summary>
+        [XmlElement("net")]
+        public List<Net> Nets { get; set; } = new List<Net>();
+
+        /// <summary>
+        /// Creates an empty container for PNML nets
         /// </summary>
         /// <returns></returns>
         public static PNML Create()
@@ -20,30 +26,48 @@ namespace SimplePNML
             return new PNML();
         }
 
-        [XmlElement("net")]
-        public List<Net> Nets { get; set; } = new List<Net>();
-
+        /// <summary>
+        /// Adds nets to this PNML container
+        /// </summary>
+        /// <param name="nets">Any number of nets</param>
+        /// <returns>A reference to this container</returns>
         public PNML WithNets(params Net[] nets)
         {
             Nets.AddRange(nets);
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
         public void Write(Stream target)
         {
             BuildSerializer().Serialize(target, this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
         public void Write(TextWriter target)
         {
             BuildSerializer().Serialize(target, this);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
         public void Write(FileInfo target)
         {
             Write(target.OpenWrite());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string Write()
         {
             using (TextWriter writer = new StringWriter())
@@ -53,21 +77,41 @@ namespace SimplePNML
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static PNML Read(Stream source)
         {
             return (PNML) BuildSerializer().Deserialize(source);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static PNML Read(TextReader source)
         {
             return (PNML) BuildSerializer().Deserialize(source);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static PNML Read(FileInfo source)
         {
             return Read(source.OpenRead());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static PNML Read(string source)
         {
             using (TextReader reader = new StringReader(source))
