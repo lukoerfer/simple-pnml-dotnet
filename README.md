@@ -7,10 +7,9 @@ The [Petri Net Markup Language (PNML)](http://www.pnml.org/) was developed as an
 ## Installation
 
 ## Usage
-Once the library is included into the project, you can use the static methods of the `PNML` class to either import existing petri nets (e.g. from a `string` or `FileInfo`) or to create a new container.
+Once the library is included into the project, the static methods of the `PNML` class can be used to either import existing petri nets (e.g. from a `string` or `FileInfo`) or to create a new container. Simply load a sample PT-net from [PNML.org](http://www.pnml.org/version-2009/version-2009.php) to get used to the API (and the PNML model in general). The API mainly implements the elements defined by the PNML as simple classes. However, some additional features to improve the work flow are provided:
 
-
-The API provides some features to improve the work flow when building new petri nets. This includes factory methods to create various net elements:
+First of all the API provides factory methods to create various net elements in a simple way:
 
     Net.Create(string id = null, string type = null)
 
@@ -22,11 +21,13 @@ The API provides some features to improve the work flow when building new petri 
     
     Arc.Create(string id = null, IConnectable source = null, IConnectable target = null, Label inscription = null)
     
+    Label.Simple(string text)
+    
     Label.Absolute(int x, int y, string text)
     
     Label.Relative(int x, int y, string text)
     
-> Of course, the elements can also be created using the respective constructors. The factory methods simply provide a clean and less verbose API with automatic generation of IDs (via `Guid.NewGuid().ToString()`).
+Of course, the elements can also be created using the respective constructors. The factory methods simply provide a clean and less verbose interface with automatic generation of IDs (via `Guid.NewGuid().ToString()`).
     
 In addition, the API provides fluent methods (with prefix `With`) to add sub elements:
 
@@ -41,6 +42,14 @@ In addition, the API provides fluent methods (with prefix `With`) to add sub ele
     page.WithTransitions(params Transition[] transitions)
     
     page.WithArcs(params Arc[] arcs)
+
+Finally, the following methods can be used to set the source and the target of an `Arc` directly to objects instead of identifiers:
+
+    arc.SetSource(IConnectable source)
+    
+    arc.SetTarget(IConnectable target)
+    
+    arc.Connect(IConnectable source, IConnectable target)
 
 ## License
 The software is licensed under the [MIT license](https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE).
