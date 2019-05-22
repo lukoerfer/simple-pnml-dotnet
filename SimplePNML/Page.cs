@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Represents a PNML page
     /// </summary>
     [XmlType("page")]
     public class Page : IIdentifiable

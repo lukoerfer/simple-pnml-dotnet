@@ -3,7 +3,7 @@
 namespace SimplePNML
 {
     /// <summary>
-    /// Stores absolute or relative position data
+    /// Stores absolute or relative position information
     /// </summary>
     public class Graphics
     {
@@ -20,10 +20,10 @@ namespace SimplePNML
         public Coordinates Offset { get; set; }
 
         /// <summary>
-        /// 
+        /// Creates an absolute position information
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">An absolute X coordinate</param>
+        /// <param name="y">An absolute Y coordinate</param>
         /// <returns></returns>
         public static Graphics Absolute(int x, int y)
         {
@@ -34,10 +34,10 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Creates a relative position information
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">A relative X coordinate</param>
+        /// <param name="y">A relative Y coordinate</param>
         /// <returns></returns>
         public static Graphics Relative(int x, int y)
         {

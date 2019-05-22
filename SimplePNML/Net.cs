@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Represents a PNML net
     /// </summary>
     [XmlType("net")]
     public class Net : IIdentifiable

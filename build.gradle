@@ -1,0 +1,26 @@
+plugins {
+	id 'base'
+    id 'com.ullink.msbuild' version '3.6'
+    id 'org.ysb33r.doxygen' version '0.5'
+}
+
+msbuild {
+    solutionFile = 'SimplePNML.sln'
+    targets = [ 'Clean', 'Rebuild' ]
+    version = '15.0'
+}
+
+doxygen {
+	generate_latex false
+	source = project.fileTree('SimplePNML') {
+        include '**/*.cs'
+    }
+	executables {
+    	doxygen version : '1.8.14'
+  	}
+}
+
+wrapper {
+    gradleVersion '5.4'
+    distributionType = 'all'
+}
