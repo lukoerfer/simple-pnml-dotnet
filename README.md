@@ -9,9 +9,11 @@ The [Petri Net Markup Language (PNML)](http://www.pnml.org/) was developed as an
 ## Installation
 
 ## Usage
-Once the library is included into the project, the static methods of the `PNML` class can be used to either import existing petri nets (e.g. from a `string` or `FileInfo`) or to create a new container. Simply load a sample PT-net from [PNML.org](http://www.pnml.org/version-2009/version-2009.php) to get used to the API (and the PNML model in general). The API mainly implements the elements defined by the PNML as simple classes. However, some additional features to improve the work flow are provided:
+Once the library is included into the project, the static methods of the `PNML` class can be used to either import existing petri nets (e.g. from a `string` or `FileInfo`) or to create a new container. Simply load a sample PT-net from [PNML.org](http://www.pnml.org/version-2009/version-2009.php) to get used to the API (and the PNML model in general).
 
-#### Factory methods to create elements
+The API mainly implements the elements defined by the PNML as simple classes with their respective properties. However, some additional features to improve the work flow are provided:
+
+#### 1. Factory methods to create elements
 
     Net.Create(string id = null, string type = null)
 
@@ -31,7 +33,7 @@ Once the library is included into the project, the static methods of the `PNML` 
     
 Of course, the elements can also be created using the respective constructors. The factory methods simply provide a clean and less verbose interface with automatic generation of IDs (via `Guid.NewGuid().ToString()`).
     
-#### Fluent methods to add sub elements
+#### 2. Fluent methods to add sub elements
 
     pnml.WithNets(params Net[] nets)
 
@@ -45,7 +47,7 @@ Of course, the elements can also be created using the respective constructors. T
     
     page.WithArcs(params Arc[] arcs)
 
-#### Additional utility methods for `Arc` setup
+#### 3. Additional utility methods for `Arc` setup
 
     arc.SetSource(IConnectable source)
     
