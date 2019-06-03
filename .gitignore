@@ -1,6 +1,10 @@
 
-# Created by https://www.gitignore.io/api/gradle,csharp,visualstudio
-# Edit at https://www.gitignore.io/?templates=gradle,csharp,visualstudio
+# Created by https://www.gitignore.io/api/cake,csharp,visualstudio
+# Edit at https://www.gitignore.io/?templates=cake,csharp,visualstudio
+
+### Cake ###
+tools/*
+!tools/packages.config
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -348,25 +352,6 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-### Gradle ###
-.gradle
-build/
-
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
-
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
-
-### Gradle Patch ###
-**/build/
-
 ### VisualStudio ###
 
 # User-specific files
@@ -522,4 +507,4 @@ gradle-app.setting
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 
-# End of https://www.gitignore.io/api/gradle,csharp,visualstudio
+# End of https://www.gitignore.io/api/cake,csharp,visualstudio
