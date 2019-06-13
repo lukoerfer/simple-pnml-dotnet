@@ -9,11 +9,14 @@ namespace SimplePNML.Tests
     {
         [TestCase(null)]
         [TestCase("")]
+        [TestCase("   ")]
         [TestCase("test")]
         public void IdNeverNullOnSetup(string value)
         {
-            Arc arc = Arc.Create(value);
+            Arc arc = Arc.Create(id: value);
             Assert.NotNull(arc.Id);
+            Assert.IsNotEmpty(arc.Id);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(arc.Id));
         }
 
         [Test]

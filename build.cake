@@ -1,26 +1,36 @@
-#addin "Cake.DocFx"
-#tool "docfx.console"
-
 var target = Argument("target", "Default");
+
+Task("Clean")
+	.Does(() =>
+{
+
+});
 
 Task("Build")
 	.Does(() =>
 {
-	if (IsRunningOnWindows())
+	MSBuild("src/SimplePNML.sln", settings =>
 	{
-		MSBuild("SimplePNML.sln");
-	}
-	else
-	{
-		XBuild("SimplePNML.sln");
-	}
+		settings.SetVerbosity(Verbosity.Minimal);
+	});
 });
 
-Task("Documentation")
+Task("Generate-Docs")
 	.Does(() =>
 {
-	DocFxMetadata();
-	DocFxBuild();
+
+});
+
+Task("Create-Nuget-Package")
+	.Does(() =>
+{
+	NuGetPack("src/SimplePNML/SimplePNML.nuspec", new NuGetPackSettings());
+});
+
+Task("Publish-Nuget")
+	.Does(() =>
+{
+	
 });
 
 RunTarget(target);

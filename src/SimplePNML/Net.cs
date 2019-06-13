@@ -11,6 +11,11 @@ namespace SimplePNML
     public class Net : IIdentifiable
     {
         /// <summary>
+        /// Defines the PNML grammar for place-transitions nets
+        /// </summary>
+        public const string PLACE_TRANSITION_NET_TYPE = "http://www.pnml.org/version-2009/grammar/ptnet";
+
+        /// <summary>
         /// Gets or sets the identifier of this net
         /// </summary>
         [XmlAttribute("id")]
@@ -31,12 +36,13 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new PNML net
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="type"></param>
+        /// <param name="id">An identifier, should be unique, defaults to a random GUID</param>
+        /// <param name="type">A resource to the PNML grammar of this net, defaults to the grammar for place-transition nets</param>
         /// <returns>A new PNML net</returns>
         public static Net Create(string id = null, string type = null)
         {
-            id = id ?? Guid.NewGuid().ToString();
+            id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
+            type = string.IsNullOrWhiteSpace(type) ? PLACE_TRANSITION_NET_TYPE : type;
             return new Net()
             {
                 Id = id,

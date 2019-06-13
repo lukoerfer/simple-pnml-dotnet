@@ -2,16 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Lukas Körfer</Authors>
+    <Authors></Authors>
     <Company />
     <Product />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Copyright>Lukas Körfer</Copyright>
-    <PackageLicenseUrl>https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE</PackageLicenseUrl>
-    <Description>Simple .NET implementation of the Petri Net Markup Language (PT-Nets)</Description>
-    <PackageProjectUrl>https://github.com/lukoerfer/simple-pnml-dotnet</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lukoerfer/simple-pnml-dotnet.git</RepositoryUrl>
-    <PackageTags>pnml, petri-nets</PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Copyright></Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <Description></Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageTags></PackageTags>
+    <Version>1.0.0.0</Version>
   </PropertyGroup>
 
 </Project>

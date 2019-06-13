@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Describes a PNML arc
     /// </summary>
     [XmlType("arc")]
     public class Arc : IIdentifiable
@@ -40,7 +40,7 @@ namespace SimplePNML
         /// <param name="source">Any connectable PNML element</param>
         /// <param name="target">Any connectable PNML element</param>
         /// <param name="inscription"></param>
-        /// <returns></returns>
+        /// <returns>A new PNML arc</returns>
         public static Arc Create(string id = null, IConnectable source = null, IConnectable target = null, Label inscription = null)
         {
             id = id ?? Guid.NewGuid().ToString();

@@ -49,12 +49,12 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new PNML page
         /// </summary>
-        /// <param name="id">Any string, will default to a random GUID if null specified</param>
+        /// <param name="id">An identifier, should be unique, defaults to a random GUID</param>
         /// <param name="name">A label, can be null</param>
         /// <returns>A new PNML page</returns>
         public static Page Create(string id = null, Label name = null)
         {
-            id = id ?? Guid.NewGuid().ToString();
+            id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             return new Page()
             {
                 Id = id,

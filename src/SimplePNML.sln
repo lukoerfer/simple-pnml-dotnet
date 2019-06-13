@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplePNML", "src\SimplePNML\SimplePNML.csproj", "{9EAA434F-306D-4555-AAF5-0C9BAEF8181A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplePNML", "SimplePNML\SimplePNML.csproj", "{9EAA434F-306D-4555-AAF5-0C9BAEF8181A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePNML.Tests", "src\SimplePNML.Tests\SimplePNML.Tests.csproj", "{CB75882C-2605-4241-A6F1-AB73E5FBF70B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplePNML.Tests", "SimplePNML.Tests\SimplePNML.Tests.csproj", "{CB75882C-2605-4241-A6F1-AB73E5FBF70B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6DD84071-20FD-40B8-8836-368D2FC95ECF}"
+	ProjectSection(SolutionItems) = preProject
+		..\build.cake = ..\build.cake
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

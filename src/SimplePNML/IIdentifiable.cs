@@ -6,8 +6,9 @@
     public interface IIdentifiable
     {
         /// <summary>
-        /// Returns an (at best unique) identifier
+        /// Gets the identifier of this element
         /// </summary>
         string Id { get; }
+
     }
 }
