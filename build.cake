@@ -6,6 +6,12 @@ Task("Clean")
 
 });
 
+Task("Restore")
+	.Does(() =>
+{
+
+});
+
 Task("Build")
 	.Does(() =>
 {
