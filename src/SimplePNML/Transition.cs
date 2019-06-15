@@ -10,7 +10,7 @@ namespace SimplePNML
     public class Transition : IConnectable
     {
         /// <summary>
-        /// 
+        /// Gets or sets the identifier of this transition
         /// </summary>
         [XmlAttribute("id")]
         public string Id { get; set; }

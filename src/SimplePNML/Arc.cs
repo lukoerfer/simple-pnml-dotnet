@@ -43,7 +43,7 @@ namespace SimplePNML
         /// <returns>A new PNML arc</returns>
         public static Arc Create(string id = null, IConnectable source = null, IConnectable target = null, Label inscription = null)
         {
-            id = id ?? Guid.NewGuid().ToString();
+            id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             return new Arc()
             {
                 Id = id,

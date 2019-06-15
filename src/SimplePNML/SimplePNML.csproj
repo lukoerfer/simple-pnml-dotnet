@@ -3,8 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 
-    
+    <PackageProjectUrl>https://github.com/lukoerfer/simple-pnml-dotnet</PackageProjectUrl>
+    <Authors>Lukas Körfer</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/lukoerfer/simple-pnml-dotnet.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>petri-nets pnml</PackageTags>
+    <Description>Simple .NET implementation of the Petri Net Markup Language (PNML), limited to Place-Transition-(PT)-Nets</Description>
   </PropertyGroup>
 
 </Project>
