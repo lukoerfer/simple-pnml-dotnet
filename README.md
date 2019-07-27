@@ -15,45 +15,39 @@ The API mainly implements the elements defined by the PNML as simple classes wit
 
 #### 1. Factory methods to create elements
 
-    Net.Create(string id = null, string type = null)
+``` csharp
+Net.Create(string id = null, string type = null)
+Page.Create(string id = null, Label name = null)
+Place.Create(string id = null, Graphics graphics = null, Label name = null, Label initialMarking = null)
+Transition.Create(string id = null, Graphics graphics = null, Label name = null)
+Arc.Create(string id = null, IConnectable source = null, IConnectable target = null, Label inscription = null)
+    
+Label.Simple(string text)
+Label.Absolute(int x, int y, string text)
+Label.Relative(int x, int y, string text)
+```
 
-    Page.Create(string id = null, Label name = null)
-    
-    Place.Create(string id = null, Graphics graphics = null, Label name = null, Label initialMarking = null)
-    
-    Transition.Create(string id = null, Graphics graphics = null, Label name = null)
-    
-    Arc.Create(string id = null, IConnectable source = null, IConnectable target = null, Label inscription = null)
-    
-    Label.Simple(string text)
-    
-    Label.Absolute(int x, int y, string text)
-    
-    Label.Relative(int x, int y, string text)
-    
 Of course, the elements can also be created using the respective constructors. The factory methods simply provide a clean and less verbose interface with automatic generation of IDs (via `Guid.NewGuid().ToString()`).
     
 #### 2. Fluent methods to add sub elements
 
-    pnml.WithNets(params Net[] nets)
-
-    net.WithPages(params Page[] pages)
+``` csharp
+pnml.WithNets(params Net[] nets)
+net.WithPages(params Page[] pages)
     
-    page.WithPages(params Page[] pages)
-    
-    page.WithPlaces(params Place[] places)
-    
-    page.WithTransitions(params Transition[] transitions)
-    
-    page.WithArcs(params Arc[] arcs)
+page.WithPages(params Page[] pages)
+page.WithPlaces(params Place[] places)
+page.WithTransitions(params Transition[] transitions)
+page.WithArcs(params Arc[] arcs)
+```
 
 #### 3. Additional utility methods for `Arc` setup
 
-    arc.SetSource(IConnectable source)
-    
-    arc.SetTarget(IConnectable target)
-    
-    arc.Connect(IConnectable source, IConnectable target)
+``` csharp
+arc.SetSource(IConnectable source)
+arc.SetTarget(IConnectable target)
+arc.Connect(IConnectable source, IConnectable target)
+```
 
 ## License
 The software is licensed under the [MIT license](https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE).
