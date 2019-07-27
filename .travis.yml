@@ -1,0 +1,14 @@
+language: csharp
+dotnet: 2.2.401
+mono: none
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+branches:
+  only:
+    - master
+script:
+  - export PATH="$PATH:$HOME/.dotnet/tools"
+  - dotnet tool install -g Cake.Tool --version 0.34.1
+  - dotnet cake build.cake -target=Test

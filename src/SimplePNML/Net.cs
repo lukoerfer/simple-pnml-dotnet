@@ -8,6 +8,7 @@ namespace SimplePNML
     /// Represents a PNML net
     /// </summary>
     [XmlType("net")]
+    [Equals]
     public class Net : IIdentifiable
     {
         /// <summary>

@@ -9,6 +9,7 @@ namespace SimplePNML
     /// Container for PNML nets
     /// </summary>
     [XmlRoot("pnml")]
+    [Equals]
     public class PNML
     {
         /// <summary>

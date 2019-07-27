@@ -5,6 +5,7 @@ namespace SimplePNML
     /// <summary>
     /// Stores coordinates in two dimensions
     /// </summary>
+    [Equals]
     public class Coordinates
     {
         /// <summary>

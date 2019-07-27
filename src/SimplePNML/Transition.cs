@@ -7,6 +7,7 @@ namespace SimplePNML
     /// Represents a PNML transition
     /// </summary>
     [XmlType("transition")]
+    [Equals]
     public class Transition : IConnectable
     {
         /// <summary>

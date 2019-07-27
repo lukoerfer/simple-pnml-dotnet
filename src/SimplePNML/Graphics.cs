@@ -5,6 +5,7 @@ namespace SimplePNML
     /// <summary>
     /// Stores absolute or relative position information
     /// </summary>
+    [Equals]
     public class Graphics
     {
         /// <summary>

@@ -7,6 +7,7 @@ namespace SimplePNML
     /// Describes a PNML arc
     /// </summary>
     [XmlType("arc")]
+    [Equals]
     public class Arc : IIdentifiable
     {
         /// <summary>

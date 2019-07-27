@@ -12,4 +12,12 @@
     <Description>Simple .NET implementation of the Petri Net Markup Language (PNML), limited to Place-Transition-(PT)-Nets</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Equals.Fody" Version="1.9.5" />
+    <PackageReference Include="Fody" Version="4.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>

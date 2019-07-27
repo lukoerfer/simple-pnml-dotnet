@@ -8,6 +8,7 @@ namespace SimplePNML
     /// Represents a PNML page
     /// </summary>
     [XmlType("page")]
+    [Equals]
     public class Page : IIdentifiable
     {
         /// <summary>

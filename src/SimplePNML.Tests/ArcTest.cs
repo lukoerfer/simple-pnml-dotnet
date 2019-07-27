@@ -1,17 +1,28 @@
-﻿using Moq;
+﻿using System.IO;
+using System.Xml.Serialization;
+
+using AutoFixture.NUnit3;
+using Moq;
 using NUnit.Framework;
-using System;
 
 namespace SimplePNML.Tests
 {
     [TestFixture]
     public class ArcTest
     {
-        [TestCase(null)]
-        [TestCase("")]
-        [TestCase("   ")]
-        [TestCase("test")]
-        public void IdNeverNullOnSetup(string value)
+        [Test, AutoData]
+        public void EqualsAfterSerialization(Arc input)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Arc));
+            MemoryStream stream = new MemoryStream();
+            serializer.Serialize(stream, input);
+            stream.Position = 0;
+            Arc output = (Arc)serializer.Deserialize(stream);
+            Assert.IsTrue(input.Equals(output));
+        }
+
+        [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
+        public void CorrectIdOnSetup(string value)
         {
             Arc arc = Arc.Create(id: value);
             Assert.NotNull(arc.Id);
@@ -26,33 +37,26 @@ namespace SimplePNML.Tests
             IConnectable source = Mock.Of<IConnectable>(obj => obj.Id == "source");
             IConnectable target = Mock.Of<IConnectable>(obj => obj.Id == "target");
             arc.Connect(source, target);
-            Assert.AreEqual(arc.Source, "source");
-            Assert.AreEqual(arc.Target, "target");
-        }
-
-        private readonly string TEST_SERIALIZATION = @"
-            
-        ";
-
-        [Test]
-        [Ignore("Not implemented")]
-        public void CanSerialize()
-        {
-            Arc arc = new Arc()
-            {
-                Id = "id",
-                Source = "source",
-                Target = "target"
-            };
-            string serialized = "";
-            Assert.AreEqual(TEST_SERIALIZATION, serialized);
+            Assert.AreEqual("source", arc.Source);
+            Assert.AreEqual("target", arc.Target);
         }
 
         [Test]
-        [Ignore("Not implemented")]
-        public void CanDeserialize()
+        public void CanSetSource()
         {
+            Arc arc = new Arc();
+            IConnectable source = Mock.Of<IConnectable>(obj => obj.Id == "source");
+            arc.SetSource(source);
+            Assert.AreEqual("source", arc.Source);
+        }
 
+        [Test]
+        public void CanSetTarget()
+        {
+            Arc arc = new Arc();
+            IConnectable target = Mock.Of<IConnectable>(obj => obj.Id == "target");
+            arc.SetTarget(target);
+            Assert.AreEqual("target", arc.Target);
         }
 
     }
