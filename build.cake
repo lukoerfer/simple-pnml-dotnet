@@ -57,10 +57,16 @@ Task("Test")
 		CoverletOutputDirectory = "./artifacts/coverage/coverage",
         CoverletOutputFormat = CoverletOutputFormat.opencover
 	});
-	CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
-    {
-        RepoTokenVariable = "COVERALLS_REPO_TOKEN"
-    });
+
+	if (TravisCI.IsRunningOnTravisCI)
+	{
+		CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
+	    {
+	    	CommitBranch = TravisCI.Environment.Build.Branch,
+	        RepoTokenVariable = "COVERALLS_REPO_TOKEN",
+	        UseRelativePaths = true
+	    });
+	}
 });
 
 Task("Pack")
