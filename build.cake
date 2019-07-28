@@ -62,10 +62,9 @@ Task("Test")
 	{
 		CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
 	    {
-			RepoTokenVariable = "COVERALLS_REPO_TOKEN",
-	        UseRelativePaths = true,
 			ServiceName = "travis-ci",
 			JobId = TravisCI.Environment.Job.JobId,
+			UseRelativePaths = true,
 	        TreatUploadErrorsAsWarnings = true
 	    });
 	}
@@ -75,9 +74,11 @@ Task("Pack")
 	.IsDependentOn("Build")
 	.Does(() =>
 {
-	NuGetPack(project, new NuGetPackSettings()
-	{
-		OutputDirectory = "./artifacts/nuget"
+	DotNetCorePack(project, new DotNetCorePackSettings() {
+		NoRestore = true,
+		NoBuild = true,
+		OutputDirectory = "./artifacts/nuget",
+		Verbosity = DotNetCoreVerbosity.Quiet
 	});
 });
 
@@ -85,7 +86,11 @@ Task("Push")
 	.IsDependentOn("Pack")
 	.Does(() =>
 {
-	 
+	var packages = GetFiles("./artifacts/nuget/*.nupkg");
+
+	NuGetPush(packages, new NuGetPushSettings() {
+		 Source = "https://api.nuget.org/v3/index.json"
+	});
 });
 
 Task("Docs")

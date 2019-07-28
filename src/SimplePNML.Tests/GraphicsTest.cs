@@ -21,7 +21,7 @@ namespace SimplePNML.Tests
         }
 
         [Test, AutoData]
-        public void NoOffsetForAbsolute(int x, int y)
+        public void ValidAbsolute(int x, int y)
         {
             Graphics absolute = Graphics.Absolute(x, y);
             Assert.IsNotNull(absolute.Position);
@@ -29,7 +29,7 @@ namespace SimplePNML.Tests
         }
 
         [Test, AutoData]
-        public void NoPositionForRelative(int x, int y)
+        public void ValidRelative(int x, int y)
         {
             Graphics relative = Graphics.Relative(x, y);
             Assert.IsNull(relative.Position);

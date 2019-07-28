@@ -21,5 +21,14 @@ namespace SimplePNML.Tests
             Transition output = (Transition) serializer.Deserialize(stream);
             Assert.IsTrue(input.Equals(output));
         }
+
+        [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
+        public void CreateGivesValidId(string id)
+        {
+            Transition transition = Transition.Create(id);
+            Assert.NotNull(transition.Id);
+            Assert.IsNotEmpty(transition.Id);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(transition.Id));
+        }
     }
 }

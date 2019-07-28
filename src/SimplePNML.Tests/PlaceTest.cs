@@ -18,5 +18,14 @@ namespace SimplePNML.Tests
             Place output = (Place) serializer.Deserialize(stream);
             Assert.IsTrue(input.Equals(output));
         }
+
+        [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
+        public void CreateGivesValidId(string id)
+        {
+            Place place = Place.Create(id);
+            Assert.NotNull(place.Id);
+            Assert.IsNotEmpty(place.Id);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(place.Id));
+        }
     }
 }

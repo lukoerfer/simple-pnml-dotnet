@@ -19,5 +19,21 @@ namespace SimplePNML.Tests
             Label output = (Label) serializer.Deserialize(stream);
             Assert.IsTrue(input.Equals(output));
         }
+
+        [Test, AutoData]
+        public void ValidAbsolute(int x, int y, string text)
+        {
+            Label absolute = Label.Absolute(x, y, text);
+            Assert.IsNotNull(absolute.Graphics.Position);
+            Assert.IsNull(absolute.Graphics.Offset);
+        }
+
+        [Test, AutoData]
+        public void ValidRelative(int x, int y, string text)
+        {
+            Label relative = Label.Relative(x, y, text);
+            Assert.IsNull(relative.Graphics.Position);
+            Assert.IsNotNull(relative.Graphics.Offset);
+        }
     }
 }
