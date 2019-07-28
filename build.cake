@@ -60,12 +60,9 @@ Task("Test")
 
 	if (TravisCI.IsRunningOnTravisCI)
 	{
-		CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
-	    {
-	    	CommitBranch = TravisCI.Environment.Build.Branch,
-	        RepoTokenVariable = "COVERALLS_REPO_TOKEN",
-	        UseRelativePaths = true
-	    });
+		CoverallsNet("./artifacts/coverage/coverage.opencover.xml", 
+			CoverallsNetReportType.OpenCover, 
+			settings => settings.UseTravisDefaults());
 	}
 });
 
