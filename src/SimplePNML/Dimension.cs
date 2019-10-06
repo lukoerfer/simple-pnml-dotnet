@@ -2,12 +2,9 @@
 
 namespace SimplePNML
 {
-    /// <summary>
-    /// Stores coordinates in two dimensions
-    /// </summary>
     [XmlType]
     [Equals]
-    public class Coordinates
+    public class Dimension
     {
         /// <summary>
         /// The X value of this set of coordinates
@@ -24,14 +21,14 @@ namespace SimplePNML
         /// <summary>
         /// Creates an empty set of coordinates
         /// </summary>
-        public Coordinates() { }
+        public Dimension() { }
 
         /// <summary>
         /// Creates a new set of coordinates
         /// </summary>
         /// <param name="x">Any value for the X direction</param>
         /// <param name="y">Any value for the Y direction</param>
-        public Coordinates(double x, double y)
+        public Dimension(double x, double y)
         {
             X = x;
             Y = y;

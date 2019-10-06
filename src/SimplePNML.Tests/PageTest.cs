@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Xml.Serialization;
-
+﻿
 using AutoFixture.NUnit3;
 using NUnit.Framework;
 
@@ -9,17 +7,6 @@ namespace SimplePNML.Tests
     [TestFixture]
     public class PageTest
     {
-        [Test, AutoData]
-        public void EqualsAfterSerialization(Page input)
-        {
-            XmlSerializer serializer = new XmlSerializer(typeof(Page));
-            MemoryStream stream = new MemoryStream();
-            serializer.Serialize(stream, input);
-            stream.Position = 0;
-            Page output = (Page) serializer.Deserialize(stream);
-            Assert.IsTrue(input.Equals(output));
-        }
-
         [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
         public void CreateGivesValidId(string id)
         {
@@ -29,28 +16,28 @@ namespace SimplePNML.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(page.Id));
         }
 
-        [Test, AutoData]
+        [Test, XmlAutoData]
         public void WithPagesAddsPages(Page page1, Page page2)
         {
             Page page = new Page();
             Assert.AreEqual(2, page.WithPages(page1, page2).Pages.Count);
         }
 
-        [Test, AutoData]
-        public void WithPagesAddsPages(Arc arc1, Arc arc2)
+        [Test, XmlAutoData]
+        public void WithArcsAddsPages(Arc arc1, Arc arc2)
         {
             Page page = new Page();
             Assert.AreEqual(2, page.WithArcs(arc1, arc2).Arcs.Count);
         }
 
-        [Test, AutoData]
+        [Test, XmlAutoData]
         public void WithPlacesAddsPages(Place place1, Place place2)
         {
             Page page = new Page();
             Assert.AreEqual(2, page.WithPlaces(place1, place2).Places.Count);
         }
 
-        [Test, AutoData]
+        [Test, XmlAutoData]
         public void WithTransitionsAddsTransitions(Transition transition1, Transition transition2)
         {
             Page page = new Page();

@@ -3,9 +3,9 @@
 namespace SimplePNML.Tests
 {
     [TestFixture]
-    public class CoordinatesTest
+    public class LineTest
     {
-        
 
     }
 }
+

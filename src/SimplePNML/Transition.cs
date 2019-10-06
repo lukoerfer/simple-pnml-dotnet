@@ -17,16 +17,16 @@ namespace SimplePNML
         public string Id { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets a label containing the name
         /// </summary>
-        [XmlElement("graphics")]
-        public Graphics Graphics { get; set; }
+        [XmlElement("name")]
+        public Label Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [XmlElement("name")]
-        public Label Name { get; set; }
+        [XmlElement("graphics")]
+        public NodeGraphics Graphics { get; set; }
 
         /// <summary>
         /// Creates a new PNML transition
@@ -35,7 +35,7 @@ namespace SimplePNML
         /// <param name="graphics"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static Transition Create(string id = null, Graphics graphics = null, Label name = null)
+        public static Transition Create(string id = null, NodeGraphics graphics = null, Label name = null)
         {
             id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             return new Transition()

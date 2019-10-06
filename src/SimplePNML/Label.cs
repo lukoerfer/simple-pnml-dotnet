@@ -5,6 +5,7 @@ namespace SimplePNML
     /// <summary>
     /// Describes a text at a specific position
     /// </summary>
+    [XmlType]
     [Equals]
     public class Label
     {
@@ -15,41 +16,38 @@ namespace SimplePNML
         public string Text { get; set; }
 
         /// <summary>
-        /// Gets or sets position information for this label
+        /// 
         /// </summary>
         [XmlElement("graphics")]
-        public Graphics Graphics { get; set; }
+        public AnnotationGraphics Graphics { get; set; }
 
         /// <summary>
-        /// Creates a label at an absolute position
+        /// Creates a new label
         /// </summary>
-        /// <param name="x">An absolute X coordinate</param>
-        /// <param name="y">An absolute Y coordinate</param>
+        /// <returns>A new label</returns>
+        public Label() { }
+
+        /// <summary>
+        /// Creates a new label
+        /// </summary>
         /// <param name="text">Any text</param>
         /// <returns>A new label</returns>
-        public static Label Absolute(int x, int y, string text)
+        public Label(string text)
         {
-            return new Label()
-            {
-                Text = text,
-                Graphics = Graphics.Absolute(x, y)
-            };
+            Text = text;
         }
 
         /// <summary>
-        /// Creates a label at a relative position
+        /// Creates a new label
         /// </summary>
-        /// <param name="x">A relative X coordinate</param>
-        /// <param name="y">A relative Y coordinate</param>
         /// <param name="text">Any text</param>
+        /// <param name="x">An absolute X coordinate</param>
+        /// <param name="y">An absolute Y coordinate</param>
         /// <returns>A new label</returns>
-        public static Label Relative(int x, int y, string text)
+        public Label(string text, int x, int y)
         {
-            return new Label()
-            {
-                Text = text,
-                Graphics = Graphics.Relative(x, y)
-            };
+            Text = text;
+            Graphics = new AnnotationGraphics(x, y);
         }
 
     }

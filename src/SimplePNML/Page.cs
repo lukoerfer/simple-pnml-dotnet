@@ -18,10 +18,16 @@ namespace SimplePNML
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets a label describing the name of this page
+        /// Gets or sets a label containing the name
         /// </summary>
         [XmlElement("name")]
         public Label Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlElement("graphics")]
+        public NodeGraphics Graphics { get; set; }
 
         /// <summary>
         /// Gets a collection containing the sub-pages of this page
@@ -46,6 +52,7 @@ namespace SimplePNML
         /// </summary>
         [XmlElement("arc")]
         public List<Arc> Arcs { get; private set; } = new List<Arc>();
+
 
         /// <summary>
         /// Creates a new PNML page

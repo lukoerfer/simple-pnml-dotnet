@@ -21,4 +21,10 @@
     <ProjectReference Include="..\SimplePNML\SimplePNML.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\Example.pnml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

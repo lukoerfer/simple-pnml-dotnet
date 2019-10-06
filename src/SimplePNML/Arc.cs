@@ -29,6 +29,12 @@ namespace SimplePNML
         public string Target { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [XmlElement("graphics")]
+        public EdgeGraphics Graphics { get; set; }
+
+        /// <summary>
         /// Gets or sets a label describing the inscription of this arc
         /// </summary>
         [XmlElement("inscription")]

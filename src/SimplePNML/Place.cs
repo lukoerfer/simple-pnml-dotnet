@@ -18,16 +18,16 @@ namespace SimplePNML
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets information on how to visualize this place
-        /// </summary>
-        [XmlElement("graphics")]
-        public Graphics Graphics { get; set; }
-
-        /// <summary>
-        /// Gets or sets a label containing the name of this place
+        /// Gets or sets a label containing the name
         /// </summary>
         [XmlElement("name")]
         public Label Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets information on how to visualize this place
+        /// </summary>
+        [XmlElement("graphics")]
+        public NodeGraphics Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets the initial marking of this place
@@ -44,7 +44,7 @@ namespace SimplePNML
         /// <param name="name">A name, may be null</param>
         /// <param name="initialMarking">An initial marking, may be null</param>
         /// <returns>A new place</returns>
-        public static Place Create(string id = null, Graphics graphics = null, Label name = null, Label initialMarking = null)
+        public static Place Create(string id = null, NodeGraphics graphics = null, Label name = null, Label initialMarking = null)
         {
             id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             return new Place()
