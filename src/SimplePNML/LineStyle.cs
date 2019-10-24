@@ -1,14 +1,15 @@
 ﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
     public enum LineStyle
     {
-        [EnumMember(Value = "solid")]
+        [XmlEnum("solid")]
         Solid,
-        [EnumMember(Value = "dash")]
+        [XmlEnum("dash")]
         Dash,
-        [EnumMember(Value = "dot")]
+        [XmlEnum("dot")]
         Dot
     }
 }

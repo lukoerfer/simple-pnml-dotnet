@@ -93,7 +93,7 @@ Task("Push")
 	});
 });
 
-Task("Docs")
+Task("Documentation")
 	.Does(() =>
 {
 	DocFxMetadata(new DocFxMetadataSettings()

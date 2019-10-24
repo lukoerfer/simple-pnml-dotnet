@@ -1,5 +1,6 @@
 ﻿
 using AutoFixture.NUnit3;
+using Moq;
 using NUnit.Framework;
 
 namespace SimplePNML.Tests
@@ -19,11 +20,12 @@ namespace SimplePNML.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(net.Type));
         }
 
-        [Test, XmlAutoData]
-        public void WithPagesAddsPages(Page page1, Page page2)
+        [Test]
+        public void WithPagesAddsPages()
         {
             Net net = new Net();
-            Assert.AreEqual(2, net.WithPages(page1, page2).Pages.Count);
+            net.WithPages(new Page());
+            Assert.AreEqual(1, net.Pages.Count);
         }
     }
 }

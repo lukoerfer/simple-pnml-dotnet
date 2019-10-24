@@ -1,14 +1,15 @@
 ﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
     public enum Gradient
     {
-        [EnumMember(Value = "vertical")]
+        [XmlEnum("vertical")]
         Vertical,
-        [EnumMember(Value = "horizontal")]
+        [XmlEnum("horizontal")]
         Horizontal,
-        [EnumMember(Value = "diagonal")]
+        [XmlEnum("diagonal")]
         Diagonal
     }
 }

@@ -41,8 +41,8 @@ namespace SimplePNML
         /// Creates a new label
         /// </summary>
         /// <param name="text">Any text</param>
-        /// <param name="x">An absolute X coordinate</param>
-        /// <param name="y">An absolute Y coordinate</param>
+        /// <param name="x">A relative X coordinate</param>
+        /// <param name="y">A relative Y coordinate</param>
         /// <returns>A new label</returns>
         public Label(string text, int x, int y)
         {

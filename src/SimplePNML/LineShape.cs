@@ -1,12 +1,13 @@
 ﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
     public enum LineShape
     {
-        [EnumMember(Value = "line")]
+        [XmlEnum("line")]
         Line,
-        [EnumMember(Value = "curve")]
+        [XmlEnum("curve")]
         Curve
     }
 }

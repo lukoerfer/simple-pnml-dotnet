@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
@@ -36,6 +37,8 @@ namespace SimplePNML
         [XmlIgnore]
         public FontDecoration? Decoration { get; set; }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("decoration")]
         public FontDecoration XmlDecoration
         {
@@ -43,11 +46,15 @@ namespace SimplePNML
             set => Decoration = value;
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeXmlDecoration() => Decoration.HasValue;
 
         [XmlIgnore]
         public FontAlign? Align { get; set; }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("align")]
         public FontAlign XmlAlign
         {
@@ -55,11 +62,15 @@ namespace SimplePNML
             set => Align = value;
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeXmlAlign() => Align.HasValue;
 
         [XmlIgnore]
         public double? Rotation { get; set; }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("rotation")]
         public double XmlRotation
         {
@@ -67,6 +78,8 @@ namespace SimplePNML
             set => Rotation = value;
         }
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeXmlRotation() => Rotation.HasValue;
     }
 }

@@ -1,14 +1,15 @@
 ﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
     public enum FontDecoration
     {
-        [EnumMember(Value = "underline")]
+        [XmlEnum("underline")]
         Underline,
-        [EnumMember(Value = "overline")]
+        [XmlEnum("overline")]
         Overline,
-        [EnumMember(Value = "line-through")]
+        [XmlEnum("line-through")]
         LineThrough
     }
 }

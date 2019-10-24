@@ -1,5 +1,4 @@
-﻿
-using AutoFixture.NUnit3;
+﻿using Moq;
 using NUnit.Framework;
 
 namespace SimplePNML.Tests
@@ -16,32 +15,36 @@ namespace SimplePNML.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(page.Id));
         }
 
-        [Test, XmlAutoData]
-        public void WithPagesAddsPages(Page page1, Page page2)
+        [Test]
+        public void WithPagesAddsPages()
         {
             Page page = new Page();
-            Assert.AreEqual(2, page.WithPages(page1, page2).Pages.Count);
+            page.WithPages(new Page());
+            Assert.AreEqual(1, page.Pages.Count);
         }
 
-        [Test, XmlAutoData]
-        public void WithArcsAddsPages(Arc arc1, Arc arc2)
+        [Test]
+        public void WithArcsAddsArcs()
         {
             Page page = new Page();
-            Assert.AreEqual(2, page.WithArcs(arc1, arc2).Arcs.Count);
+            page.WithArcs(new Arc());
+            Assert.AreEqual(1, page.Arcs.Count);
         }
 
-        [Test, XmlAutoData]
-        public void WithPlacesAddsPages(Place place1, Place place2)
+        [Test]
+        public void WithPlacesAddsPlaces()
         {
             Page page = new Page();
-            Assert.AreEqual(2, page.WithPlaces(place1, place2).Places.Count);
+            page.WithPlaces(new Place());
+            Assert.AreEqual(1, page.Places.Count);
         }
 
-        [Test, XmlAutoData]
-        public void WithTransitionsAddsTransitions(Transition transition1, Transition transition2)
+        [Test]
+        public void WithTransitionsAddsTransitions()
         {
             Page page = new Page();
-            Assert.AreEqual(2, page.WithTransitions(transition1, transition2).Transitions.Count);
+            page.WithTransitions(new Transition());
+            Assert.AreEqual(1, page.Transitions.Count);
         }
     }
 }

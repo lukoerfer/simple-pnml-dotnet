@@ -1,14 +1,15 @@
 ﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
     public enum FontAlign
     {
-        [EnumMember(Value = "left")]
+        [XmlEnum("left")]
         Left,
-        [EnumMember(Value = "center")]
+        [XmlEnum("center")]
         Center,
-        [EnumMember(Value = "right")]
+        [XmlEnum("right")]
         Right
     }
 }
