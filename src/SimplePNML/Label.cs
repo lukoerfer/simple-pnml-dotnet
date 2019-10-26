@@ -5,8 +5,8 @@ namespace SimplePNML
     /// <summary>
     /// Describes a text at a specific position
     /// </summary>
-    [XmlType]
     [Equals]
+    [XmlType]
     public class Label
     {
         /// <summary>

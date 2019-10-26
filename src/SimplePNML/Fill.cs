@@ -7,8 +7,8 @@ namespace SimplePNML
     /// <summary>
     /// 
     /// </summary>
-    [XmlType]
     [Equals]
+    [XmlType]
     public class Fill
     {
         /// <summary>

@@ -6,8 +6,8 @@ namespace SimplePNML
     /// <summary>
     /// Represents a PNML place
     /// </summary>
-    [XmlType("place")]
     [Equals]
+    [XmlType("place")]
     public class Place : IConnectable
     {
         /// <summary>

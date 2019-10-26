@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Xml.Serialization;
 using AutoFixture;
 using AutoFixture.Kernel;
+using AutoFixture.NUnit3;
 using NUnit.Framework;
 
 namespace SimplePNML.Tests
@@ -10,49 +11,54 @@ namespace SimplePNML.Tests
     [TestFixture]
     public class DocumentTest
     {
-        private Fixture Fixture;
-
-        private XmlSerializer Serializer;
-
-        [SetUp]
-        public void SetupFixture()
+        [Test, DocumentAutoData]
+        public void GeneratedDocumentEqualsAfterSerialization(Document document)
         {
-            Fixture = new Fixture();
-            Fixture.Customizations.Add(new OmitXmlPropertiesSpecimenBuilder());
-            Serializer = new XmlSerializer(typeof(Document));
-        }
-
-        private class OmitXmlPropertiesSpecimenBuilder : ISpecimenBuilder
-        {
-            public object Create(object request, ISpecimenContext context)
-            {
-                PropertyInfo property = request as PropertyInfo;
-                bool isXmlProperty = property != null && property.Name.StartsWith("Xml");
-                return isXmlProperty ? (object) new OmitSpecimen() : new NoSpecimen();
-            }
-        }
-
-        [Test]
-        public void ModelEqualsAfterSerialization()
-        {
-            Document input = Fixture.Create<Document>();
+            XmlSerializer serializer = new XmlSerializer(typeof(Document));
             using (MemoryStream stream = new MemoryStream())
             {
-                Serializer.Serialize(stream, input);
+                serializer.Serialize(stream, document);
                 stream.Position = 0;
-                Document output = (Document) Serializer.Deserialize(stream);
-                Assert.IsTrue(input.Equals(output));
+                Document result = (Document) serializer.Deserialize(stream);
+                Assert.AreEqual(document, result);
             }
         }
 
         [Test]
         public void CanImportExampleDocument()
         {
-            string path = Path.Combine(TestContext.CurrentContext.TestDirectory, "Resources", "Example.pnml");
-            using (TextReader reader = new StreamReader(path))
+            XmlSerializer serializer = new XmlSerializer(typeof(Document));
+            using (TextReader reader = Resource("Example.pnml"))
             {
-                Document document = (Document) Serializer.Deserialize(reader);
+                Document document = (Document) serializer.Deserialize(reader);
                 Assert.AreEqual(1, document.Nets.Count);
+            }
+        }
+
+        private static StreamReader Resource(string file)
+        {
+            return new StreamReader(Path.Combine(TestContext.CurrentContext.TestDirectory, "Resources", file));
+        }
+
+        private class DocumentAutoDataAttribute : AutoDataAttribute
+        {
+            public DocumentAutoDataAttribute() : base(Setup) { }
+
+            private static Fixture Setup()
+            {
+                Fixture fixture = new Fixture();
+                fixture.Customizations.Add(new OmitXmlPropertiesSpecimenBuilder());
+                return fixture;
+            }
+
+            private class OmitXmlPropertiesSpecimenBuilder : ISpecimenBuilder
+            {
+                public object Create(object request, ISpecimenContext context)
+                {
+                    PropertyInfo property = request as PropertyInfo;
+                    bool isXmlProperty = property != null && property.Name.StartsWith("Xml");
+                    return isXmlProperty ? (object)new OmitSpecimen() : new NoSpecimen();
+                }
             }
         }
 

@@ -9,8 +9,8 @@ namespace SimplePNML
     /// <summary>
     /// Container for PNML nets
     /// </summary>
-    [XmlRoot("pnml", Namespace = PNML_NAMESPACE)]
     [Equals]
+    [XmlRoot("pnml", Namespace = PNML_NAMESPACE)]
     public class Document
     {
         public const string PNML_NAMESPACE = "http://www.pnml.org/version-2009/grammar/pnml";

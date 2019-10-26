@@ -2,8 +2,11 @@
 
 namespace SimplePNML
 {
-    [XmlType]
+    /// <summary>
+    /// 
+    /// </summary>
     [Equals]
+    [XmlType]
     public class Dimension
     {
         /// <summary>

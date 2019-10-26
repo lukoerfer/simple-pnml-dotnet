@@ -5,8 +5,8 @@ namespace SimplePNML
     /// <summary>
     /// Stores coordinates in two dimensions
     /// </summary>
-    [XmlType]
     [Equals]
+    [XmlType]
     public class Coordinates
     {
         /// <summary>

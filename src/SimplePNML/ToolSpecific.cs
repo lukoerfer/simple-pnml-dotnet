@@ -9,6 +9,7 @@ namespace SimplePNML
     /// <summary>
     /// 
     /// </summary>
+    [Equals]
     [XmlType]
     public class ToolSpecific
     {

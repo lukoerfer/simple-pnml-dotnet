@@ -6,8 +6,8 @@ namespace SimplePNML
     /// <summary>
     /// 
     /// </summary>
-    [XmlType]
     [Equals]
+    [XmlType]
     public class Font
     {
         /// <summary>

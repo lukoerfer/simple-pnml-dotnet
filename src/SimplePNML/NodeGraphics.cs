@@ -5,8 +5,8 @@ namespace SimplePNML
     /// <summary>
     /// 
     /// </summary>
-    [XmlType]
     [Equals]
+    [XmlType]
     public class NodeGraphics
     {
         /// <summary>

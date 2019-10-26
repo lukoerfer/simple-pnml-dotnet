@@ -4,8 +4,8 @@ using System.Xml.Serialization;
 
 namespace SimplePNML
 {
-    [XmlType]
     [Equals]
+    [XmlType]
     public class Line
     {
         [XmlIgnore]
