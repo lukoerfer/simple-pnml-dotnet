@@ -11,5 +11,6 @@ namespace SimplePNML
         Overline,
         [XmlEnum("line-through")]
         LineThrough
+
     }
 }

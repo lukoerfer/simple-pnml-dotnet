@@ -1,8 +1,7 @@
 ﻿using System.IO;
-using System.Reflection;
+using System.Linq;
 using System.Xml.Serialization;
 using AutoFixture;
-using AutoFixture.Kernel;
 using AutoFixture.NUnit3;
 using NUnit.Framework;
 
@@ -47,20 +46,17 @@ namespace SimplePNML.Tests
             private static Fixture Setup()
             {
                 Fixture fixture = new Fixture();
-                fixture.Customizations.Add(new OmitXmlPropertiesSpecimenBuilder());
+                fixture.Behaviors.OfType<ThrowingRecursionBehavior>()
+                    .ToList().ForEach(b => fixture.Behaviors.Remove(b));
+                fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+                fixture.Customize<Line>(customize => 
+                    customize.Without(line => line.ColorValue));
+                fixture.Customize<Fill>(customize => 
+                    customize.Without(fill => fill.ColorValue)
+                        .Without(fill => fill.GradientColorValue)
+                        .Without(fill => fill.ImageValue));
                 return fixture;
             }
-
-            private class OmitXmlPropertiesSpecimenBuilder : ISpecimenBuilder
-            {
-                public object Create(object request, ISpecimenContext context)
-                {
-                    PropertyInfo property = request as PropertyInfo;
-                    bool isXmlProperty = property != null && property.Name.StartsWith("Xml");
-                    return isXmlProperty ? (object)new OmitSpecimen() : new NoSpecimen();
-                }
-            }
         }
-
     }
 }

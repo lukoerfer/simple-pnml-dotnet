@@ -46,18 +46,11 @@ namespace SimplePNML
         /// <param name="id"></param>
         /// <param name="source">Any connectable PNML element</param>
         /// <param name="target">Any connectable PNML element</param>
-        /// <param name="inscription"></param>
-        /// <returns>A new PNML arc</returns>
-        public static Arc Create(string id = null, IConnectable source = null, IConnectable target = null, Label inscription = null)
+        public Arc(string id = null, IConnectable source = null, IConnectable target = null)
         {
-            id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            return new Arc()
-            {
-                Id = id,
-                Source = source?.Id,
-                Target = target?.Id,
-                Inscription = inscription
-            };
+            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
+            Source = source?.Id;
+            Target = target?.Id;
         }
 
         /// <summary>

@@ -4,17 +4,25 @@ using System.Xml.Serialization;
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Equals]
     [XmlType]
     public class Line
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         public LineShape? Shape { get; set; }
+
+        #region Shape Serialization
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("shape")]
-        public LineShape XmlShape
+        public LineShape ShapeValue
         {
             get => Shape.Value;
             set => Shape = value;
@@ -22,15 +30,22 @@ namespace SimplePNML
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeXmlShape() => Shape.HasValue;
+        public bool ShouldSerializeShapeValue() => Shape.HasValue;
 
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         public Color? Color { get; set; }
+
+        #region Color Serialization
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("color")]
-        public string XmlColor
+        public string ColorValue
         {
             get => ColorTranslator.ToHtml(Color.Value);
             set => Color = ColorTranslator.FromHtml(value);
@@ -38,15 +53,22 @@ namespace SimplePNML
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeXmlColor() => Color.HasValue;
+        public bool ShouldSerializeColorValue() => Color.HasValue;
 
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         public double? Width { get; set; }
+
+        #region Width Serialization
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("width")]
-        public double XmlWidth
+        public double WidthValue
         {
             get => Width.Value;
             set => Width = value;
@@ -54,15 +76,22 @@ namespace SimplePNML
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeXmlWidth() => Width.HasValue;
+        public bool ShouldSerializeWidthValue() => Width.HasValue;
 
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         public LineStyle? Style { get; set; }
+
+        #region Style Serialization
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("style")]
-        public LineStyle XmlStyle
+        public LineStyle StyleValue
         {
             get => Style.Value;
             set => Style = value;
@@ -70,6 +99,8 @@ namespace SimplePNML
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeXmlStyle() => Style.HasValue;
+        public bool ShouldSerializeStyleValue() => Style.HasValue;
+
+        #endregion
     }
 }

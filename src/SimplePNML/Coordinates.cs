@@ -10,13 +10,13 @@ namespace SimplePNML
     public class Coordinates
     {
         /// <summary>
-        /// The X value of this set of coordinates
+        /// Gets or sets the position in X direction
         /// </summary>
         [XmlAttribute("x")]
         public double X { get; set; }
 
         /// <summary>
-        /// The Y value of this set of coordinates
+        /// Gets or sets the position in Y direction
         /// </summary>
         [XmlAttribute("y")]
         public double Y { get; set; }

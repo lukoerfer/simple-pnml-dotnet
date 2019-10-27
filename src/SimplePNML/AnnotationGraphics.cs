@@ -43,9 +43,14 @@ namespace SimplePNML
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public AnnotationGraphics(int x, int y)
+        public AnnotationGraphics(int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
             Offset = new Coordinates(x, y);
+            Fill = fill;
+            Line = line;
+            Font = font;
         }
+
+
     }
 }

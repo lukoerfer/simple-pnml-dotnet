@@ -49,6 +49,5 @@ namespace SimplePNML
             Text = text;
             Graphics = new AnnotationGraphics(x, y);
         }
-
     }
 }

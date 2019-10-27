@@ -1,9 +1,8 @@
-﻿using System.Runtime.Serialization;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace SimplePNML
 {
-    public enum Gradient
+    public enum GradientRotation
     {
         [XmlEnum("vertical")]
         Vertical,

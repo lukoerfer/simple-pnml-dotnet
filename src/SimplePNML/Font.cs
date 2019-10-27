@@ -11,36 +11,41 @@ namespace SimplePNML
     public class Font
     {
         /// <summary>
-        /// 
+        /// Gets or sets the font family (CSS)
         /// </summary>
         [XmlAttribute("family")]
         public string Family { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the font style (CSS)
         /// </summary>
         [XmlAttribute("style")]
         public string Style { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the font weight (CSS)
         /// </summary>
         [XmlAttribute("weight")]
         public string Weight { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the font size (CSS)
         /// </summary>
         [XmlAttribute("size")]
         public string Size { get; set; }
 
+        /// <summary>
+        /// Gets or sets the font decoration
+        /// </summary>
         [XmlIgnore]
         public FontDecoration? Decoration { get; set; }
+
+        #region Decoration Serialization
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("decoration")]
-        public FontDecoration XmlDecoration
+        public FontDecoration DecorationValue
         {
             get => Decoration.Value;
             set => Decoration = value;
@@ -48,15 +53,22 @@ namespace SimplePNML
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeXmlDecoration() => Decoration.HasValue;
+        public bool ShouldSerializeDecorationValue() => Decoration.HasValue;
 
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the font alignment
+        /// </summary>
         [XmlIgnore]
         public FontAlign? Align { get; set; }
+
+        #region Align Serialization
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("align")]
-        public FontAlign XmlAlign
+        public FontAlign AlignValue
         {
             get => Align.Value;
             set => Align = value;
@@ -64,15 +76,22 @@ namespace SimplePNML
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeXmlAlign() => Align.HasValue;
+        public bool ShouldSerializeAlignValue() => Align.HasValue;
 
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the rotation in degrees
+        /// </summary>
         [XmlIgnore]
         public double? Rotation { get; set; }
+
+        #region Rotation Serialization
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("rotation")]
-        public double XmlRotation
+        public double RotationValue
         {
             get => Rotation.Value;
             set => Rotation = value;
@@ -80,6 +99,8 @@ namespace SimplePNML
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeXmlRotation() => Rotation.HasValue;
+        public bool ShouldSerializeRotationValue() => Rotation.HasValue;
+
+        #endregion
     }
 }

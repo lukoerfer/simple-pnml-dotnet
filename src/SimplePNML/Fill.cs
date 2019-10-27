@@ -1,68 +1,106 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Xml.Serialization;
 
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Describes the fill of a graphical element
     /// </summary>
     [Equals]
     [XmlType]
     public class Fill
     {
         /// <summary>
-        /// 
+        /// Gets or sets the fill color
         /// </summary>
         [XmlIgnore]
         public Color? Color { get; set; }
 
+        #region Color Serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("color")]
-        public string XmlColor
+        public string ColorValue
         {
             get => ColorTranslator.ToHtml(Color.Value);
             set => Color = ColorTranslator.FromHtml(value);
         }
 
-        public bool ShouldSerializeXmlColor() => Color.HasValue;
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeColorValue() => Color.HasValue;
 
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the gradient color
+        /// </summary>
         [XmlIgnore]
         public Color? GradientColor { get; set; }
 
+        #region GradientColor Serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("gradient-color")]
-        public string XmlGradientColor
+        public string GradientColorValue
         {
             get => ColorTranslator.ToHtml(GradientColor.Value);
             set => GradientColor = ColorTranslator.FromHtml(value);
         }
 
-        public bool ShouldSerializeXmlGradientColor() => GradientColor.HasValue;
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeGradientColorValue() => GradientColor.HasValue;
 
+        #endregion
+
+        /// <summary>
+        /// Gets or sets the gradient rotation
+        /// </summary>
         [XmlIgnore]
-        public Gradient? GradientRotation { get; set; }
+        public GradientRotation? GradientRotation { get; set; }
 
+        #region GradientRotation Serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("gradient-rotation")]
-        public Gradient XmlGradientRotation
+        public GradientRotation GradientRotationValue
         {
             get => GradientRotation.Value;
             set => GradientRotation = value;
         }
 
-        public bool ShouldSerializeXmlGradientRotation() => GradientRotation.HasValue;
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeGradientRotationValue() => GradientRotation.HasValue;
 
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlIgnore]
         public Uri Image { get; set; }
 
+        #region Image Serialization
+
         [XmlAttribute("image")]
-        public string XmlImage
+        public string ImageValue
         {
-            get => Image.ToString();
+            get => Image?.ToString();
             set => Image = new Uri(value);
         }
 
+        #endregion
+
         public Fill() { }
 
-        public Fill(Color? color, Color? gradient = null, Gradient? rotation = null)
+        public Fill(Color? color, Color? gradient = null, GradientRotation? rotation = null)
         {
             Color = color;
             GradientColor = gradient;

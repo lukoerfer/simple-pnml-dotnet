@@ -33,25 +33,25 @@ namespace SimplePNML
         /// Gets a collection containing the sub-pages of this page
         /// </summary>
         [XmlElement("page")]
-        public List<Page> Pages { get; private set; } = new List<Page>();
+        public List<Page> Pages { get; set; } = new List<Page>();
 
         /// <summary>
         /// Gets a collection containing the places of this page
         /// </summary>
         [XmlElement("place")]
-        public List<Place> Places { get; private set; } = new List<Place>();
+        public List<Place> Places { get; set; } = new List<Place>();
 
         /// <summary>
         /// Gets a collection containing the transitions of this page
         /// </summary>
         [XmlElement("transition")]
-        public List<Transition> Transitions { get; private set; } = new List<Transition>();
+        public List<Transition> Transitions { get; set; } = new List<Transition>();
 
         /// <summary>
         /// Gets a collection containing the arcs of this page
         /// </summary>
         [XmlElement("arc")]
-        public List<Arc> Arcs { get; private set; } = new List<Arc>();
+        public List<Arc> Arcs { get; set; } = new List<Arc>();
 
 
         /// <summary>
