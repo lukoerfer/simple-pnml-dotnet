@@ -37,24 +37,28 @@ namespace SimplePNML
         public Label InitialMarking { get; set; }
 
         /// <summary>
-        /// Creates a new PNML place
+        /// Creates a new place
         /// </summary>
-        /// <param name="id">An identifier, should be unique, defaults to a random GUID</param>
-        /// <param name="graphics">Visualization information, may be null</param>
-        /// <param name="name">A name, may be null</param>
-        /// <param name="initialMarking">An initial marking, may be null</param>
-        /// <returns>A new place</returns>
-        public static Place Create(string id = null, NodeGraphics graphics = null, Label name = null, Label initialMarking = null)
-        {
-            id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            return new Place()
-            {
-                Id = id,
-                Graphics = graphics,
-                Name = name,
-                InitialMarking = initialMarking
-            };
-        }
+        public Place() : this(null, null, null) { }
 
+        /// <summary>
+        /// Creates a new place
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="graphics"></param>
+        public Place(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
+
+        /// <summary>
+        /// Creates a new place
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="graphics"></param>
+        public Place(string id, Label name = null, NodeGraphics graphics = null)
+        {
+            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
+            Name = name;
+            Graphics = graphics;
+        }
     }
 }

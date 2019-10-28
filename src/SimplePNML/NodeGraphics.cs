@@ -16,19 +16,19 @@ namespace SimplePNML
         public Coordinates Position { get; set; } = new Coordinates();
 
         /// <summary>
-        /// 
+        /// Gets or sets the size
         /// </summary>
         [XmlElement("dimension")]
         public Dimension Dimension { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the fill visualization
         /// </summary>
         [XmlElement("fill")]
         public Fill Fill { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the line visualization
         /// </summary>
         [XmlElement("line")]
         public Line Line { get; set; }

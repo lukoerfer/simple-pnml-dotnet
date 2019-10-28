@@ -8,7 +8,7 @@ namespace SimplePNML.Tests
         [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
         public void CreateGivesValidId(string id)
         {
-            Transition transition = Transition.Create(id);
+            Transition transition = new Transition(id);
             Assert.NotNull(transition.Id);
             Assert.IsNotEmpty(transition.Id);
             Assert.IsFalse(string.IsNullOrWhiteSpace(transition.Id));

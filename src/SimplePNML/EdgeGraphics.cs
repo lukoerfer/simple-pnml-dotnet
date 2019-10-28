@@ -23,18 +23,5 @@ namespace SimplePNML
         [XmlElement("line")]
         public Line Line { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public EdgeGraphics() { }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="positions"></param>
-        public EdgeGraphics(params Coordinates[] positions)
-        {
-            Position = positions.ToList();
-        }
     }
 }

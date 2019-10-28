@@ -2,6 +2,9 @@
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum GradientRotation
     {
         [XmlEnum("vertical")]

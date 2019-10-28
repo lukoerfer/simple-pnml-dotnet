@@ -8,7 +8,7 @@ namespace SimplePNML.Tests
         [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
         public void CreateGivesValidId(string id)
         {
-            Place place = Place.Create(id);
+            Place place = new Place(id);
             Assert.NotNull(place.Id);
             Assert.IsNotEmpty(place.Id);
             Assert.IsFalse(string.IsNullOrWhiteSpace(place.Id));

@@ -52,24 +52,32 @@ namespace SimplePNML
         /// </summary>
         [XmlElement("arc")]
         public List<Arc> Arcs { get; set; } = new List<Arc>();
-
+        
+        /// <summary>
+        /// Creates a new page
+        /// </summary>
+        public Page() : this(null, null, null) { }
 
         /// <summary>
-        /// Creates a new PNML page
+        /// Creates a new page
         /// </summary>
-        /// <param name="id">An identifier, should be unique, defaults to a random GUID</param>
-        /// <param name="name">A label, can be null</param>
-        /// <returns>A new PNML page</returns>
-        public static Page Create(string id = null, Label name = null)
+        /// <param name="name"></param>
+        /// <param name="graphics"></param>
+        public Page(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
+
+        /// <summary>
+        /// Creates a new page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="graphics"></param>
+        public Page(string id, Label name = null, NodeGraphics graphics = null)
         {
-            id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            return new Page()
-            {
-                Id = id,
-                Name = name
-            };
+            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
+            Name = name;
+            Graphics = graphics;
         }
-        
+
         /// <summary>
         /// Adds sub-pages to this page
         /// </summary>

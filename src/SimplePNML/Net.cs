@@ -35,20 +35,19 @@ namespace SimplePNML
         public List<Page> Pages { get; set; } = new List<Page>();
 
         /// <summary>
-        /// Creates a new PNML net
+        /// Creates a new net
         /// </summary>
-        /// <param name="id">An identifier, should be unique, defaults to a random GUID</param>
-        /// <param name="type">A resource to the PNML grammar of this net, defaults to the grammar for place-transition nets</param>
-        /// <returns>A new PNML net</returns>
-        public static Net Create(string id = null, string type = null)
+        public Net() : this(null, null) { }
+
+        /// <summary>
+        /// Creates a new net
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        public Net(string id, string type = null)
         {
-            id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            type = string.IsNullOrWhiteSpace(type) ? PLACE_TRANSITION_NET_TYPE : type;
-            return new Net()
-            {
-                Id = id,
-                Type = type
-            };
+            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
+            Type = string.IsNullOrWhiteSpace(type) ? PLACE_TRANSITION_NET_TYPE : type;
         }
 
         /// <summary>

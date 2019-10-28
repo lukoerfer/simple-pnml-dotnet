@@ -22,12 +22,12 @@ namespace SimplePNML
         public double Y { get; set; }
 
         /// <summary>
-        /// Creates an empty set of coordinates
+        /// 
         /// </summary>
         public Dimension() { }
 
         /// <summary>
-        /// Creates a new set of coordinates
+        /// 
         /// </summary>
         /// <param name="x">Any value for the X direction</param>
         /// <param name="y">Any value for the Y direction</param>

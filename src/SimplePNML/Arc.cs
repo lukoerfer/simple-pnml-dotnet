@@ -41,16 +41,31 @@ namespace SimplePNML
         public Label Inscription { get; set; }
 
         /// <summary>
-        /// Creates a new PNML arc
+        /// Creates a new arc
+        /// </summary>
+        public Arc() : this(null, null, null, null) { }
+
+        /// <summary>
+        /// Creates a new arc
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <param name="graphics"></param>
+        public Arc(IConnectable source, IConnectable target, EdgeGraphics graphics = null) : this(null, null, null, null) { }
+
+        /// <summary>
+        /// Creates a new arc
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="source">Any connectable PNML element</param>
-        /// <param name="target">Any connectable PNML element</param>
-        public Arc(string id = null, IConnectable source = null, IConnectable target = null)
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <param name="graphics"></param>
+        public Arc(string id, IConnectable source = null, IConnectable target = null, EdgeGraphics graphics = null)
         {
             Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             Source = source?.Id;
             Target = target?.Id;
+            Graphics = graphics;
         }
 
         /// <summary>

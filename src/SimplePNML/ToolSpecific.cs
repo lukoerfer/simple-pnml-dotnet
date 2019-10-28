@@ -30,5 +30,23 @@ namespace SimplePNML
         /// </summary>
         [XmlAnyElement]
         public XmlElement[] Content { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ToolSpecific() : this(null, null) { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tool"></param>
+        /// <param name="version"></param>
+        /// <param name="content"></param>
+        public ToolSpecific(string tool, string version, params XmlElement[] content)
+        {
+            Tool = tool;
+            Version = version;
+            Content = content;
+        }
     }
 }

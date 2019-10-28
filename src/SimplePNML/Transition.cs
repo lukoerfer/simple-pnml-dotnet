@@ -29,21 +29,28 @@ namespace SimplePNML
         public NodeGraphics Graphics { get; set; }
 
         /// <summary>
-        /// Creates a new PNML transition
+        /// Creates a new transition
+        /// </summary>
+        public Transition() : this(null, null, null) { }
+
+        /// <summary>
+        /// Creates a new transition
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="graphics"></param>
+        public Transition(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
+
+        /// <summary>
+        /// Creates a new transition
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="graphics"></param>
         /// <param name="name"></param>
-        /// <returns></returns>
-        public static Transition Create(string id = null, NodeGraphics graphics = null, Label name = null)
+        /// <param name="graphics"></param>
+        public Transition(string id, Label name = null, NodeGraphics graphics = null)
         {
-            id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            return new Transition()
-            {
-                Id = id,
-                Graphics = graphics,
-                Name = name
-            };
+            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
+            Name = name;
+            Graphics = graphics;
         }
     }
 }

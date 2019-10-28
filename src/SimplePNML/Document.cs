@@ -22,6 +22,7 @@ namespace SimplePNML
         /// Gets or sets the document namespaces
         /// </summary>
         /// <remarks>Defaults to a set with the PNML namespace as default namespace</remarks>
+        [IgnoreDuringEquals]
         [XmlNamespaceDeclarations]
         public XmlSerializerNamespaces Namespaces { get; set; } = new XmlSerializerNamespaces();
 

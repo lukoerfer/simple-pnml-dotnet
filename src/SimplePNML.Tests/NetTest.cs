@@ -11,7 +11,7 @@ namespace SimplePNML.Tests
         [TestCase(null, null), TestCase("", ""), TestCase("   ", "    "), TestCase("test", "test")]
         public void CreateGivesValidIdAndType(string id, string type)
         {
-            Net net = Net.Create(id, type);
+            Net net = new Net(id, type);
             Assert.NotNull(net.Id);
             Assert.IsNotEmpty(net.Id);
             Assert.IsFalse(string.IsNullOrWhiteSpace(net.Id));

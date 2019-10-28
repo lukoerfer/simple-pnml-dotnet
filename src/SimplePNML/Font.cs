@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Specifies a font in PNML
     /// </summary>
     [Equals]
     [XmlType]
@@ -102,5 +102,32 @@ namespace SimplePNML
         public bool ShouldSerializeRotationValue() => Rotation.HasValue;
 
         #endregion
+
+        /// <summary>
+        /// Creates a new font
+        /// </summary>
+        public Font() { }
+
+        /// <summary>
+        /// Creates a new font
+        /// </summary>
+        /// <param name="family"></param>
+        /// <param name="style"></param>
+        /// <param name="weight"></param>
+        /// <param name="size"></param>
+        /// <param name="decoration"></param>
+        /// <param name="align"></param>
+        /// <param name="rotation"></param>
+        public Font(string family, string style = null, string weight = null, string size = null, 
+            FontDecoration? decoration = null, FontAlign? align = null, double? rotation = null)
+        {
+            Family = family;
+            Style = style;
+            Weight = weight;
+            Size = size;
+            Decoration = decoration;
+            Align = align;
+            Rotation = rotation;
+        }
     }
 }

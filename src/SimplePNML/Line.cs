@@ -15,29 +15,6 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlIgnore]
-        public LineShape? Shape { get; set; }
-
-        #region Shape Serialization
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [XmlAttribute("shape")]
-        public LineShape ShapeValue
-        {
-            get => Shape.Value;
-            set => Shape = value;
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeShapeValue() => Shape.HasValue;
-
-        #endregion
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [XmlIgnore]
         public Color? Color { get; set; }
 
         #region Color Serialization
@@ -84,6 +61,29 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlIgnore]
+        public LineShape? Shape { get; set; }
+
+        #region Shape Serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [XmlAttribute("shape")]
+        public LineShape ShapeValue
+        {
+            get => Shape.Value;
+            set => Shape = value;
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeShapeValue() => Shape.HasValue;
+
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlIgnore]
         public LineStyle? Style { get; set; }
 
         #region Style Serialization
@@ -102,5 +102,25 @@ namespace SimplePNML
         public bool ShouldSerializeStyleValue() => Style.HasValue;
 
         #endregion
+
+        /// <summary>
+        /// Creates a new line
+        /// </summary>
+        public Line() { }
+
+        /// <summary>
+        /// Creates a new line
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="width"></param>
+        /// <param name="shape"></param>
+        /// <param name="style"></param>
+        public Line(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
+        {
+            Color = color;
+            Width = width;
+            Shape = shape;
+            Style = style;
+        }
     }
 }

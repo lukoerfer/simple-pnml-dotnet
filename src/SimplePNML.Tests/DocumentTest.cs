@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using AutoFixture;
 using AutoFixture.NUnit3;
+using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 
 namespace SimplePNML.Tests
@@ -19,7 +20,7 @@ namespace SimplePNML.Tests
                 serializer.Serialize(stream, document);
                 stream.Position = 0;
                 Document result = (Document) serializer.Deserialize(stream);
-                Assert.AreEqual(document, result);
+                Assert.AreEqual(document, result, new CompareLogic().Compare(document, result).DifferencesString);
             }
         }
 
@@ -47,7 +48,7 @@ namespace SimplePNML.Tests
             {
                 Fixture fixture = new Fixture();
                 fixture.Behaviors.OfType<ThrowingRecursionBehavior>()
-                    .ToList().ForEach(b => fixture.Behaviors.Remove(b));
+                    .ToList().ForEach(behavior => fixture.Behaviors.Remove(behavior));
                 fixture.Behaviors.Add(new OmitOnRecursionBehavior());
                 fixture.Customize<Line>(customize => 
                     customize.Without(line => line.ColorValue));
@@ -55,6 +56,8 @@ namespace SimplePNML.Tests
                     customize.Without(fill => fill.ColorValue)
                         .Without(fill => fill.GradientColorValue)
                         .Without(fill => fill.ImageValue));
+                fixture.Customize<ToolSpecific>(customize =>
+                    customize.Without(toolSpecific => toolSpecific.Content));
                 return fixture;
             }
         }

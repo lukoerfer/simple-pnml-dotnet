@@ -98,15 +98,28 @@ namespace SimplePNML
 
         #endregion
 
+        /// <summary>
+        /// Creates a new fill
+        /// </summary>
         public Fill() { }
 
-        public Fill(Color? color, Color? gradient = null, GradientRotation? rotation = null)
+        /// <summary>
+        /// Creates a new fill
+        /// </summary>
+        /// <param name="color"></param>
+        /// <param name="gradientColor"></param>
+        /// <param name="gradientRotation"></param>
+        public Fill(Color color, Color? gradientColor = null, GradientRotation? gradientRotation = null)
         {
             Color = color;
-            GradientColor = gradient;
-            GradientRotation = rotation;
+            GradientColor = gradientColor;
+            GradientRotation = gradientRotation;
         }
 
+        /// <summary>
+        /// Creates a new fill
+        /// </summary>
+        /// <param name="image"></param>
         public Fill(Uri image)
         {
             Image = image;

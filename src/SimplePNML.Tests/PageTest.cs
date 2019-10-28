@@ -9,7 +9,7 @@ namespace SimplePNML.Tests
         [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
         public void CreateGivesValidId(string id)
         {
-            Page page = Page.Create(id);
+            Page page = new Page(id);
             Assert.NotNull(page.Id);
             Assert.IsNotEmpty(page.Id);
             Assert.IsFalse(string.IsNullOrWhiteSpace(page.Id));
