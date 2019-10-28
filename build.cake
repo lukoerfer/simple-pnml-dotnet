@@ -64,6 +64,7 @@ Task("Test")
         {
             ServiceName = "travis-ci",
             JobId = TravisCI.Environment.Job.JobId,
+            RepoTokenVariable = "COVERALLS_TOKEN",
             UseRelativePaths = true,
             TreatUploadErrorsAsWarnings = true
         });
