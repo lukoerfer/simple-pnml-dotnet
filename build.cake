@@ -14,97 +14,97 @@ var project = File("./src/SimplePNML/SimplePNML.csproj");
 var testProject = File("./src/SimplePNML.Tests/SimplePNML.Tests.csproj");
 
 Task("Clean")
-	.Does(() =>
+    .Does(() =>
 {
-	CleanDirectory("./artifacts");
-	CleanDirectories("./src/**/bin");
-	CleanDirectories("./src/**/obj");
+    CleanDirectory("./artifacts");
+    CleanDirectories("./src/**/bin");
+    CleanDirectories("./src/**/obj");
 });
 
 Task("Restore")
-	.Does(() =>
+    .Does(() =>
 {
-	DotNetCoreRestore(solution, new DotNetCoreRestoreSettings()
-	{
-		Verbosity = DotNetCoreVerbosity.Quiet
-	});
+    DotNetCoreRestore(solution, new DotNetCoreRestoreSettings()
+    {
+        Verbosity = DotNetCoreVerbosity.Quiet
+    });
 });
 
 Task("Build")
-	.IsDependentOn("Restore")
-	.Does(() =>
+    .IsDependentOn("Restore")
+    .Does(() =>
 {
-	DotNetCoreBuild(solution, new DotNetCoreBuildSettings()
-	{
-		Configuration = configuration,
-		NoRestore = true,
-		Verbosity = DotNetCoreVerbosity.Quiet
-	});
+    DotNetCoreBuild(solution, new DotNetCoreBuildSettings()
+    {
+        Configuration = configuration,
+        NoRestore = true,
+        Verbosity = DotNetCoreVerbosity.Quiet
+    });
 });
 
 Task("Test")
-	.IsDependentOn("Build")
-	.Does(() =>
+    .IsDependentOn("Build")
+    .Does(() =>
 {
-	DotNetCoreTest(testProject, new DotNetCoreTestSettings()
-	{
+    DotNetCoreTest(testProject, new DotNetCoreTestSettings()
+    {
 		NoBuild = true,
-		NoRestore = true,
-		Verbosity = DotNetCoreVerbosity.Minimal
-	}, new CoverletSettings()
-	{
-		CollectCoverage = true,
-		CoverletOutputDirectory = "./artifacts/coverage/coverage",
+        NoRestore = true,
+        Verbosity = DotNetCoreVerbosity.Minimal
+    }, new CoverletSettings()
+    {
+        CollectCoverage = true,
+        CoverletOutputDirectory = "./artifacts/coverage/coverage",
         CoverletOutputFormat = CoverletOutputFormat.opencover
-	});
+    });
 
-	if (TravisCI.IsRunningOnTravisCI)
-	{
-		CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
-	    {
-			ServiceName = "travis-ci",
-			JobId = TravisCI.Environment.Job.JobId,
-			UseRelativePaths = true,
-	        TreatUploadErrorsAsWarnings = true
-	    });
-	}
+    if (TravisCI.IsRunningOnTravisCI)
+    {
+        CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
+        {
+            ServiceName = "travis-ci",
+            JobId = TravisCI.Environment.Job.JobId,
+            UseRelativePaths = true,
+            TreatUploadErrorsAsWarnings = true
+        });
+    }
 });
 
 Task("Pack")
-	.IsDependentOn("Build")
-	.Does(() =>
+    .IsDependentOn("Build")
+    .Does(() =>
 {
-	DotNetCorePack(project, new DotNetCorePackSettings() {
-		NoRestore = true,
-		NoBuild = true,
-		OutputDirectory = "./artifacts/nuget",
-		Verbosity = DotNetCoreVerbosity.Quiet
-	});
+    DotNetCorePack(project, new DotNetCorePackSettings() {
+        NoRestore = true,
+        NoBuild = true,
+        OutputDirectory = "./artifacts/nuget",
+        Verbosity = DotNetCoreVerbosity.Quiet
+    });
 });
 
 Task("Push")
-	.IsDependentOn("Pack")
-	.Does(() =>
+    .IsDependentOn("Pack")
+    .Does(() =>
 {
-	var packages = GetFiles("./artifacts/nuget/*.nupkg");
+    var packages = GetFiles("./artifacts/nuget/*.nupkg");
 
-	NuGetPush(packages, new NuGetPushSettings() {
-		 Source = "https://api.nuget.org/v3/index.json"
-	});
+    NuGetPush(packages, new NuGetPushSettings() {
+         Source = "https://api.nuget.org/v3/index.json"
+    });
 });
 
 Task("Documentation")
-	.Does(() =>
+    .Does(() =>
 {
-	DocFxMetadata(new DocFxMetadataSettings()
-	{
-		Projects = GetFiles("./docs/docfx.json"),
-		LogLevel = DocFxLogLevel.Warning
-	});
-	DocFxBuild("./docs/docfx.json", new DocFxBuildSettings()
-	{
-		LogLevel = DocFxLogLevel.Warning
-	});
+    DocFxMetadata(new DocFxMetadataSettings()
+    {
+        Projects = GetFiles("./docs/docfx.json"),
+        LogLevel = DocFxLogLevel.Warning
+    });
+    DocFxBuild("./docs/docfx.json", new DocFxBuildSettings()
+    {
+        LogLevel = DocFxLogLevel.Warning
+    });
 });
 
 RunTarget(target);
