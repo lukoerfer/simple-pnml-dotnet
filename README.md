@@ -12,46 +12,9 @@ The [Petri Net Markup Language (PNML)](http://www.pnml.org/) was developed as an
 
 ## Installation
 
+
 ## Usage
-Once the library is included into the project, the static methods of the `PNML` class can be used to either import existing petri nets (e.g. from a `string` or `FileInfo`) or to create a new container. Simply load a sample PT-net from [PNML.org](http://www.pnml.org/version-2009/version-2009.php) to get used to the API (and the PNML model in general).
-
-The API mainly implements the elements defined by the PNML as simple classes with their respective properties. However, some additional features to improve the work flow are provided:
-
-#### 1. Factory methods to create elements
-
-``` csharp
-Net.Create(string id = null, string type = null)
-Page.Create(string id = null, Label name = null)
-Place.Create(string id = null, Graphics graphics = null, Label name = null, Label initialMarking = null)
-Transition.Create(string id = null, Graphics graphics = null, Label name = null)
-Arc.Create(string id = null, IConnectable source = null, IConnectable target = null, Label inscription = null)
-    
-Label.Simple(string text)
-Label.Absolute(int x, int y, string text)
-Label.Relative(int x, int y, string text)
-```
-
-Of course, the elements can also be created using the respective constructors. The factory methods simply provide a clean and less verbose interface with automatic generation of IDs (via `Guid.NewGuid().ToString()`).
-    
-#### 2. Fluent methods to add sub elements
-
-``` csharp
-pnml.WithNets(params Net[] nets)
-net.WithPages(params Page[] pages)
-    
-page.WithPages(params Page[] pages)
-page.WithPlaces(params Place[] places)
-page.WithTransitions(params Transition[] transitions)
-page.WithArcs(params Arc[] arcs)
-```
-
-#### 3. Additional utility methods for `Arc` setup
-
-``` csharp
-arc.SetSource(IConnectable source)
-arc.SetTarget(IConnectable target)
-arc.Connect(IConnectable source, IConnectable target)
-```
+SimplePNML implements the elements defined by the PNML specification as simple classes with their respective properties. 
 
 ## License
-The software is licensed under the [MIT license](https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE).
+This software is licensed under the [MIT license](https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE).
