@@ -27,7 +27,7 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphics { get; set; }
+        public Node Graphic { get; set; }
 
         /// <summary>
         /// Gets a collection containing the sub-pages of this page
@@ -63,19 +63,41 @@ namespace SimplePNML
         /// </summary>
         /// <param name="name"></param>
         /// <param name="graphics"></param>
-        public Page(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
+        public Page(Label name, Node graphics = null) : this(null, name, graphics) { }
 
         /// <summary>
         /// Creates a new page
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name"></param>
-        /// <param name="graphics"></param>
-        public Page(string id, Label name = null, NodeGraphics graphics = null)
+        /// <param name="graphic"></param>
+        public Page(string id, Label name = null, Node graphic = null)
         {
             Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             Name = name;
-            Graphics = graphics;
+            Graphic = graphic;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public Page WithName(string name)
+        {
+            Name = new Label(name);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Page WithName(Label name)
+        {
+            Name = name;
+            return this;
         }
 
         /// <summary>

@@ -49,5 +49,28 @@ namespace SimplePNML
             Text = text;
             Graphics = new AnnotationGraphics(x, y);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public Label AtPosition(int x, int y)
+        {
+            Graphics = new AnnotationGraphics(x, y);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="graphics"></param>
+        /// <returns></returns>
+        public Label WithGraphics(AnnotationGraphics graphics)
+        {
+            Graphics = graphics;
+            return this;
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace SimplePNML
         /// Gets or sets information on how to visualize this place
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphics { get; set; }
+        public Node Graphic { get; set; }
 
         /// <summary>
         /// Gets or sets the initial marking of this place
@@ -46,7 +46,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="name"></param>
         /// <param name="graphics"></param>
-        public Place(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
+        public Place(Label name, Node graphics = null) : this(null, name, graphics) { }
 
         /// <summary>
         /// Creates a new place
@@ -54,11 +54,44 @@ namespace SimplePNML
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="graphics"></param>
-        public Place(string id, Label name = null, NodeGraphics graphics = null)
+        public Place(string id, Label name = null, Node graphics = null)
         {
             Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             Name = name;
-            Graphics = graphics;
+            Graphic = graphics;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Place WithName(string name)
+        {
+            Name = new Label(name);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Place WithName(Label name)
+        {
+            Name = name;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="graphics"></param>
+        /// <returns></returns>
+        public Place WithGraphic(Node graphics)
+        {
+            Graphic = graphics;
+            return this;
         }
     }
 }

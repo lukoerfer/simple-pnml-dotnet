@@ -26,7 +26,7 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphics { get; set; }
+        public Node Graphics { get; set; }
 
         /// <summary>
         /// Creates a new transition
@@ -38,7 +38,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="name"></param>
         /// <param name="graphics"></param>
-        public Transition(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
+        public Transition(Label name, Node graphics = null) : this(null, name, graphics) { }
 
         /// <summary>
         /// Creates a new transition
@@ -46,11 +46,44 @@ namespace SimplePNML
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="graphics"></param>
-        public Transition(string id, Label name = null, NodeGraphics graphics = null)
+        public Transition(string id, Label name = null, Node graphics = null)
         {
             Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             Name = name;
             Graphics = graphics;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Transition WithName(string name)
+        {
+            Name = new Label(name);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Transition WithName(Label name)
+        {
+            Name = name;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="graphics"></param>
+        /// <returns></returns>
+        public Transition WithGraphics(Node graphics)
+        {
+            Graphics = graphics;
+            return this;
         }
     }
 }

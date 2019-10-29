@@ -51,7 +51,8 @@ Task("Test")
 		NoBuild = true,
         NoRestore = true,
         Verbosity = DotNetCoreVerbosity.Minimal
-    }, new CoverletSettings()
+    },
+    new CoverletSettings()
     {
         CollectCoverage = true,
         CoverletOutputDirectory = "./artifacts/coverage/coverage",

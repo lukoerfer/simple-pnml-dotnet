@@ -32,7 +32,7 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlElement("graphics")]
-        public EdgeGraphics Graphics { get; set; }
+        public Edge Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets a label describing the inscription of this arc
@@ -51,7 +51,7 @@ namespace SimplePNML
         /// <param name="source"></param>
         /// <param name="target"></param>
         /// <param name="graphics"></param>
-        public Arc(IConnectable source, IConnectable target, EdgeGraphics graphics = null) : this(null, null, null, null) { }
+        public Arc(IConnectable source, IConnectable target, Edge graphics = null) : this(null, null, null, null) { }
 
         /// <summary>
         /// Creates a new arc
@@ -60,7 +60,7 @@ namespace SimplePNML
         /// <param name="source"></param>
         /// <param name="target"></param>
         /// <param name="graphics"></param>
-        public Arc(string id, IConnectable source = null, IConnectable target = null, EdgeGraphics graphics = null)
+        public Arc(string id, IConnectable source = null, IConnectable target = null, Edge graphics = null)
         {
             Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             Source = source?.Id;
