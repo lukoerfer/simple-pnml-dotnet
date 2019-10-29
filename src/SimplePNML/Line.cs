@@ -5,14 +5,14 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Describes a graphical line element
     /// </summary>
     [Equals]
     [XmlType]
     public class Line
     {
         /// <summary>
-        /// 
+        /// Gets or sets the color
         /// </summary>
         [XmlIgnore]
         public Color? Color { get; set; }
@@ -35,7 +35,7 @@ namespace SimplePNML
         #endregion
 
         /// <summary>
-        /// 
+        /// Gets or sets the width
         /// </summary>
         [XmlIgnore]
         public double? Width { get; set; }
@@ -58,7 +58,7 @@ namespace SimplePNML
         #endregion
 
         /// <summary>
-        /// 
+        /// Gets or sets the shape
         /// </summary>
         [XmlIgnore]
         public LineShape? Shape { get; set; }
@@ -81,7 +81,7 @@ namespace SimplePNML
         #endregion
 
         /// <summary>
-        /// 
+        /// Gets or sets the style
         /// </summary>
         [XmlIgnore]
         public LineStyle? Style { get; set; }
@@ -111,16 +111,27 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new line
         /// </summary>
-        /// <param name="color"></param>
-        /// <param name="width"></param>
-        /// <param name="shape"></param>
-        /// <param name="style"></param>
+        /// <param name="color">A line color</param>
+        /// <param name="width">An optional line width</param>
+        /// <param name="shape">An optional line shape</param>
+        /// <param name="style">An optional line style</param>
         public Line(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
         {
             Color = color;
             Width = width;
             Shape = shape;
             Style = style;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public Line WithColor(Color color)
+        {
+            Color = color;
+            return this;
         }
     }
 }

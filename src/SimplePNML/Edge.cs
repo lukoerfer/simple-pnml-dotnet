@@ -6,29 +6,33 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Describes the graphics of an edge element
     /// </summary>
     [Equals]
     [XmlType]
     public class Edge
     {
         /// <summary>
-        /// 
+        /// Gets or sets the edge positions
         /// </summary>
         [XmlElement("position")]
         public List<Coordinates> Positions { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the line
         /// </summary>
         [XmlElement("line")]
         public Line Line { get; set; }
 
         /// <summary>
-        /// 
+        /// Creates a new graphical edge
         /// </summary>
         public Edge() { }
 
+        /// <summary>
+        /// Creates a new graphical edge
+        /// </summary>
+        /// <param name="positions"></param>
         public Edge(params Coordinates[] positions)
         {
             Positions = positions.ToList();

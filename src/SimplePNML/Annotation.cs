@@ -3,11 +3,11 @@
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Describes the graphics of an annotation element
     /// </summary>
     [Equals]
     [XmlType]
-    public class AnnotationGraphics
+    public class Annotation
     {
         /// <summary>
         /// 
@@ -36,14 +36,14 @@ namespace SimplePNML
         /// <summary>
         /// 
         /// </summary>
-        public AnnotationGraphics() { }
+        public Annotation() { }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public AnnotationGraphics(int x, int y, Fill fill = null, Line line = null, Font font = null)
+        public Annotation(int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
             Offset = new Coordinates(x, y);
             Fill = fill;

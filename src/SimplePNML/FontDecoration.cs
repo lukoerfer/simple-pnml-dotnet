@@ -8,10 +8,19 @@ namespace SimplePNML
     /// </summary>
     public enum FontDecoration
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlEnum("underline")]
         Underline,
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlEnum("overline")]
         Overline,
+        /// <summary>
+        /// 
+        /// </summary>
         [XmlEnum("line-through")]
         LineThrough
 

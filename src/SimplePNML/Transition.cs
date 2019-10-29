@@ -26,7 +26,7 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlElement("graphics")]
-        public Node Graphics { get; set; }
+        public Node Graphic { get; set; }
 
         /// <summary>
         /// Creates a new transition
@@ -50,7 +50,7 @@ namespace SimplePNML
         {
             Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             Name = name;
-            Graphics = graphics;
+            Graphic = graphics;
         }
 
         /// <summary>
@@ -78,11 +78,11 @@ namespace SimplePNML
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphic"></param>
         /// <returns></returns>
-        public Transition WithGraphics(Node graphics)
+        public Transition WithGraphic(Node graphic)
         {
-            Graphics = graphics;
+            Graphic = graphic;
             return this;
         }
     }
