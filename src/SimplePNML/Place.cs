@@ -93,5 +93,16 @@ namespace SimplePNML
             Graphic = graphics;
             return this;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="initialMarking"></param>
+        /// <returns></returns>
+        public Place WithInitialMarking(Label initialMarking)
+        {
+            InitialMarking = initialMarking;
+            return this;
+        }
     }
 }

@@ -97,5 +97,60 @@ namespace SimplePNML
             Target = target?.Id;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns>A reference to itself</returns>
+        public Arc WithSource(IConnectable source)
+        {
+            SetSource(source);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns>A reference to itself</returns>
+        public Arc WithSource(string source)
+        {
+            Source = source;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns>A reference to itself</returns>
+        public Arc WithTarget(IConnectable target)
+        {
+            SetTarget(target);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns>A reference to itself</returns>
+        public Arc WithTarget(string target)
+        {
+            Target = target;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inscription"></param>
+        /// <returns></returns>
+        public Arc WithInscription(Label inscription)
+        {
+            Inscription = inscription;
+            return this;
+        }
+
     }
 }

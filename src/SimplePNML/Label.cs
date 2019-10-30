@@ -44,10 +44,21 @@ namespace SimplePNML
         /// <param name="x">A relative X coordinate</param>
         /// <param name="y">A relative Y coordinate</param>
         /// <returns>A new label</returns>
-        public Label(string text, int x, int y)
+        public Label(string text, int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
             Text = text;
-            Graphics = new Annotation(x, y);
+            Graphics = new Annotation(x, y, fill, line, font);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public Label WithText(string text)
+        {
+            Text = text;
+            return this;
         }
 
         /// <summary>
@@ -70,6 +81,21 @@ namespace SimplePNML
         public Label WithGraphics(Annotation graphics)
         {
             Graphics = graphics;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="fill"></param>
+        /// <param name="line"></param>
+        /// <param name="font"></param>
+        /// <returns></returns>
+        public Label WithGraphics(int x, int y, Fill fill = null, Line line = null, Font font = null)
+        {
+            Graphics = new Annotation(x, y, fill, line, font);
             return this;
         }
     }

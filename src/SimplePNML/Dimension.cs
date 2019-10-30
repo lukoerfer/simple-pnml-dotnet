@@ -22,7 +22,7 @@ namespace SimplePNML
         public double Y { get; set; }
 
         /// <summary>
-        /// 
+        /// Creates a new dimension
         /// </summary>
         public Dimension() { }
 
