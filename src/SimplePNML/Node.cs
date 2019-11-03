@@ -70,7 +70,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets the position in a fluent style
+        /// Sets the position of the node
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -82,7 +82,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets the size in a fluent style
+        /// Sets the size of the node
         /// </summary>
         /// <param name="width"></param>
         /// <param name="height"></param>
@@ -94,7 +94,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets the fill in a fluent style
+        /// Sets the fill of the node
         /// </summary>
         /// <param name="fill">A fill description</param>
         /// <returns>A reference to itself</returns>
@@ -105,7 +105,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets the fill in a fluent style
+        /// Sets the fill of the node
         /// </summary>
         /// <param name="color">A fill color</param>
         /// <param name="gradientColor">An optional gradient color</param>
@@ -118,7 +118,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets the fill to an image in a fluent style
+        /// Sets the fill of the node to an image
         /// </summary>
         /// <param name="image">A fill image</param>
         /// <returns>A reference to itself</returns>
@@ -129,7 +129,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets the line in a fluent style
+        /// Sets the line of the node
         /// </summary>
         /// <param name="line">A line description</param>
         /// <returns>A reference to itself</returns>
@@ -140,7 +140,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets the line in a fluent style
+        /// Sets the line of the node
         /// </summary>
         /// <param name="color">A line color</param>
         /// <param name="width">An optional line width</param>

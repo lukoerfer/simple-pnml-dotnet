@@ -3,7 +3,7 @@
 namespace SimplePNML
 {
     /// <summary>
-    /// Lists the possible line shapes
+    /// Defines the supported line shapes
     /// </summary>
     public enum LineShape
     {

@@ -38,7 +38,18 @@ namespace SimplePNML
         /// Gets or sets a label describing the inscription of this arc
         /// </summary>
         [XmlElement("inscription")]
-        public Label Inscription { get; set; }
+        public Label InscriptionLabel { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlIgnore]
+        [IgnoreDuringEquals]
+        public int Inscription
+        {
+            get => int.Parse(InscriptionLabel?.Text ?? "0");
+            set => InscriptionLabel = new Label(value.ToString());
+        }
 
         /// <summary>
         /// Creates a new arc
@@ -98,7 +109,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the source of this arc
         /// </summary>
         /// <param name="source"></param>
         /// <returns>A reference to itself</returns>
@@ -109,9 +120,9 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the source of this arc
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="source">The identifier of a connectable element</param>
         /// <returns>A reference to itself</returns>
         public Arc WithSource(string source)
         {
@@ -120,7 +131,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the target of this arc
         /// </summary>
         /// <param name="target"></param>
         /// <returns>A reference to itself</returns>
@@ -131,7 +142,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the target of this arc
         /// </summary>
         /// <param name="target"></param>
         /// <returns>A reference to itself</returns>
@@ -142,13 +153,24 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the inscription of this arc
         /// </summary>
         /// <param name="inscription"></param>
-        /// <returns></returns>
+        /// <returns>A reference to itself</returns>
+        public Arc WithInscription(int inscription)
+        {
+            InscriptionLabel = new Label(inscription.ToString());
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the inscription of this arc
+        /// </summary>
+        /// <param name="inscription"></param>
+        /// <returns>A reference to itself</returns>
         public Arc WithInscription(Label inscription)
         {
-            Inscription = inscription;
+            InscriptionLabel = inscription;
             return this;
         }
 

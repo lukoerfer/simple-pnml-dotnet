@@ -3,7 +3,7 @@
 namespace SimplePNML
 {
     /// <summary>
-    /// Lists the possible line styles
+    /// Defines the supported line styles
     /// </summary>
     public enum LineStyle
     {

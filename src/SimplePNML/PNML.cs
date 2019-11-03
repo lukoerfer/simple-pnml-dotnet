@@ -10,16 +10,16 @@ namespace SimplePNML
     public static class PNML
     {
         /// <summary>
-        /// Creates an empty document in a fluent style
+        /// Creates an empty PNML document
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A new PNML document</returns>
         public static Document Create()
         {
             return new Document();
         }
 
         /// <summary>
-        /// Reads a document from a stream in a fluent style
+        /// Reads a PNML document from a stream
         /// </summary>
         /// <param name="stream"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Reads a document from a string in a fluent style
+        /// Reads a PNML document from a string
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Reads a document from a file in a fluent style
+        /// Reads a PNML document from a file
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Reads a document from an URI in a fluent style
+        /// Reads a PNML document from an URI
         /// </summary>
         /// <param name="uri"></param>
         /// <returns></returns>
@@ -68,22 +68,25 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Writes a document to a stream in a fluent style
+        /// Writes a PNML document to a stream
         /// </summary>
         /// <param name="document"></param>
         /// <param name="stream"></param>
-        public static void Write(this Document document, Stream stream)
+        /// <returns>A reference to the document</returns>
+        public static Document Write(this Document document, Stream stream)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Document));
             serializer.Serialize(stream, document);
+            return document;
         }
         
         /// <summary>
-        /// Writes a document to a string in a fluent style
+        /// Writes a PNML document to a string
         /// </summary>
         /// <param name="document"></param>
         /// <param name="content"></param>
-        public static void Write(this Document document, out string content)
+        /// <returns>A reference to the document</returns>
+        public static Document Write(this Document document, out string content)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Document));
             using (TextWriter writer = new StringWriter())
@@ -91,20 +94,23 @@ namespace SimplePNML
                 serializer.Serialize(writer, document);
                 content = writer.ToString();
             }
+            return document;
         }
 
         /// <summary>
-        /// Writes a document to a file in a fluent style
+        /// Writes a PNML document to a file
         /// </summary>
         /// <param name="document"></param>
         /// <param name="file"></param>
-        public static void Write(this Document document, FileInfo file)
+        /// <returns>A reference to the document</returns>
+        public static Document Write(this Document document, FileInfo file)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Document));
             using (Stream stream = file.OpenWrite())
             {
                 serializer.Serialize(stream, document);
             }
+            return document;
         }
 
     }

@@ -8,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("transition")]
-    public class Transition : IConnectable
+    public class Transition : IConnectable, INodeElement
     {
         /// <summary>
         /// Gets or sets the identifier of this transition

@@ -8,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("place")]
-    public class Place : IConnectable
+    public class Place : IConnectable, INodeElement
     {
         /// <summary>
         /// Gets or sets the identifier of this place
@@ -18,23 +18,35 @@ namespace SimplePNML
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets a label containing the name
+        /// Gets or sets a label containing the name of the place
         /// </summary>
         [XmlElement("name")]
         public Label Name { get; set; }
 
         /// <summary>
-        /// Gets or sets information on how to visualize this place
+        /// Gets or sets how to visualize this place
         /// </summary>
         [XmlElement("graphics")]
         public Node Graphic { get; set; }
 
         /// <summary>
-        /// Gets or sets the initial marking of this place
+        /// Gets or sets a label defining the initial marking of the place
         /// </summary>
         /// <remarks>This label should contain a positive integer</remarks>
         [XmlElement("initialMarking")]
-        public Label InitialMarking { get; set; }
+        public Label InitialMarkingLabel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the initial marking of the place
+        /// </summary>
+        /// <remarks>The initial marking should be a </remarks>
+        [XmlIgnore]
+        [IgnoreDuringEquals]
+        public int InitialMarking
+        {
+            get => int.Parse(InitialMarkingLabel?.Text ?? "0");
+            set => throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Creates a new place
@@ -62,7 +74,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the name of the place
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -73,10 +85,10 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the name of the place
         /// </summary>
         /// <param name="name"></param>
-        /// <returns></returns>
+        /// <returns>A reference to itself</returns>
         public Place WithName(Label name)
         {
             Name = name;
@@ -84,10 +96,10 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets how to visualize the place
         /// </summary>
         /// <param name="graphics"></param>
-        /// <returns></returns>
+        /// <returns>A reference to itself</returns>
         public Place WithGraphic(Node graphics)
         {
             Graphic = graphics;
@@ -95,13 +107,24 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the initial marking of the place
         /// </summary>
         /// <param name="initialMarking"></param>
-        /// <returns></returns>
-        public Place WithInitialMarking(Label initialMarking)
+        /// <returns>A reference to itself</returns>
+        public Place WithInitialMarking(int initialMarking)
         {
             InitialMarking = initialMarking;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the initial marking of the place
+        /// </summary>
+        /// <param name="initialMarking"></param>
+        /// <returns>A reference to itself</returns>
+        public Place WithInitialMarking(Label initialMarking)
+        {
+            InitialMarkingLabel = initialMarking;
             return this;
         }
     }

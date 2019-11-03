@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -13,13 +12,13 @@ namespace SimplePNML
     public class Edge
     {
         /// <summary>
-        /// Gets or sets the edge positions
+        /// Gets or sets the points of the edge
         /// </summary>
         [XmlElement("position")]
         public List<Coordinates> Positions { get; set; } = new List<Coordinates>();
 
         /// <summary>
-        /// Gets or sets the line
+        /// Gets or sets how to visualize the line
         /// </summary>
         [XmlElement("line")]
         public Line Line { get; set; }
@@ -39,10 +38,10 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the points that define the edge
         /// </summary>
         /// <param name="positions"></param>
-        /// <returns></returns>
+        /// <returns>A reference to itself</returns>
         public Edge WithPositions(params Coordinates[] positions)
         {
             Positions.AddRange(positions);
@@ -50,10 +49,10 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets how to visualize the line of the edge
         /// </summary>
         /// <param name="line"></param>
-        /// <returns></returns>
+        /// <returns>A reference to itself</returns>
         public Edge WithLine(Line line)
         {
             Line = line;
@@ -61,13 +60,13 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets how to visualize the line of the edge
         /// </summary>
         /// <param name="color"></param>
         /// <param name="width"></param>
         /// <param name="shape"></param>
         /// <param name="style"></param>
-        /// <returns></returns>
+        /// <returns>A reference to itself</returns>
         public Edge WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
         {
             Line = new Line(color, width, shape, style);

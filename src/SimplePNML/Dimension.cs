@@ -3,7 +3,7 @@
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Describes dimension information (size) of a graphical element
     /// </summary>
     [Equals]
     [XmlType]
@@ -22,15 +22,15 @@ namespace SimplePNML
         public double Y { get; set; }
 
         /// <summary>
-        /// Creates a new dimension
+        /// Creates a new dimension information
         /// </summary>
         public Dimension() { }
 
         /// <summary>
-        /// 
+        /// Creates a new dimension information
         /// </summary>
-        /// <param name="x">Any value for the X direction</param>
-        /// <param name="y">Any value for the Y direction</param>
+        /// <param name="x">The length in X direction</param>
+        /// <param name="y">The length in Y direction</param>
         public Dimension(double x, double y)
         {
             X = x;

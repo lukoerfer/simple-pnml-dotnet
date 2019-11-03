@@ -3,7 +3,7 @@
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Defines the supported gradient rotations
     /// </summary>
     public enum GradientRotation
     {
