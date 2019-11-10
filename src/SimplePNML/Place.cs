@@ -27,7 +27,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize this place
         /// </summary>
         [XmlElement("graphics")]
-        public Node Graphic { get; set; }
+        public NodeGraphics Graphic { get; set; }
 
         /// <summary>
         /// Gets or sets a label defining the initial marking of the place
@@ -58,7 +58,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="name"></param>
         /// <param name="graphics"></param>
-        public Place(Label name, Node graphics = null) : this(null, name, graphics) { }
+        public Place(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
 
         /// <summary>
         /// Creates a new place
@@ -66,7 +66,7 @@ namespace SimplePNML
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="graphics"></param>
-        public Place(string id, Label name = null, Node graphics = null)
+        public Place(string id, Label name = null, NodeGraphics graphics = null)
         {
             Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             Name = name;
@@ -100,7 +100,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="graphics"></param>
         /// <returns>A reference to itself</returns>
-        public Place WithGraphic(Node graphics)
+        public Place WithGraphic(NodeGraphics graphics)
         {
             Graphic = graphics;
             return this;

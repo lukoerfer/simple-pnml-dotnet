@@ -9,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Edge
+    public class EdgeGraphic
     {
         /// <summary>
         /// Gets or sets the points of the edge
@@ -26,13 +26,13 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new graphical edge
         /// </summary>
-        public Edge() { }
+        public EdgeGraphic() { }
 
         /// <summary>
         /// Creates a new graphical edge
         /// </summary>
         /// <param name="positions"></param>
-        public Edge(params Coordinates[] positions)
+        public EdgeGraphic(params Coordinates[] positions)
         {
             Positions = new List<Coordinates>(positions);
         }
@@ -42,7 +42,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="positions"></param>
         /// <returns>A reference to itself</returns>
-        public Edge WithPositions(params Coordinates[] positions)
+        public EdgeGraphic WithPositions(params Coordinates[] positions)
         {
             Positions.AddRange(positions);
             return this;
@@ -53,7 +53,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="line"></param>
         /// <returns>A reference to itself</returns>
-        public Edge WithLine(Line line)
+        public EdgeGraphic WithLine(Line line)
         {
             Line = line;
             return this;
@@ -67,7 +67,7 @@ namespace SimplePNML
         /// <param name="shape"></param>
         /// <param name="style"></param>
         /// <returns>A reference to itself</returns>
-        public Edge WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
+        public EdgeGraphic WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
         {
             Line = new Line(color, width, shape, style);
             return this;

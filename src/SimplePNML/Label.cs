@@ -19,7 +19,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize the label
         /// </summary>
         [XmlElement("graphics")]
-        public Annotation Graphic { get; set; }
+        public AnnotationGraphic Graphic { get; set; }
 
         /// <summary>
         /// Creates a new label
@@ -47,7 +47,7 @@ namespace SimplePNML
         public Label(string text, int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
             Text = text;
-            Graphic = new Annotation(x, y, fill, line, font);
+            Graphic = new AnnotationGraphic(x, y, fill, line, font);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace SimplePNML
         /// <returns>A reference to itself</returns>
         public Label AtPosition(int x, int y)
         {
-            Graphic = new Annotation(x, y);
+            Graphic = new AnnotationGraphic(x, y);
             return this;
         }
 
@@ -78,7 +78,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="graphics"></param>
         /// <returns>A reference to itself</returns>
-        public Label WithGraphics(Annotation graphics)
+        public Label WithGraphics(AnnotationGraphic graphics)
         {
             Graphic = graphics;
             return this;
@@ -95,7 +95,7 @@ namespace SimplePNML
         /// <returns></returns>
         public Label WithGraphics(int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
-            Graphic = new Annotation(x, y, fill, line, font);
+            Graphic = new AnnotationGraphic(x, y, fill, line, font);
             return this;
         }
     }

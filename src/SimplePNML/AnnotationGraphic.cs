@@ -9,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Annotation
+    public class AnnotationGraphic
     {
         /// <summary>
         /// Gets or sets the offset
@@ -38,7 +38,7 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new graphical annotation
         /// </summary>
-        public Annotation() { }
+        public AnnotationGraphic() { }
 
         /// <summary>
         /// Creates a new graphical annotation
@@ -48,7 +48,7 @@ namespace SimplePNML
         /// <param name="fill"></param>
         /// <param name="line"></param>
         /// <param name="font"></param>
-        public Annotation(int x, int y, Fill fill = null, Line line = null, Font font = null)
+        public AnnotationGraphic(int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
             Offset = new Coordinates(x, y);
             Fill = fill;
@@ -57,83 +57,83 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the offset of the annotation graphic
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        /// <returns></returns>
-        public Annotation WithOffset(int x, int y)
+        /// <returns>A reference to itself</returns>
+        public AnnotationGraphic WithOffset(int x, int y)
         {
             Offset = new Coordinates(x, y);
             return this;
         }
 
         /// <summary>
-        /// 
+        /// Sets the fill of the annotation graphic
         /// </summary>
-        /// <param name="fill"></param>
-        /// <returns></returns>
-        public Annotation WithFill(Fill fill)
+        /// <param name="fill">The fill description</param>
+        /// <returns>A reference to itself</returns>
+        public AnnotationGraphic WithFill(Fill fill)
         {
             Fill = fill;
             return this;
         }
 
         /// <summary>
-        /// 
+        /// Sets the fill of the annotation graphic
         /// </summary>
-        /// <param name="color"></param>
-        /// <param name="gradientColor"></param>
-        /// <param name="gradientRotation"></param>
-        /// <returns></returns>
-        public Annotation WithFill(Color color, Color? gradientColor = null, GradientRotation? gradientRotation = null)
+        /// <param name="color">The fill color</param>
+        /// <param name="gradientColor">An optional gradient color</param>
+        /// <param name="gradientRotation">An optional gradient rotation</param>
+        /// <returns>A reference to itself</returns>
+        public AnnotationGraphic WithFill(Color color, Color? gradientColor = null, GradientRotation? gradientRotation = null)
         {
             Fill = new Fill(color, gradientColor, gradientRotation);
             return this;
         }
 
         /// <summary>
-        /// 
+        /// Sets the fill of the annotation graphic to an image
         /// </summary>
-        /// <param name="image"></param>
-        /// <returns></returns>
-        public Annotation WithFill(Uri image)
+        /// <param name="image">The URI that points to the image</param>
+        /// <returns>A reference to itself</returns>
+        public AnnotationGraphic WithFill(Uri image)
         {
             Fill = new Fill(image);
             return this;
         }
 
         /// <summary>
-        /// 
+        /// Sets the line of the annotation graphic
         /// </summary>
-        /// <param name="line"></param>
-        /// <returns></returns>
-        public Annotation WithLine(Line line)
+        /// <param name="line">The line description</param>
+        /// <returns>A reference to itself</returns>
+        public AnnotationGraphic WithLine(Line line)
         {
             Line = line;
             return this;
         }
 
         /// <summary>
-        /// 
+        /// Sets the line of the annotation graphic
         /// </summary>
-        /// <param name="color"></param>
-        /// <param name="width"></param>
-        /// <param name="shape"></param>
-        /// <param name="style"></param>
-        /// <returns></returns>
-        public Annotation WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
+        /// <param name="color">The line color</param>
+        /// <param name="width">An optional line width</param>
+        /// <param name="shape">An optional line shape</param>
+        /// <param name="style">An optional line style</param>
+        /// <returns>A reference to itself</returns>
+        public AnnotationGraphic WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
         {
             Line = new Line(color, width, shape, style);
             return this;
         }
 
         /// <summary>
-        /// 
+        /// Sets the font of the annotation graphic
         /// </summary>
-        /// <param name="font"></param>
-        /// <returns></returns>
-        public Annotation WithFont(Font font)
+        /// <param name="font">The desired font</param>
+        /// <returns>A reference to itself</returns>
+        public AnnotationGraphic WithFont(Font font)
         {
             Font = font;
             return this;

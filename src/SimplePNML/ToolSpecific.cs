@@ -1,4 +1,6 @@
-﻿using System.Xml;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -26,7 +28,7 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlAnyElement]
-        public XmlElement[] Content { get; set; }
+        public List<XmlElement> Content { get; set; }
 
         /// <summary>
         /// 
@@ -43,7 +45,7 @@ namespace SimplePNML
         {
             Tool = tool;
             Version = version;
-            Content = content;
+            Content = content.ToList();
         }
     }
 }

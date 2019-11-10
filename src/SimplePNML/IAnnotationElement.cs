@@ -5,6 +5,6 @@
     /// </summary>
     public interface IAnnotationElement
     {
-        Annotation Graphic { get; set; }
+        AnnotationGraphic Graphic { get; set; }
     }
 }

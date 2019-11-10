@@ -27,7 +27,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize the page
         /// </summary>
         [XmlElement("graphics")]
-        public Node Graphic { get; set; }
+        public NodeGraphics Graphic { get; set; }
 
         /// <summary>
         /// Gets or sets the sub-pages of this page
@@ -63,7 +63,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="name"></param>
         /// <param name="graphics"></param>
-        public Page(Label name, Node graphics = null) : this(null, name, graphics) { }
+        public Page(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
 
         /// <summary>
         /// Creates a new page
@@ -71,7 +71,7 @@ namespace SimplePNML
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="graphic"></param>
-        public Page(string id, Label name = null, Node graphic = null)
+        public Page(string id, Label name = null, NodeGraphics graphic = null)
         {
             Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
             Name = name;

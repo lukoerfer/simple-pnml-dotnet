@@ -9,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Node
+    public class NodeGraphics
     {
         /// <summary>
         /// Gets or sets the position
@@ -38,7 +38,7 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new graphical node
         /// </summary>
-        public Node() { }
+        public NodeGraphics() { }
 
         /// <summary>
         /// Creates a new graphical node
@@ -47,7 +47,7 @@ namespace SimplePNML
         /// <param name="y"></param>
         /// <param name="fill"></param>
         /// <param name="line"></param>
-        public Node(int x, int y, Fill fill = null, Line line = null)
+        public NodeGraphics(int x, int y, Fill fill = null, Line line = null)
         {
             Position = new Coordinates(x, y);
             Fill = fill;
@@ -63,7 +63,7 @@ namespace SimplePNML
         /// <param name="height"></param>
         /// <param name="fill"></param>
         /// <param name="line"></param>
-        public Node(int x, int y, int width, int height, Fill fill = null, Line line = null)
+        public NodeGraphics(int x, int y, int width, int height, Fill fill = null, Line line = null)
         {
             Position = new Coordinates(x, y);
             Size = new Dimension(width, height);
@@ -75,7 +75,7 @@ namespace SimplePNML
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns>A reference to itself</returns>
-        public Node AtPosition(int x, int y)
+        public NodeGraphics AtPosition(int x, int y)
         {
             Position = new Coordinates(x, y);
             return this;
@@ -87,7 +87,7 @@ namespace SimplePNML
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <returns>A reference to itself</returns>
-        public Node OfSize(int width, int height)
+        public NodeGraphics OfSize(int width, int height)
         {
             Size = new Dimension(width, height);
             return this;
@@ -98,7 +98,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="fill">A fill description</param>
         /// <returns>A reference to itself</returns>
-        public Node WithFill(Fill fill)
+        public NodeGraphics WithFill(Fill fill)
         {
             Fill = fill;
             return this;
@@ -111,7 +111,7 @@ namespace SimplePNML
         /// <param name="gradientColor">An optional gradient color</param>
         /// <param name="gradientRotation">An optional gradient rotation</param>
         /// <returns>A reference to itself</returns>
-        public Node WithFill(Color color, Color? gradientColor = null, GradientRotation? gradientRotation = null)
+        public NodeGraphics WithFill(Color color, Color? gradientColor = null, GradientRotation? gradientRotation = null)
         {
             Fill = new Fill(color, gradientColor, gradientRotation);
             return this;
@@ -122,7 +122,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="image">A fill image</param>
         /// <returns>A reference to itself</returns>
-        public Node WithFill(Uri image)
+        public NodeGraphics WithFill(Uri image)
         {
             Fill = new Fill(image);
             return this;
@@ -133,7 +133,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="line">A line description</param>
         /// <returns>A reference to itself</returns>
-        public Node WithLine(Line line)
+        public NodeGraphics WithLine(Line line)
         {
             Line = line;
             return this;
@@ -147,7 +147,7 @@ namespace SimplePNML
         /// <param name="shape">An optional line shape</param>
         /// <param name="style">An optional line style</param>
         /// <returns>A reference to itself</returns>
-        public Node WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
+        public NodeGraphics WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
         {
             Line = new Line(color, width, shape, style);
             return this;

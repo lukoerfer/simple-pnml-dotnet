@@ -5,6 +5,6 @@
     /// </summary>
     public interface IEdgeElement
     {
-        Edge Graphic { get; set; }
+        EdgeGraphic Graphic { get; set; }
     }
 }
