@@ -10,6 +10,24 @@ namespace SimplePNML
     public class Label : IAnnotationElement
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public static implicit operator Label(int value) => new Label(value.ToString());
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public static implicit operator Label(double value) => new Label(value.ToString());
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        public static implicit operator Label(string text) => new Label(text);
+
+        /// <summary>
         /// Gets or sets the text of the label
         /// </summary>
         [XmlElement("text")]
@@ -19,7 +37,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize the label
         /// </summary>
         [XmlElement("graphics")]
-        public AnnotationGraphic Graphic { get; set; }
+        public Annotation Graphics { get; set; }
 
         /// <summary>
         /// Creates a new label
@@ -40,20 +58,23 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new label
         /// </summary>
-        /// <param name="text">Any text</param>
-        /// <param name="x">A relative X coordinate</param>
-        /// <param name="y">A relative Y coordinate</param>
+        /// <param name="text">The label text</param>
+        /// <param name="x">The offset in X direction</param>
+        /// <param name="y">The offset in Y direction</param>
+        /// <param name="fill">An optional fill</param>
+        /// <param name="line">An optional line</param>
+        /// <param name="font">An optional font</param>
         /// <returns>A new label</returns>
         public Label(string text, int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
             Text = text;
-            Graphic = new AnnotationGraphic(x, y, fill, line, font);
+            Graphics = new Annotation(x, y, fill, line, font);
         }
 
         /// <summary>
         /// Sets the text of the label
         /// </summary>
-        /// <param name="text"></param>
+        /// <param name="text">The label text</param>
         /// <returns>A reference to itself</returns>
         public Label WithText(string text)
         {
@@ -64,38 +85,45 @@ namespace SimplePNML
         /// <summary>
         /// Sets the position of the label
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The offset in X direction</param>
+        /// <param name="y">The offset in X direction</param>
         /// <returns>A reference to itself</returns>
         public Label AtPosition(int x, int y)
         {
-            Graphic = new AnnotationGraphic(x, y);
+            if (Graphics != null)
+            {
+                Graphics.Offset = new Coordinates(x, y);
+            }
+            else
+            {
+                Graphics = new Annotation(x, y);
+            }
             return this;
         }
 
         /// <summary>
-        /// Sets how to visualize the label
+        /// Defines how to visualize the label
         /// </summary>
-        /// <param name="graphics"></param>
+        /// <param name="graphics">The description how to visualize the label</param>
         /// <returns>A reference to itself</returns>
-        public Label WithGraphics(AnnotationGraphic graphics)
+        public Label WithGraphics(Annotation graphics)
         {
-            Graphic = graphics;
+            Graphics = graphics;
             return this;
         }
 
         /// <summary>
-        /// Sets how to visualize the label
+        /// Defines how to visualize the label
         /// </summary>
         /// <param name="x">The offset in X direction</param>
         /// <param name="y">The offset in Y direction</param>
-        /// <param name="fill"></param>
-        /// <param name="line"></param>
-        /// <param name="font"></param>
-        /// <returns></returns>
+        /// <param name="fill">An optional fill</param>
+        /// <param name="line">An optional line</param>
+        /// <param name="font">An optional font</param>
+        /// <returns>A reference to itself</returns>
         public Label WithGraphics(int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
-            Graphic = new AnnotationGraphic(x, y, fill, line, font);
+            Graphics = new Annotation(x, y, fill, line, font);
             return this;
         }
     }

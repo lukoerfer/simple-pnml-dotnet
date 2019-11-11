@@ -8,14 +8,8 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("arc")]
-    public class Arc : IIdentifiable
+    public class Arc : Identifiable
     {
-        /// <summary>
-        /// Gets or sets the identifier of this arc
-        /// </summary>
-        [XmlAttribute("id")]
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets or sets the identifier of the arc source
         /// </summary>
@@ -29,72 +23,29 @@ namespace SimplePNML
         public string Target { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the arc graphics
         /// </summary>
         [XmlElement("graphics")]
-        public EdgeGraphic Graphics { get; set; }
+        public Edge Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets a label describing the inscription of this arc
         /// </summary>
         [XmlElement("inscription")]
-        public Label InscriptionLabel { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [XmlIgnore]
-        [IgnoreDuringEquals]
-        public int Inscription
-        {
-            get => int.Parse(InscriptionLabel?.Text ?? "0");
-            set => InscriptionLabel = new Label(value.ToString());
-        }
+        public Label Inscription { get; set; }
 
         /// <summary>
         /// Creates a new arc
         /// </summary>
-        public Arc() : this(null, null, null, null) { }
-
-        /// <summary>
-        /// Creates a new arc
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="target"></param>
-        /// <param name="graphics"></param>
-        public Arc(IConnectable source, IConnectable target, EdgeGraphic graphics = null) : this(null, null, null, null) { }
+        public Arc() : this(null) { }
 
         /// <summary>
         /// Creates a new arc
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="source"></param>
-        /// <param name="target"></param>
-        /// <param name="graphics"></param>
-        public Arc(string id, IConnectable source = null, IConnectable target = null, EdgeGraphic graphics = null)
+        public Arc(string id)
         {
-            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            Source = source?.Id;
-            Target = target?.Id;
-            Graphics = graphics;
-        }
-
-        /// <summary>
-        /// Sets the source of this arc
-        /// </summary>
-        /// <param name="source">Any connectable PNML element</param>
-        public void SetSource(IConnectable source)
-        {
-            Source = source?.Id;
-        }
-
-        /// <summary>
-        /// Sets the target of this arc
-        /// </summary>
-        /// <param name="target">Any connectable PNML element</param>
-        public void SetTarget(IConnectable target)
-        {
-            Target = target?.Id;
+            Id = id;
         }
 
         /// <summary>
@@ -102,7 +53,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="source">Any connectable PNML element</param>
         /// <param name="target">Any connectable PNML element</param>
-        public void Connect(IConnectable source, IConnectable target)
+        public void Connect(Connectable source, Connectable target)
         {
             Source = source?.Id;
             Target = target?.Id;
@@ -113,9 +64,9 @@ namespace SimplePNML
         /// </summary>
         /// <param name="source"></param>
         /// <returns>A reference to itself</returns>
-        public Arc WithSource(IConnectable source)
+        public Arc WithSource(Connectable source)
         {
-            SetSource(source);
+            Source = source?.Id;
             return this;
         }
 
@@ -135,9 +86,9 @@ namespace SimplePNML
         /// </summary>
         /// <param name="target"></param>
         /// <returns>A reference to itself</returns>
-        public Arc WithTarget(IConnectable target)
+        public Arc WithTarget(Connectable target)
         {
-            SetTarget(target);
+            Target = target?.Id;
             return this;
         }
 
@@ -153,13 +104,15 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets the inscription of this arc
+        /// 
         /// </summary>
-        /// <param name="inscription"></param>
-        /// <returns>A reference to itself</returns>
-        public Arc WithInscription(int inscription)
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public Arc Connecting(Connectable source, Connectable target)
         {
-            InscriptionLabel = new Label(inscription.ToString());
+            Source = source?.Id;
+            Target = target?.Id;
             return this;
         }
 
@@ -170,7 +123,7 @@ namespace SimplePNML
         /// <returns>A reference to itself</returns>
         public Arc WithInscription(Label inscription)
         {
-            InscriptionLabel = inscription;
+            Inscription = inscription;
             return this;
         }
 

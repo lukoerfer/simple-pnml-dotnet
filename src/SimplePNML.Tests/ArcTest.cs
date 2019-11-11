@@ -19,31 +19,48 @@ namespace SimplePNML.Tests
         [Test, AutoData]
         public void CanConnect(string sourceId, string targetId)
         {
+            Connectable source = Mock.Of<Connectable>(obj => obj.Id == sourceId);
+            Connectable target = Mock.Of<Connectable>(obj => obj.Id == targetId);
             Arc arc = new Arc();
-            IConnectable source = Mock.Of<IConnectable>(obj => obj.Id == sourceId);
-            IConnectable target = Mock.Of<IConnectable>(obj => obj.Id == targetId);
             arc.Connect(source, target);
             Assert.AreEqual(sourceId, arc.Source);
             Assert.AreEqual(targetId, arc.Target);
         }
 
         [Test, AutoData]
-        public void CanSetSource(string sourceId)
+        public void CanConnectFluently(string sourceId, string targetId)
         {
-            Arc arc = new Arc();
-            IConnectable source = Mock.Of<IConnectable>(obj => obj.Id == sourceId);
-            arc.SetSource(source);
+            Connectable source = Mock.Of<Connectable>(obj => obj.Id == sourceId);
+            Connectable target = Mock.Of<Connectable>(obj => obj.Id == targetId);
+            Arc arc = new Arc().Connecting(source, target);
             Assert.AreEqual(sourceId, arc.Source);
-        }
-
-        [Test, AutoData]
-        public void CanSetTarget(string targetId)
-        {
-            Arc arc = new Arc();
-            IConnectable target = Mock.Of<IConnectable>(obj => obj.Id == targetId);
-            arc.SetTarget(target);
             Assert.AreEqual(targetId, arc.Target);
         }
 
+        [Test, AutoData]
+        public void CanSetSourceFluently(string sourceId)
+        {
+            Connectable source = Mock.Of<Connectable>(obj => obj.Id == sourceId);
+            Arc arc = new Arc().WithSource(source);
+            Assert.AreEqual(sourceId, source.Id);
+        }
+
+        [Test, AutoData]
+        public void CanSetTargetFluently(string targetId)
+        {
+            Connectable target = Mock.Of<Connectable>(obj => obj.Id == targetId);
+            Arc arc = new Arc().WithTarget(target);
+            Assert.AreEqual(targetId, target.Id);
+        }
+
+        [Test, AutoData]
+        public void CanSetInscription(int inscription)
+        {
+            Arc arc = new Arc()
+            {
+                Inscription = inscription
+            };
+            Assert.AreEqual(inscription.ToString(), arc.Inscription.Text);
+        }
     }
 }

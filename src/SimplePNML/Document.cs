@@ -26,13 +26,13 @@ namespace SimplePNML
         public XmlSerializerNamespaces Namespaces { get; set; } = new XmlSerializerNamespaces();
 
         /// <summary>
-        /// 
+        /// Gets or sets the nets in the document
         /// </summary>
         [XmlElement("net")]
         public List<Net> Nets { get; set; } = new List<Net>();
 
         /// <summary>
-        /// 
+        /// Creates a new PNML document
         /// </summary>
         public Document()
         {
@@ -40,9 +40,9 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Creates a new PNML document
         /// </summary>
-        /// <param name="nets"></param>
+        /// <param name="nets">Some nets to add to this document</param>
         public Document(params Net[] nets) : this()
         {
             Nets = nets.ToList();
@@ -51,7 +51,7 @@ namespace SimplePNML
         /// <summary>
         /// Adds nets to this PNML container
         /// </summary>
-        /// <param name="nets">Any number of nets</param>
+        /// <param name="nets">Some nets to add to this document</param>
         /// <returns>A reference to this container</returns>
         public Document WithNets(params Net[] nets)
         {

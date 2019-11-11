@@ -42,6 +42,9 @@ namespace SimplePNML
 
         #region Decoration Serialization
 
+        /// <summary>
+        /// Serializes or deserializes the font decoration value
+        /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("decoration")]
@@ -51,6 +54,10 @@ namespace SimplePNML
             set => Decoration = value;
         }
 
+        /// <summary>
+        /// Defines whether the font decoration should be serialized
+        /// </summary>
+        /// <returns>True if the font decoration should be serialized, false if not</returns>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeDecorationValue() => Decoration.HasValue;
@@ -65,6 +72,9 @@ namespace SimplePNML
 
         #region Align Serialization
 
+        /// <summary>
+        /// Serializes or deserializes the font alignment value
+        /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("align")]
@@ -74,6 +84,10 @@ namespace SimplePNML
             set => Align = value;
         }
 
+        /// <summary>
+        /// Defines whether the font alignment should be serialized
+        /// </summary>
+        /// <returns>True if the font alignment should be serialized, false if not</returns>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeAlignValue() => Align.HasValue;
@@ -81,13 +95,16 @@ namespace SimplePNML
         #endregion
 
         /// <summary>
-        /// Gets or sets the rotation in degrees
+        /// Gets or sets the font rotation in degrees
         /// </summary>
         [XmlIgnore]
         public double? Rotation { get; set; }
 
         #region Rotation Serialization
 
+        /// <summary>
+        /// Serializes or deserializes the font rotation value
+        /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("rotation")]
@@ -97,6 +114,10 @@ namespace SimplePNML
             set => Rotation = value;
         }
 
+        /// <summary>
+        /// Defines whether the font rotation should be serialized
+        /// </summary>
+        /// <returns>True if the font rotation should be serialized, false if not</returns>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeRotationValue() => Rotation.HasValue;
@@ -111,13 +132,13 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new font
         /// </summary>
-        /// <param name="family"></param>
-        /// <param name="style"></param>
-        /// <param name="weight"></param>
-        /// <param name="size"></param>
-        /// <param name="decoration"></param>
-        /// <param name="align"></param>
-        /// <param name="rotation"></param>
+        /// <param name="family">The font family, can be null</param>
+        /// <param name="style">An optional font style (CSS)</param>
+        /// <param name="weight">An optional font weight (CSS)</param>
+        /// <param name="size">An optional font size (CSS)</param>
+        /// <param name="decoration">An optional font decoration</param>
+        /// <param name="align">An optional font alignment</param>
+        /// <param name="rotation">An optional font rotation</param>
         public Font(string family, string style = null, string weight = null, string size = null, 
             FontDecoration? decoration = null, FontAlign? align = null, double? rotation = null)
         {

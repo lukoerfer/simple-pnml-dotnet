@@ -9,24 +9,24 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("net")]
-    public class Net : IIdentifiable
+    public class Net : Identifiable
     {
         /// <summary>
         /// Defines the PNML grammar for place-transitions nets
         /// </summary>
         public const string PLACE_TRANSITION_NET_TYPE = "http://www.pnml.org/version-2009/grammar/ptnet";
 
-        /// <summary>
-        /// Gets or sets the identifier of this net
-        /// </summary>
-        [XmlAttribute("id")]
-        public string Id { get; set; }
+        private string _type;
 
         /// <summary>
         /// Gets or sets the type of this net
         /// </summary>
         [XmlAttribute("type")]
-        public string Type { get; set; }
+        public string Type
+        {
+            get => _type;
+            set => _type = string.IsNullOrWhiteSpace(value) ? PLACE_TRANSITION_NET_TYPE : value;
+        }
 
         /// <summary>
         /// Gets a collection containing the pages of this net
@@ -46,8 +46,8 @@ namespace SimplePNML
         /// <param name="type"></param>
         public Net(string id, string type = null)
         {
-            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            Type = string.IsNullOrWhiteSpace(type) ? PLACE_TRANSITION_NET_TYPE : type;
+            Id = id;
+            Type = type;
         }
 
         /// <summary>

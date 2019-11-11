@@ -9,14 +9,8 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("page")]
-    public class Page : IIdentifiable, INodeElement
+    public class Page : Identifiable, INodeElement
     {
-        /// <summary>
-        /// Gets or sets the identifier of this page
-        /// </summary>
-        [XmlAttribute("id")]
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets or sets a label containing the name
         /// </summary>
@@ -27,7 +21,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize the page
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphic { get; set; }
+        public Node Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets the sub-pages of this page
@@ -56,14 +50,7 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new page
         /// </summary>
-        public Page() : this(null, null, null) { }
-
-        /// <summary>
-        /// Creates a new page
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="graphics"></param>
-        public Page(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
+        public Page() : this(null) { }
 
         /// <summary>
         /// Creates a new page
@@ -71,11 +58,9 @@ namespace SimplePNML
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="graphic"></param>
-        public Page(string id, Label name = null, NodeGraphics graphic = null)
+        public Page(string id)
         {
-            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            Name = name;
-            Graphic = graphic;
+            Id = id;
         }
 
         /// <summary>

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,7 +11,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class EdgeGraphic
+    public class Edge
     {
         /// <summary>
         /// Gets or sets the points of the edge
@@ -24,27 +26,47 @@ namespace SimplePNML
         public Line Line { get; set; }
 
         /// <summary>
-        /// Creates a new graphical edge
+        /// Creates a new graphics description for an edge element
         /// </summary>
-        public EdgeGraphic() { }
+        public Edge() { }
 
         /// <summary>
-        /// Creates a new graphical edge
+        /// Creates a new graphics description for an edge element
         /// </summary>
-        /// <param name="positions"></param>
-        public EdgeGraphic(params Coordinates[] positions)
+        /// <param name="positions">Some points defining the graphical edge</param>
+        public Edge(params Coordinates[] positions)
         {
             Positions = new List<Coordinates>(positions);
         }
 
         /// <summary>
-        /// Sets the points that define the edge
+        /// 
         /// </summary>
         /// <param name="positions"></param>
-        /// <returns>A reference to itself</returns>
-        public EdgeGraphic WithPositions(params Coordinates[] positions)
+        public Edge(params (double, double)[] positions)
         {
-            Positions.AddRange(positions);
+            Positions = positions.Select(position => new Coordinates(position.Item1, position.Item2)).ToList();
+        }
+
+        /// <summary>
+        /// Sets the points that define the edge
+        /// </summary>
+        /// <param name="positions">Some points defining the graphical edge</param>
+        /// <returns>A reference to itself</returns>
+        public Edge WithPositions(params Coordinates[] positions)
+        {
+            Positions = positions.ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="positions"></param>
+        /// <returns></returns>
+        public Edge WithPositions(params (double, double)[] positions)
+        {
+            Positions = positions.Select(position => new Coordinates(position.Item1, position.Item2)).ToList();
             return this;
         }
 
@@ -53,7 +75,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="line"></param>
         /// <returns>A reference to itself</returns>
-        public EdgeGraphic WithLine(Line line)
+        public Edge WithLine(Line line)
         {
             Line = line;
             return this;
@@ -67,7 +89,7 @@ namespace SimplePNML
         /// <param name="shape"></param>
         /// <param name="style"></param>
         /// <returns>A reference to itself</returns>
-        public EdgeGraphic WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
+        public Edge WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
         {
             Line = new Line(color, width, shape, style);
             return this;

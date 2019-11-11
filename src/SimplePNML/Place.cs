@@ -8,15 +8,8 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("place")]
-    public class Place : IConnectable, INodeElement
+    public class Place : Connectable, INodeElement
     {
-        /// <summary>
-        /// Gets or sets the identifier of this place
-        /// </summary>
-        /// <remarks>The identifier should be unique inside the net, not only regarding places but all identifiable elements.</remarks>
-        [XmlAttribute("id")]
-        public string Id { get; set; }
-
         /// <summary>
         /// Gets or sets a label containing the name of the place
         /// </summary>
@@ -27,61 +20,27 @@ namespace SimplePNML
         /// Gets or sets how to visualize this place
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphic { get; set; }
+        public Node Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets a label defining the initial marking of the place
         /// </summary>
         /// <remarks>This label should contain a positive integer</remarks>
         [XmlElement("initialMarking")]
-        public Label InitialMarkingLabel { get; set; }
-
-        /// <summary>
-        /// Gets or sets the initial marking of the place
-        /// </summary>
-        /// <remarks>The initial marking should be a </remarks>
-        [XmlIgnore]
-        [IgnoreDuringEquals]
-        public int InitialMarking
-        {
-            get => int.Parse(InitialMarkingLabel?.Text ?? "0");
-            set => throw new NotImplementedException();
-        }
+        public Label InitialMarking { get; set; }
 
         /// <summary>
         /// Creates a new place
         /// </summary>
-        public Place() : this(null, null, null) { }
-
-        /// <summary>
-        /// Creates a new place
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="graphics"></param>
-        public Place(Label name, NodeGraphics graphics = null) : this(null, name, graphics) { }
+        public Place() : this(null) { }
 
         /// <summary>
         /// Creates a new place
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="graphics"></param>
-        public Place(string id, Label name = null, NodeGraphics graphics = null)
+        public Place(string id)
         {
-            Id = string.IsNullOrWhiteSpace(id) ? Guid.NewGuid().ToString() : id;
-            Name = name;
-            Graphic = graphics;
-        }
-
-        /// <summary>
-        /// Sets the name of the place
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public Place WithName(string name)
-        {
-            Name = new Label(name);
-            return this;
+            Id = id;
         }
 
         /// <summary>
@@ -96,24 +55,43 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets how to visualize the place
+        /// Defines how to visualize the place
         /// </summary>
         /// <param name="graphics"></param>
         /// <returns>A reference to itself</returns>
-        public Place WithGraphic(NodeGraphics graphics)
+        public Place WithGraphics(Node graphics)
         {
-            Graphic = graphics;
+            Graphics = graphics;
             return this;
         }
 
         /// <summary>
-        /// Sets the initial marking of the place
+        /// 
         /// </summary>
-        /// <param name="initialMarking"></param>
-        /// <returns>A reference to itself</returns>
-        public Place WithInitialMarking(int initialMarking)
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="fill"></param>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        public Place WithGraphics(double x, double y, Fill fill = null, Line line = null)
         {
-            InitialMarking = initialMarking;
+            Graphics = new Node(x, y, fill, line);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="fill"></param>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        public Place WithGraphics(double x, double y, double width, double height, Fill fill = null, Line line = null)
+        {
+            Graphics = new Node(x, y, width, height, fill, line);
             return this;
         }
 
@@ -124,7 +102,7 @@ namespace SimplePNML
         /// <returns>A reference to itself</returns>
         public Place WithInitialMarking(Label initialMarking)
         {
-            InitialMarkingLabel = initialMarking;
+            InitialMarking = initialMarking;
             return this;
         }
     }

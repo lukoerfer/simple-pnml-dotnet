@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using AutoFixture.NUnit3;
+using NUnit.Framework;
 
 namespace SimplePNML.Tests
 {
@@ -6,7 +7,7 @@ namespace SimplePNML.Tests
     public class TransitionTest
     {
         [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
-        public void CreateGivesValidId(string id)
+        public void DefaultsToValidId(string id)
         {
             Transition transition = new Transition(id);
             Assert.NotNull(transition.Id);

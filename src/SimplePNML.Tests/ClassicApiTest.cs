@@ -3,7 +3,7 @@
 namespace SimplePNML.Tests
 {
     [TestFixture]
-    public class EdgeGraphicsTest
+    public class ClassicApiTest
     {
 
     }

@@ -47,5 +47,16 @@ namespace SimplePNML
             Version = version;
             Content = content.ToList();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns>A reference to itself</returns>
+        public ToolSpecific WithContent(params XmlElement[] content)
+        {
+            Content = content.ToList();
+            return this;
+        }
     }
 }

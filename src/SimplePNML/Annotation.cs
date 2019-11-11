@@ -9,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class AnnotationGraphic
+    public class Annotation
     {
         /// <summary>
         /// Gets or sets the offset
@@ -38,17 +38,17 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new graphical annotation
         /// </summary>
-        public AnnotationGraphic() { }
+        public Annotation() { }
 
         /// <summary>
         /// Creates a new graphical annotation
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="fill"></param>
-        /// <param name="line"></param>
-        /// <param name="font"></param>
-        public AnnotationGraphic(int x, int y, Fill fill = null, Line line = null, Font font = null)
+        /// <param name="x">The offset in X direction</param>
+        /// <param name="y">The offset in Y direction</param>
+        /// <param name="fill">An optional fill</param>
+        /// <param name="line">An optional line</param>
+        /// <param name="font">An optional font</param>
+        public Annotation(int x, int y, Fill fill = null, Line line = null, Font font = null)
         {
             Offset = new Coordinates(x, y);
             Fill = fill;
@@ -59,10 +59,10 @@ namespace SimplePNML
         /// <summary>
         /// Sets the offset of the annotation graphic
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The offset in X direction</param>
+        /// <param name="y">The offset in Y direction</param>
         /// <returns>A reference to itself</returns>
-        public AnnotationGraphic WithOffset(int x, int y)
+        public Annotation WithOffset(int x, int y)
         {
             Offset = new Coordinates(x, y);
             return this;
@@ -73,7 +73,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="fill">The fill description</param>
         /// <returns>A reference to itself</returns>
-        public AnnotationGraphic WithFill(Fill fill)
+        public Annotation WithFill(Fill fill)
         {
             Fill = fill;
             return this;
@@ -86,7 +86,7 @@ namespace SimplePNML
         /// <param name="gradientColor">An optional gradient color</param>
         /// <param name="gradientRotation">An optional gradient rotation</param>
         /// <returns>A reference to itself</returns>
-        public AnnotationGraphic WithFill(Color color, Color? gradientColor = null, GradientRotation? gradientRotation = null)
+        public Annotation WithFill(Color color, Color? gradientColor = null, GradientRotation? gradientRotation = null)
         {
             Fill = new Fill(color, gradientColor, gradientRotation);
             return this;
@@ -97,7 +97,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="image">The URI that points to the image</param>
         /// <returns>A reference to itself</returns>
-        public AnnotationGraphic WithFill(Uri image)
+        public Annotation WithFill(Uri image)
         {
             Fill = new Fill(image);
             return this;
@@ -108,7 +108,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="line">The line description</param>
         /// <returns>A reference to itself</returns>
-        public AnnotationGraphic WithLine(Line line)
+        public Annotation WithLine(Line line)
         {
             Line = line;
             return this;
@@ -122,7 +122,7 @@ namespace SimplePNML
         /// <param name="shape">An optional line shape</param>
         /// <param name="style">An optional line style</param>
         /// <returns>A reference to itself</returns>
-        public AnnotationGraphic WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
+        public Annotation WithLine(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
         {
             Line = new Line(color, width, shape, style);
             return this;
@@ -133,7 +133,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="font">The desired font</param>
         /// <returns>A reference to itself</returns>
-        public AnnotationGraphic WithFont(Font font)
+        public Annotation WithFont(Font font)
         {
             Font = font;
             return this;

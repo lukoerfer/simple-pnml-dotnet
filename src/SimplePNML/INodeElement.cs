@@ -5,6 +5,6 @@
     /// </summary>
     public interface INodeElement
     {
-        NodeGraphics Graphic { get; set; }
+        Node Graphics { get; set; }
     }
 }
