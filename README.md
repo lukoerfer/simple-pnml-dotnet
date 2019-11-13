@@ -56,5 +56,16 @@ page.Transitions.Add(transition);
 page.Arcs.Add(arc);
 ```
 
+## Differences between .NET and JVM version
+
+* The element relations are implemented via (auto-)properties in .NET and via fields with getters and optional setters in the JVM (with some help of Lombok).
+* Some names are changed to follow language-specific naming conventions:
+  * Methods are named using `PascalCase` in the .NET version, but using `camelCase` in the JVM version.
+  * Interface names are prefixed with an uppercase `I` in the .NET version.
+  * Enum members are named using `PascalCase` in the .NET version, but using `UPPER_CASE` in the JVM version.
+* A lot more constructors and fluent methods are provided in the JVM version, because initialization blocks and optional or named parameters are not supported.
+* `Label` instances for element names, inscriptions and initial markings must be constructed manually when using the JVM version, because implicit type conversion is not supported.
+* The points of an `Edge` or the content of a `ToolData` element cannot be defined via tuples when using the JVM version.
+
 ## License
 This software is licensed under the [MIT license](https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE).
