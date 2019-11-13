@@ -13,28 +13,28 @@ namespace SimplePNML
         /// Gets or sets the length in X direction
         /// </summary>
         [XmlAttribute("x")]
-        public double X { get; set; }
+        public double Width { get; set; }
 
         /// <summary>
         /// Gets or sets the length in Y direction
         /// </summary>
         [XmlAttribute("y")]
-        public double Y { get; set; }
+        public double Height { get; set; }
 
         /// <summary>
-        /// Creates a new dimension information
+        /// Creates an empty dimension information
         /// </summary>
         public Dimension() { }
 
         /// <summary>
         /// Creates a new dimension information
         /// </summary>
-        /// <param name="x">The length in X direction</param>
-        /// <param name="y">The length in Y direction</param>
-        public Dimension(double x, double y)
+        /// <param name="width">The length in X direction</param>
+        /// <param name="height">The length in Y direction</param>
+        public Dimension(double width, double height)
         {
-            X = x;
-            Y = y;
+            Width = width;
+            Height = height;
         }
     }
 }

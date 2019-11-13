@@ -29,8 +29,8 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new set of coordinates
         /// </summary>
-        /// <param name="x">Any value for the X direction</param>
-        /// <param name="y">Any value for the Y direction</param>
+        /// <param name="x">The position in X direction</param>
+        /// <param name="y">The position in Y direction</param>
         public Coordinates(double x, double y)
         {
             X = x;

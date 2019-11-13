@@ -10,8 +10,8 @@ namespace SimplePNML.Tests
         public void CanCreateDimension(double x, double y)
         {
             Dimension dimension = new Dimension(x, y);
-            Assert.AreEqual(x, dimension.X);
-            Assert.AreEqual(y, dimension.Y);
+            Assert.AreEqual(x, dimension.Width);
+            Assert.AreEqual(y, dimension.Height);
         }
     }
 }

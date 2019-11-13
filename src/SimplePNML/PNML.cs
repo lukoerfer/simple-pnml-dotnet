@@ -12,7 +12,7 @@ namespace SimplePNML
         /// <summary>
         /// Creates an empty PNML document
         /// </summary>
-        /// <returns>A new PNML document</returns>
+        /// <returns>An empty PNML document</returns>
         public static Document Create()
         {
             return new Document();
@@ -22,7 +22,7 @@ namespace SimplePNML
         /// Reads a PNML document from a stream
         /// </summary>
         /// <param name="stream"></param>
-        /// <returns></returns>
+        /// <returns>A PNML document</returns>
         public static Document Read(Stream stream)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Document));
@@ -33,7 +33,7 @@ namespace SimplePNML
         /// Reads a PNML document from a string
         /// </summary>
         /// <param name="content"></param>
-        /// <returns></returns>
+        /// <returns>A PNML document</returns>
         public static Document Read(string content)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Document));
@@ -47,7 +47,7 @@ namespace SimplePNML
         /// Reads a PNML document from a file
         /// </summary>
         /// <param name="file"></param>
-        /// <returns></returns>
+        /// <returns>A PNML document</returns>
         public static Document Read(FileInfo file)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Document));
@@ -61,7 +61,7 @@ namespace SimplePNML
         /// Reads a PNML document from an URI
         /// </summary>
         /// <param name="uri"></param>
-        /// <returns></returns>
+        /// <returns>A PNML document</returns>
         public static Document Read(Uri uri)
         {
             throw new NotImplementedException();
@@ -70,7 +70,7 @@ namespace SimplePNML
         /// <summary>
         /// Writes a PNML document to a stream
         /// </summary>
-        /// <param name="document"></param>
+        /// <param name="document">The PNML document</param>
         /// <param name="stream"></param>
         /// <returns>A reference to the document</returns>
         public static Document Write(this Document document, Stream stream)
@@ -83,7 +83,7 @@ namespace SimplePNML
         /// <summary>
         /// Writes a PNML document to a string
         /// </summary>
-        /// <param name="document"></param>
+        /// <param name="document">The PNML document</param>
         /// <param name="content"></param>
         /// <returns>A reference to the document</returns>
         public static Document Write(this Document document, out string content)
@@ -100,7 +100,7 @@ namespace SimplePNML
         /// <summary>
         /// Writes a PNML document to a file
         /// </summary>
-        /// <param name="document"></param>
+        /// <param name="document">The PNML document</param>
         /// <param name="file"></param>
         /// <returns>A reference to the document</returns>
         public static Document Write(this Document document, FileInfo file)

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -10,7 +11,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class ToolSpecific
+    public class ToolData
     {
         /// <summary>
         /// Gets or sets the name of the tool
@@ -28,12 +29,12 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlAnyElement]
-        public List<XmlElement> Content { get; set; }
+        public List<XElement> Content { get; set; } = new List<XElement>();
 
         /// <summary>
         /// 
         /// </summary>
-        public ToolSpecific() : this(null, null) { }
+        public ToolData() { }
 
         /// <summary>
         /// 
@@ -41,7 +42,7 @@ namespace SimplePNML
         /// <param name="tool"></param>
         /// <param name="version"></param>
         /// <param name="content"></param>
-        public ToolSpecific(string tool, string version, params XmlElement[] content)
+        public ToolData(string tool, string version, params XElement[] content)
         {
             Tool = tool;
             Version = version;
@@ -51,11 +52,35 @@ namespace SimplePNML
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="tool"></param>
+        /// <param name="version"></param>
+        /// <param name="content"></param>
+        public ToolData(string tool, string version, params (string, string)[] content)
+        {
+            Tool = tool;
+            Version = version;
+            Content = content.Select(element => new XElement(element.Item1, element.Item2)).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="content"></param>
         /// <returns>A reference to itself</returns>
-        public ToolSpecific WithContent(params XmlElement[] content)
+        public ToolData WithContent(params XElement[] content)
         {
             Content = content.ToList();
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="content"></param>
+        /// <returns>A reference to itself</returns>
+        public ToolData WithContent(params (string, string)[] content)
+        {
+            Content = content.Select(element => new XElement(element.Item1, element.Item2)).ToList();
             return this;
         }
     }

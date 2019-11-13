@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using AutoFixture;
@@ -35,6 +36,12 @@ namespace SimplePNML.Tests
             }
         }
 
+        [Test, DocumentAutoData]
+        public void CanRunExampleFromReadme(Document example)
+        {
+            example.Nets.First().Pages.First().Places.ForEach(place => Console.Out.WriteLine(place.Id));
+        }
+
         private static StreamReader Resource(string file)
         {
             return new StreamReader(Path.Combine(TestContext.CurrentContext.TestDirectory, "Resources", file));
@@ -56,7 +63,7 @@ namespace SimplePNML.Tests
                     customize.Without(fill => fill.ColorValue)
                         .Without(fill => fill.GradientColorValue)
                         .Without(fill => fill.ImageValue));
-                fixture.Customize<ToolSpecific>(customize =>
+                fixture.Customize<ToolData>(customize =>
                     customize.Without(toolSpecific => toolSpecific.Content));
                 return fixture;
             }

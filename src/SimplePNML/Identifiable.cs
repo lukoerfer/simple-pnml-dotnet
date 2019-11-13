@@ -11,7 +11,7 @@ namespace SimplePNML
         private string _id;
 
         /// <summary>
-        /// Gets or sets the identifier of this page
+        /// Gets or sets the identifier
         /// </summary>
         [XmlAttribute("id")]
         public string Id
