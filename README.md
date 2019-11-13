@@ -14,7 +14,58 @@ The [Petri Net Markup Language (PNML)](http://www.pnml.org/) was developed as an
 
 
 ## Usage
-SimplePNML implements the elements defined by the PNML specification as simple classes with their respective properties. 
+SimplePNML implements the elements and relations defined by the PNML specification as simple classes with their respective properties, as described in the following class diagram:
+
+
+The additional class `Document` is a container that represents a PNML file and its content. The utility functions of the static class `PNML` can be used to read and write `Document` instances:
+
+``` csharp
+Document example = PNML.Read(new FileInfo("example.pnml"));
+
+PNML.Write(example, Console.Out);
+```
+
+As an example, the following code can be used to print the identifiers of all places on the first page of the first net in a given `Document` called `example` (ignoring sub-pages):
+
+``` csharp
+example.Nets.First().Pages.First().Places
+    .ForEach(place => Console.Out.WriteLine(place.Id));
+```
+
+To build new petri nets just create new instances of the PNML elements. It is not necessary to explicitly define identifiers for the instances, as they will be generated automatically (using `Guid.NewGuid().ToString()`).
+
+``` csharp
+// Create a place, a transition and an arc
+Place place = new Place() 
+{
+    InitialMarking = 1
+};
+Transition transition = new Transition("explicitIdentifier");
+Arc arc = new Arc()
+{
+    Inscription = 1
+};
+
+// Let the arc connect the place and the transition
+arc.Connect(place, transition);
+
+// Add all the elements to a new page
+Page page = new Page();
+page.Places.Add(page);
+page.Transitions.Add(transition);
+page.Arcs.Add(arc);
+```
+
+## Differences between .NET and JVM version
+
+* The element relations are implemented via (auto-)properties in .NET and via fields with getters and optional setters in the JVM (with some help of Lombok).
+* Some names are changed to follow language-specific naming conventions:
+  * Methods are named using `PascalCase` in the .NET version, but using `camelCase` in the JVM version.
+  * Interface names are prefixed with an uppercase `I` in the .NET version.
+  * Enum members are named using `PascalCase` in the .NET version, but using `UPPER_CASE` in the JVM version.
+* A lot more constructors and fluent methods are provided in the JVM version, because initialization blocks and optional or named parameters are not supported.
+* `Label` instances for element names, inscriptions and initial markings must be constructed manually when using the JVM version, because implicit type conversion is not supported.
+* The points of an `Edge` or the content of a `ToolData` element cannot be defined via tuples when using the JVM version.
 
 ## License
 This software is licensed under the [MIT license](https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE).
