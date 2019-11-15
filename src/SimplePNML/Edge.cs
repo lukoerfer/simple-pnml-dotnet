@@ -40,7 +40,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Creates a new graphics description for an edge element
         /// </summary>
         /// <param name="positions"></param>
         public Edge(params (double, double)[] positions)
@@ -51,7 +51,7 @@ namespace SimplePNML
         /// <summary>
         /// Sets the points that define the edge
         /// </summary>
-        /// <param name="positions">Some points defining the graphical edge</param>
+        /// <param name="positions">Some points that define the graphical edge</param>
         /// <returns>A reference to itself</returns>
         public Edge WithPositions(params Coordinates[] positions)
         {
@@ -60,10 +60,10 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the points that define the edge via tuples
         /// </summary>
-        /// <param name="positions"></param>
-        /// <returns></returns>
+        /// <param name="positions">Tuples descr</param>
+        /// <returns>A reference to itself</returns>
         public Edge WithPositions(params (double, double)[] positions)
         {
             Positions = positions.Select(position => new Coordinates(position.Item1, position.Item2)).ToList();

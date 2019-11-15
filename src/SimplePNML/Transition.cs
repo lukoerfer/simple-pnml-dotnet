@@ -37,10 +37,10 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the name of the transition
         /// </summary>
         /// <param name="name"></param>
-        /// <returns></returns>
+        /// <returns>A reference to itself</returns>
         public Transition WithName(Label name)
         {
             Name = name;
@@ -48,7 +48,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the graphics of the transition
         /// </summary>
         /// <param name="graphic"></param>
         /// <returns>A reference to itself</returns>
@@ -59,12 +59,12 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the graphics of the transition
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="fill"></param>
-        /// <param name="line"></param>
+        /// <param name="x">The position in X direction</param>
+        /// <param name="y">The position in Y direction</param>
+        /// <param name="fill">An optional fill description</param>
+        /// <param name="line">An optional line description</param>
         /// <returns>A reference to itself</returns>
         public Transition WithGraphics(double x, double y, Fill fill = null, Line line = null)
         {
@@ -73,14 +73,14 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets the graphics of the transition
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="fill"></param>
-        /// <param name="line"></param>
+        /// <param name="x">The position in X direction</param>
+        /// <param name="y">The position in Y direction</param>
+        /// <param name="width">The length in X direction</param>
+        /// <param name="height">The length in Y direction</param>
+        /// <param name="fill">An optional fill description</param>
+        /// <param name="line">An optional line description</param>
         /// <returns>A reference to itself</returns>
         public Transition WithGraphics(double x, double y, double width, double height, Fill fill = null, Line line = null)
         {

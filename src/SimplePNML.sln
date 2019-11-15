@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6DD84071-20FD-40B8-8836-368D2FC95ECF}"
 	ProjectSection(SolutionItems) = preProject
 		..\build.cake = ..\build.cake
+		..\docs\docfx.json = ..\docs\docfx.json
 	EndProjectSection
 EndProject
 Global

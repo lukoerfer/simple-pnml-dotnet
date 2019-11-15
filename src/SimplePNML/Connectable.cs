@@ -6,7 +6,7 @@
     public abstract class Connectable : Identifiable
     {
         /// <summary>
-        /// 
+        /// Allows to directly provide a connectable element instead of its identifier
         /// </summary>
         /// <param name="connectable"></param>
         public static implicit operator string(Connectable connectable) => connectable.Id;

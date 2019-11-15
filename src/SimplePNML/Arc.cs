@@ -49,7 +49,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Sets both source and target of this arc
+        /// Sets both the source and the target of this arc
         /// </summary>
         /// <param name="source">Any connectable PNML element</param>
         /// <param name="target">Any connectable PNML element</param>
@@ -104,11 +104,11 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// 
+        /// Sets both the source and the target of this arc
         /// </summary>
         /// <param name="source"></param>
         /// <param name="target"></param>
-        /// <returns></returns>
+        /// <returns>A reference to itself</returns>
         public Arc Connecting(Connectable source, Connectable target)
         {
             Source = source?.Id;

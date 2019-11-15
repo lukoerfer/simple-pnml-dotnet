@@ -43,10 +43,10 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new graphical node
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="fill"></param>
-        /// <param name="line"></param>
+        /// <param name="x">The position in X direction</param>
+        /// <param name="y">The position in Y direction</param>
+        /// <param name="fill">An optional fill descriptioon</param>
+        /// <param name="line">An optional line description</param>
         public Node(double x, double y, Fill fill = null, Line line = null)
         {
             Position = new Coordinates(x, y);
@@ -57,12 +57,12 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new graphical node
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="fill"></param>
-        /// <param name="line"></param>
+        /// <param name="x">The position in X direction</param>
+        /// <param name="y">The position in Y direction</param>
+        /// <param name="width">The length in X direction</param>
+        /// <param name="height">The length in Y direction</param>
+        /// <param name="fill">An optional fill description</param>
+        /// <param name="line">An optional line description</param>
         public Node(double x, double y, double width, double height, Fill fill = null, Line line = null)
         {
             Position = new Coordinates(x, y);
@@ -74,8 +74,8 @@ namespace SimplePNML
         /// <summary>
         /// Sets the position of the node
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="x">The position in X direction</param>
+        /// <param name="y">The position in Y direction</param>
         /// <returns>A reference to itself</returns>
         public Node AtPosition(int x, int y)
         {
@@ -86,8 +86,8 @@ namespace SimplePNML
         /// <summary>
         /// Sets the size of the node
         /// </summary>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
+        /// <param name="width">The length in X direction</param>
+        /// <param name="height">The length in Y direction</param>
         /// <returns>A reference to itself</returns>
         public Node OfSize(int width, int height)
         {
@@ -109,7 +109,7 @@ namespace SimplePNML
         /// <summary>
         /// Sets the fill of the node
         /// </summary>
-        /// <param name="color">A fill color</param>
+        /// <param name="color">The fill color</param>
         /// <param name="gradientColor">An optional gradient color</param>
         /// <param name="gradientRotation">An optional gradient rotation</param>
         /// <returns>A reference to itself</returns>
@@ -122,7 +122,7 @@ namespace SimplePNML
         /// <summary>
         /// Sets the fill of the node to an image
         /// </summary>
-        /// <param name="image">A fill image</param>
+        /// <param name="image">The fill image</param>
         /// <returns>A reference to itself</returns>
         public Node WithFill(Uri image)
         {

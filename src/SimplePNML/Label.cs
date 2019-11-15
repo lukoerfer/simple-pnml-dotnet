@@ -10,24 +10,6 @@ namespace SimplePNML
     public class Label : IAnnotationElement
     {
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        public static implicit operator Label(int value) => new Label(value.ToString());
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        public static implicit operator Label(double value) => new Label(value.ToString());
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="text"></param>
-        public static implicit operator Label(string text) => new Label(text);
-
-        /// <summary>
         /// Gets or sets the text of the label
         /// </summary>
         [XmlElement("text")]
@@ -70,6 +52,24 @@ namespace SimplePNML
             Text = text;
             Graphics = new Annotation(x, y, fill, line, font);
         }
+
+        /// <summary>
+        /// Allows to provide an integer as a label
+        /// </summary>
+        /// <param name="value"></param>
+        public static implicit operator Label(int value) => new Label(value.ToString());
+
+        /// <summary>
+        /// Allows to provide a double as a label
+        /// </summary>
+        /// <param name="value"></param>
+        public static implicit operator Label(double value) => new Label(value.ToString());
+
+        /// <summary>
+        /// Allows to provide a string as a label
+        /// </summary>
+        /// <param name="text"></param>
+        public static implicit operator Label(string text) => new Label(text);
 
         /// <summary>
         /// Sets the text of the label
