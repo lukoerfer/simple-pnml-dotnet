@@ -8,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("transition")]
-    public class Transition : Connectable, INodeElement
+    public class Transition : Connectable
     {
         /// <summary>
         /// Gets or sets a label containing the name

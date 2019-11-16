@@ -9,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("page")]
-    public class Page : Identifiable, INodeElement
+    public class Page : Identifiable
     {
         /// <summary>
         /// Gets or sets a label containing the name

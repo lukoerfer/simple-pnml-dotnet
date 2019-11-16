@@ -12,6 +12,7 @@ namespace SimplePNML.Tests
             Assert.AreEqual(2, edge.Positions.Count);
         }
 
+        [Test]
         public void CanCreateEdgeFromTuplesFluently()
         {
             Edge edge = new Edge().WithPositions((1.0, 2.0), (3.0, 4.0));

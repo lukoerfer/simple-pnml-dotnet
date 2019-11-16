@@ -48,7 +48,7 @@ namespace SimplePNML
         /// <param name="fill">An optional fill</param>
         /// <param name="line">An optional line</param>
         /// <param name="font">An optional font</param>
-        public Annotation(int x, int y, Fill fill = null, Line line = null, Font font = null)
+        public Annotation(double x, double y, Fill fill = null, Line line = null, Font font = null)
         {
             Offset = new Coordinates(x, y);
             Fill = fill;
@@ -62,7 +62,7 @@ namespace SimplePNML
         /// <param name="x">The offset in X direction</param>
         /// <param name="y">The offset in Y direction</param>
         /// <returns>A reference to itself</returns>
-        public Annotation WithOffset(int x, int y)
+        public Annotation WithOffset(double x, double y)
         {
             Offset = new Coordinates(x, y);
             return this;

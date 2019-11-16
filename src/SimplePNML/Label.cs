@@ -7,7 +7,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Label : IAnnotationElement
+    public class Label
     {
         /// <summary>
         /// Gets or sets the text of the label
@@ -47,7 +47,7 @@ namespace SimplePNML
         /// <param name="line">An optional line</param>
         /// <param name="font">An optional font</param>
         /// <returns>A new label</returns>
-        public Label(string text, int x, int y, Fill fill = null, Line line = null, Font font = null)
+        public Label(string text, double x, double y, Fill fill = null, Line line = null, Font font = null)
         {
             Text = text;
             Graphics = new Annotation(x, y, fill, line, font);
@@ -88,16 +88,9 @@ namespace SimplePNML
         /// <param name="x">The offset in X direction</param>
         /// <param name="y">The offset in X direction</param>
         /// <returns>A reference to itself</returns>
-        public Label AtPosition(int x, int y)
+        public Label AtPosition(double x, double y)
         {
-            if (Graphics != null)
-            {
-                Graphics.Offset = new Coordinates(x, y);
-            }
-            else
-            {
-                Graphics = new Annotation(x, y);
-            }
+            Graphics = new Annotation(x, y);
             return this;
         }
 
@@ -121,7 +114,7 @@ namespace SimplePNML
         /// <param name="line">An optional line</param>
         /// <param name="font">An optional font</param>
         /// <returns>A reference to itself</returns>
-        public Label WithGraphics(int x, int y, Fill fill = null, Line line = null, Font font = null)
+        public Label WithGraphics(double x, double y, Fill fill = null, Line line = null, Font font = null)
         {
             Graphics = new Annotation(x, y, fill, line, font);
             return this;

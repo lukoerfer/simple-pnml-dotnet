@@ -8,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("place")]
-    public class Place : Connectable, INodeElement
+    public class Place : Connectable
     {
         /// <summary>
         /// Gets or sets a label containing the name of the place
