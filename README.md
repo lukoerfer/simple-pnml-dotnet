@@ -40,7 +40,7 @@ Place place = new Place()
 {
     InitialMarking = 1
 };
-Transition transition = new Transition("explicitIdentifier");
+Transition transition = new Transition("my-id");
 Arc arc = new Arc()
 {
     Inscription = 1
@@ -54,6 +54,19 @@ Page page = new Page();
 page.Places.Add(page);
 page.Transitions.Add(transition);
 page.Arcs.Add(arc);
+```
+
+SimplePNML also provides a fluent API to create petri nets. The same result as in the previous example can be achieved in the following way:
+
+``` csharp
+// Create place and transition beforehand to use the references when creating the arc
+Place place = new Place().WithInitialMarking(1);
+Transition transition = new Transition("my-id");
+
+Page page = new Page()
+    .WithPlaces(place)
+    .WithTransitions(transition)
+    .WithArcs(new Arc().WithInscription(1).Connecting(place, transition));
 ```
 
 ## Differences between .NET and JVM version
