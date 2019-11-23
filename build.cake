@@ -59,12 +59,10 @@ Task("Test")
         CoverletOutputFormat = CoverletOutputFormat.opencover
     });
 
-    if (TravisCI.IsRunningOnTravisCI)
+    if (HasEnvironmentVariable("COVERALLS_TOKEN"))
     {
         CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
         {
-            ServiceName = "travis-ci",
-            JobId = TravisCI.Environment.Job.JobId,
             RepoTokenVariable = "COVERALLS_TOKEN",
             UseRelativePaths = true,
             TreatUploadErrorsAsWarnings = true
