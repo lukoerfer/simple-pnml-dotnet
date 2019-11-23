@@ -10,3 +10,5 @@ jobs:
     - uses: ecampidoglio/cake-action@master
       with:
         target: Test
+      env:
+        COVERALLS_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
