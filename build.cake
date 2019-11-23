@@ -1,3 +1,5 @@
+#addin nuget:?package=Cake.Git&version=0.21.0 
+
 #addin nuget:?package=Cake.Coverlet&version=2.3.4
 
 #addin nuget:?package=Cake.Coveralls&version=0.10.0
@@ -61,9 +63,15 @@ Task("Test")
 
     if (HasEnvironmentVariable("COVERALLS_TOKEN"))
     {
+        var branch = GitBranchCurrent(".");
         CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
         {
             RepoTokenVariable = "COVERALLS_TOKEN",
+            CommitBranch = branch.FriendlyName,
+            CommitId = branch.Tip.Sha,
+            CommitAuthor = branch.Tip.Author.Name,
+            CommitEmail = branch.Tip.Author.Email,
+            CommitMessage = branch.Tip.MessageShort,
             UseRelativePaths = true,
             TreatUploadErrorsAsWarnings = true
         });

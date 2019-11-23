@@ -1,6 +1,6 @@
 # SimplePNML for .NET
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/lukoerfer/simple-pnml-dotnet/blob/master/LICENSE)
-[![Build](https://img.shields.io/travis/lukoerfer/simple-pnml-dotnet)](https://travis-ci.org/lukoerfer/simple-pnml-dotnet)
+[![Build](https://github.com/lukoerfer/simple-pnml-dotnet/workflows/test/badge.svg)](https://github.com/lukoerfer/simple-pnml-dotnet/actions)
 [![Coverage](https://img.shields.io/coveralls/github/lukoerfer/simple-pnml-dotnet)](https://coveralls.io/github/lukoerfer/simple-pnml-dotnet?branch=master)
 
 Simple .NET implementation of the Petri Net Markup Language (PNML), limited to Place-Transition-(PT)-Nets
