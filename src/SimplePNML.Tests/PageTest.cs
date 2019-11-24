@@ -18,32 +18,32 @@ namespace SimplePNML.Tests
         [Test]
         public void WithPagesAddsPages()
         {
-            Page page = new Page();
-            page.WithPages(new Page());
+            Page page = new Page()
+                .WithPages(new Page());
             Assert.AreEqual(1, page.Pages.Count);
         }
 
         [Test]
         public void WithArcsAddsArcs()
         {
-            Page page = new Page();
-            page.WithArcs(new Arc());
+            Page page = new Page()
+                .WithArcs(new Arc());
             Assert.AreEqual(1, page.Arcs.Count);
         }
 
         [Test]
         public void WithPlacesAddsPlaces()
         {
-            Page page = new Page();
-            page.WithPlaces(new Place());
+            Page page = new Page()
+                .WithPlaces(new Place());
             Assert.AreEqual(1, page.Places.Count);
         }
 
         [Test]
         public void WithTransitionsAddsTransitions()
         {
-            Page page = new Page();
-            page.WithTransitions(new Transition());
+            Page page = new Page()
+                .WithTransitions(new Transition());
             Assert.AreEqual(1, page.Transitions.Count);
         }
     }

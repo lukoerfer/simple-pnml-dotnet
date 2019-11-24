@@ -16,6 +16,7 @@ namespace SimplePNML.Tests
             Assert.AreEqual(shape, line.Shape);
             Assert.AreEqual(style, line.Style);
         }
+        
     }
 }
 

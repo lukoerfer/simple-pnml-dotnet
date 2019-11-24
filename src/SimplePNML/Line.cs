@@ -122,16 +122,5 @@ namespace SimplePNML
             Shape = shape;
             Style = style;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="color"></param>
-        /// <returns></returns>
-        public Line WithColor(Color color)
-        {
-            Color = color;
-            return this;
-        }
     }
 }

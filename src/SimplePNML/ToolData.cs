@@ -50,16 +50,16 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Creates a new tool-specific data
+        /// Sets the tool and the version, if defined
         /// </summary>
         /// <param name="tool">The tool name</param>
-        /// <param name="version">The tool version</param>
-        /// <param name="content">Tuples describing the tool-specific data</param>
-        public ToolData(string tool, string version, params (string, string)[] content)
+        /// <param name="version">An optional tool version</param>
+        /// <returns>A reference to itself</returns>
+        public ToolData ForTool(string tool, string version = null)
         {
             Tool = tool;
             Version = version;
-            Content = content.Select(element => new XElement(element.Item1, element.Item2)).ToList();
+            return this;
         }
 
         /// <summary>

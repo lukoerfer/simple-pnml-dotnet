@@ -62,5 +62,13 @@ namespace SimplePNML.Tests
             };
             Assert.AreEqual(inscription.ToString(), arc.Inscription.Text);
         }
+
+        [Test, AutoData]
+        public void CanSetInscriptionFluently(int inscription)
+        {
+            Arc arc = new Arc()
+                .WithInscription(inscription);
+            Assert.AreEqual(inscription.ToString(), arc.Inscription.Text);
+        }
     }
 }

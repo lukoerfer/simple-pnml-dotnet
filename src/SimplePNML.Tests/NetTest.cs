@@ -23,8 +23,8 @@ namespace SimplePNML.Tests
         [Test]
         public void WithPagesAddsPages()
         {
-            Net net = new Net();
-            net.WithPages(new Page());
+            Net net = new Net()
+                .WithPages(new Page());
             Assert.AreEqual(1, net.Pages.Count);
         }
     }

@@ -8,7 +8,7 @@
 #addin nuget:?package=Cake.DocFx&version=0.13.0
 #tool nuget:?package=docfx.console&version=2.43.1
 
-var target = Argument("target", "Default");
+var target = Argument("target", "Build");
 var configuration = Argument("configuration", "Debug");
 
 var solution = File("./src/SimplePNML.sln");
@@ -64,6 +64,7 @@ Task("Test")
     if (HasEnvironmentVariable("COVERALLS_TOKEN"))
     {
         var branch = GitBranchCurrent(".");
+
         CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
         {
             RepoTokenVariable = "COVERALLS_TOKEN",
