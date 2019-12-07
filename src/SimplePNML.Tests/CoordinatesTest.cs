@@ -9,7 +9,7 @@ namespace SimplePNML.Tests
         [Test, AutoData]
         public void CanCreateCoordinates(double x, double y)
         {
-            Coordinates coordinates = new Coordinates(x, y);
+            Position coordinates = new Position(x, y);
             Assert.AreEqual(x, coordinates.X);
             Assert.AreEqual(y, coordinates.Y);
         }

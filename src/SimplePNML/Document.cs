@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
@@ -10,7 +11,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlRoot("pnml", Namespace = PNML_NAMESPACE)]
-    public class Document
+    public class Document : ICollectable
     {
         /// <summary>
         /// Defines the XML namespace of the Petri Net Markup Language
@@ -28,6 +29,7 @@ namespace SimplePNML
         /// <summary>
         /// Gets or sets the nets in the document
         /// </summary>
+        [NotNull]
         [XmlElement("net")]
         public List<Net> Nets { get; set; } = new List<Net>();
 
@@ -43,9 +45,21 @@ namespace SimplePNML
         /// Creates a new PNML document
         /// </summary>
         /// <param name="nets">Some nets to add to this document</param>
-        public Document(params Net[] nets) : this()
+        public Document(Net net, params Net[] nets) : this()
         {
-            Nets = nets.ToList();
+            Nets.Add(net);
+            Nets.AddRange(nets);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="transformation"></param>
+        /// <returns></returns>
+        public Document Apply(Action<Document> transformation)
+        {
+            transformation.Invoke(this);
+            return this;
         }
 
         /// <summary>
@@ -59,5 +73,15 @@ namespace SimplePNML
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Nets)
+                .Build();
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using System;
 using NUnit.Framework;
 
 namespace SimplePNML.Tests
@@ -13,6 +13,16 @@ namespace SimplePNML.Tests
             Assert.NotNull(page.Id);
             Assert.IsNotEmpty(page.Id);
             Assert.IsFalse(string.IsNullOrWhiteSpace(page.Id));
+        }
+
+        [Test]
+        public void CannotSetArcsToNull()
+        {
+            Page page = new Page();
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                page.Arcs = null;
+            });
         }
 
         [Test]

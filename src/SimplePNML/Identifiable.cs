@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// Encapsulates PNML elements that can be identified
+    /// Encapsulates elements in place/transition nets that can be identified
     /// </summary>
     public abstract class Identifiable
     {

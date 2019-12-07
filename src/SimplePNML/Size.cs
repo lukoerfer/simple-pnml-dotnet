@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
@@ -7,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Dimension
+    public class Size : ICollectable
     {
         /// <summary>
         /// Gets or sets the length in X direction
@@ -24,17 +25,26 @@ namespace SimplePNML
         /// <summary>
         /// Creates an empty dimension information
         /// </summary>
-        public Dimension() { }
+        public Size() { }
 
         /// <summary>
         /// Creates a new dimension information
         /// </summary>
         /// <param name="width">The length in X direction</param>
         /// <param name="height">The length in Y direction</param>
-        public Dimension(double width, double height)
+        public Size(double width, double height)
         {
             Width = width;
             Height = height;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            yield return this;
         }
     }
 }

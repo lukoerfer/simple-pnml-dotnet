@@ -29,6 +29,12 @@ namespace SimplePNML
             return (Document)serializer.Deserialize(stream);
         }
 
+        public static Document Read(TextReader reader)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Document));
+            return (Document)serializer.Deserialize(reader);
+        }
+
         /// <summary>
         /// Reads a PNML document from a string
         /// </summary>
@@ -77,6 +83,19 @@ namespace SimplePNML
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Document));
             serializer.Serialize(stream, document);
+            return document;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="writer"></param>
+        /// <returns></returns>
+        public static Document Write(this Document document, TextWriter writer)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Document));
+            serializer.Serialize(writer, document);
             return document;
         }
         

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -8,7 +10,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Font
+    public class Font : ICollectable
     {
         /// <summary>
         /// Gets or sets the font family (CSS)
@@ -149,6 +151,15 @@ namespace SimplePNML
             Decoration = decoration;
             Align = align;
             Rotation = rotation;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            yield return this;
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("net")]
-    public class Net : Identifiable
+    public class Net : Identifiable, ICollectable
     {
         /// <summary>
         /// Defines the PNML grammar for place-transitions nets
@@ -29,8 +29,15 @@ namespace SimplePNML
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [XmlElement("name")]
+        public Label Name { get; set; }
+
+        /// <summary>
         /// Gets a collection containing the pages of this net
         /// </summary>
+        [NotNull]
         [XmlElement("page")]
         public List<Page> Pages { get; set; } = new List<Page>();
 
@@ -61,5 +68,16 @@ namespace SimplePNML
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Name)
+                .Collect(Pages)
+                .Build();
+        }
     }
 }

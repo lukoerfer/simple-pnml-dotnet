@@ -14,5 +14,16 @@ namespace SimplePNML.Tests
             Assert.IsNotEmpty(transition.Id);
             Assert.IsFalse(string.IsNullOrWhiteSpace(transition.Id));
         }
+
+        [Test, AutoData]
+        public void CanCreateTransition(string name)
+        {
+            Node node = new Node();
+            Transition transition = new Transition()
+            {
+                Name = name,
+                Graphics = node
+            };
+        }
     }
 }

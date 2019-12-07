@@ -1,7 +1,7 @@
 ﻿namespace SimplePNML
 {
     /// <summary>
-    /// Marks all elements that can be connected via arcs
+    /// Marks all elements in place/transition nets that can be connected via arcs
     /// </summary>
     public abstract class Connectable : Identifiable
     {

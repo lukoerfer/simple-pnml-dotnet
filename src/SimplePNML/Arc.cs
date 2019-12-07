@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -8,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("arc")]
-    public class Arc : Identifiable
+    public class Arc : Identifiable, ICollectable, IEdgeElement
     {
         /// <summary>
         /// Gets or sets the identifier of the arc source
@@ -127,5 +128,16 @@ namespace SimplePNML
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Graphics)
+                .Collect(Inscription)
+                .Build();
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Xml.Serialization;
@@ -11,13 +10,14 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Edge
+    public class Edge : ICollectable, ILined
     {
         /// <summary>
         /// Gets or sets the points of the edge
         /// </summary>
+        [NotNull]
         [XmlElement("position")]
-        public List<Coordinates> Positions { get; set; } = new List<Coordinates>();
+        public List<Position> Positions { get; set; } = new List<Position>();
 
         /// <summary>
         /// Gets or sets how to visualize the line
@@ -34,9 +34,9 @@ namespace SimplePNML
         /// Creates a new graphics description for an edge element
         /// </summary>
         /// <param name="positions">Some points defining the graphical edge</param>
-        public Edge(params Coordinates[] positions)
+        public Edge(params Position[] positions)
         {
-            Positions = new List<Coordinates>(positions);
+            Positions = new List<Position>(positions);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace SimplePNML
         /// <param name="positions"></param>
         public Edge(params (double, double)[] positions)
         {
-            Positions = positions.Select(position => new Coordinates(position.Item1, position.Item2)).ToList();
+            Positions = positions.Select(position => new Position(position.Item1, position.Item2)).ToList();
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace SimplePNML
         /// </summary>
         /// <param name="positions">Some points that define the graphical edge</param>
         /// <returns>A reference to itself</returns>
-        public Edge WithPositions(params Coordinates[] positions)
+        public Edge WithPositions(params Position[] positions)
         {
             Positions = positions.ToList();
             return this;
@@ -66,7 +66,7 @@ namespace SimplePNML
         /// <returns>A reference to itself</returns>
         public Edge WithPositions(params (double, double)[] positions)
         {
-            Positions = positions.Select(position => new Coordinates(position.Item1, position.Item2)).ToList();
+            Positions = positions.Select(position => new Position(position.Item1, position.Item2)).ToList();
             return this;
         }
 
@@ -95,5 +95,16 @@ namespace SimplePNML
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Positions)
+                .Collect(Line)
+                .Build();
+        }
     }
 }

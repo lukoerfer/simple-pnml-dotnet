@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace SimplePNML
 {
@@ -7,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Label
+    public class Label : ICollectable, IAnnotationElement
     {
         /// <summary>
         /// Gets or sets the text of the label
@@ -118,6 +119,17 @@ namespace SimplePNML
         {
             Graphics = new Annotation(x, y, fill, line, font);
             return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Graphics)
+                .Build();
         }
     }
 }

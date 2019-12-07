@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -8,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("place")]
-    public class Place : Connectable
+    public class Place : Connectable, ICollectable, INamed, INodeElement
     {
         /// <summary>
         /// Gets or sets a label containing the name of the place
@@ -104,6 +105,15 @@ namespace SimplePNML
         {
             InitialMarking = initialMarking;
             return this;
+        }
+
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Name)
+                .Collect(Graphics)
+                .Collect(InitialMarking)
+                .Build();
         }
     }
 }

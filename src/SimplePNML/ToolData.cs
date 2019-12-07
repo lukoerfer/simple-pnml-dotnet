@@ -11,7 +11,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class ToolData
+    public class ToolData : ICollectable
     {
         /// <summary>
         /// Gets or sets the name of the tool
@@ -82,6 +82,11 @@ namespace SimplePNML
         {
             Content = content.Select(element => new XElement(element.Item1, element.Item2)).ToList();
             return this;
+        }
+
+        public IEnumerable<ICollectable> Collect()
+        {
+            yield return this;
         }
     }
 }

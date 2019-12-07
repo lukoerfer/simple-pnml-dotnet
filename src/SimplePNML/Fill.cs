@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Xml.Serialization;
@@ -10,7 +11,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Fill
+    public class Fill : ICollectable
     {
         /// <summary>
         /// Gets or sets the fill color
@@ -123,6 +124,11 @@ namespace SimplePNML
         public Fill(Uri image)
         {
             Image = image;
+        }
+
+        public IEnumerable<ICollectable> Collect()
+        {
+            yield return this;
         }
 
     }

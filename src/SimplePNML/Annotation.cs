@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,13 +11,14 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Annotation
+    public class Annotation : ICollectable, IFilled, ILined
     {
         /// <summary>
         /// Gets or sets the offset
         /// </summary>
+        [NotNull]
         [XmlElement("offset")]
-        public Coordinates Offset { get; set; } = new Coordinates();
+        public Offset Offset { get; set; } = new Offset();
 
         /// <summary>
         /// Gets or sets the fill
@@ -50,7 +53,7 @@ namespace SimplePNML
         /// <param name="font">An optional font</param>
         public Annotation(double x, double y, Fill fill = null, Line line = null, Font font = null)
         {
-            Offset = new Coordinates(x, y);
+            Offset = new Offset(x, y);
             Fill = fill;
             Line = line;
             Font = font;
@@ -64,7 +67,7 @@ namespace SimplePNML
         /// <returns>A reference to itself</returns>
         public Annotation WithOffset(double x, double y)
         {
-            Offset = new Coordinates(x, y);
+            Offset = new Offset(x, y);
             return this;
         }
 
@@ -139,5 +142,14 @@ namespace SimplePNML
             return this;
         }
 
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Offset)
+                .Collect(Fill)
+                .Collect(Line)
+                .Collect(Font)
+                .Build();
+        }
     }
 }

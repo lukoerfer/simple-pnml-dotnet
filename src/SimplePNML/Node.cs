@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,19 +11,20 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Node
+    public class Node : ICollectable, IFilled, ILined
     {
         /// <summary>
         /// Gets or sets the position
         /// </summary>
+        [NotNull]
         [XmlElement("position")]
-        public Coordinates Position { get; set; } = new Coordinates();
+        public Position Position { get; set; } = new Position();
 
         /// <summary>
         /// Gets or sets the size
         /// </summary>
         [XmlElement("dimension")]
-        public Dimension Size { get; set; }
+        public Size Size { get; set; }
 
         /// <summary>
         /// Gets or sets the fill
@@ -49,7 +52,7 @@ namespace SimplePNML
         /// <param name="line">An optional line description</param>
         public Node(double x, double y, Fill fill = null, Line line = null)
         {
-            Position = new Coordinates(x, y);
+            Position = new Position(x, y);
             Fill = fill;
             Line = line;
         }
@@ -65,8 +68,8 @@ namespace SimplePNML
         /// <param name="line">An optional line description</param>
         public Node(double x, double y, double width, double height, Fill fill = null, Line line = null)
         {
-            Position = new Coordinates(x, y);
-            Size = new Dimension(width, height);
+            Position = new Position(x, y);
+            Size = new Size(width, height);
             Fill = fill;
             Line = line;
         }
@@ -79,7 +82,7 @@ namespace SimplePNML
         /// <returns>A reference to itself</returns>
         public Node AtPosition(int x, int y)
         {
-            Position = new Coordinates(x, y);
+            Position = new Position(x, y);
             return this;
         }
 
@@ -91,7 +94,7 @@ namespace SimplePNML
         /// <returns>A reference to itself</returns>
         public Node OfSize(int width, int height)
         {
-            Size = new Dimension(width, height);
+            Size = new Size(width, height);
             return this;
         }
 
@@ -155,5 +158,18 @@ namespace SimplePNML
             return this;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Position)
+                .Collect(Size)
+                .Collect(Fill)
+                .Collect(Line)
+                .Build();
+        }
     }
 }

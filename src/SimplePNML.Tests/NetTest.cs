@@ -1,7 +1,4 @@
-﻿
-using AutoFixture.NUnit3;
-using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace SimplePNML.Tests
 {

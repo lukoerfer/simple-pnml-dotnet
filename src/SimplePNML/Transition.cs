@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -8,16 +8,16 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("transition")]
-    public class Transition : Connectable
+    public class Transition : Connectable, ICollectable, INamed, INodeElement
     {
         /// <summary>
-        /// Gets or sets a label containing the name
+        /// Gets or sets the name 
         /// </summary>
         [XmlElement("name")]
         public Label Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the transition graphics
+        /// Gets or sets the graphics
         /// </summary>
         [XmlElement("graphics")]
         public Node Graphics { get; set; }
@@ -28,7 +28,7 @@ namespace SimplePNML
         public Transition() : this(null) { }
 
         /// <summary>
-        /// Creates a new transition with a given ID
+        /// Creates a new transition
         /// </summary>
         /// <param name="id"></param>
         public Transition(string id)
@@ -86,6 +86,18 @@ namespace SimplePNML
         {
             Graphics = new Node(x, y, width, height, fill, line);
             return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICollectable> Collect()
+        {
+            return Collector.Create(this)
+                .Collect(Name)
+                .Collect(Graphics)
+                .Build();
         }
     }
 }
