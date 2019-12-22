@@ -25,7 +25,7 @@ namespace SimplePNML
         public string Type
         {
             get => _type;
-            set => _type = string.IsNullOrWhiteSpace(value) ? PLACE_TRANSITION_NET_TYPE : value;
+            set => _type = value ?? PLACE_TRANSITION_NET_TYPE;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new net
         /// </summary>
-        public Net() : this(null, null) { }
+        public Net() : this(null) { }
 
         /// <summary>
         /// Creates a new net
@@ -58,18 +58,7 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Adds pages to this net
-        /// </summary>
-        /// <param name="pages">Any number of pages</param>
-        /// <returns>A reference to this net</returns>
-        public Net WithPages(params Page[] pages)
-        {
-            Pages.AddRange(pages);
-            return this;
-        }
-
-        /// <summary>
-        /// 
+        /// Collects all child elements of this net recursively 
         /// </summary>
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()

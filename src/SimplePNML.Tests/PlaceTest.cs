@@ -15,14 +15,6 @@ namespace SimplePNML.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(place.Id));
         }
         
-        [Test, AutoData]
-        public void CanSetInitialMarking(int initialMarking)
-        {
-            Place place = new Place()
-            {
-                InitialMarking = initialMarking
-            };
-            Assert.AreEqual(initialMarking.ToString(), place.InitialMarking.Text);
-        }
+        
     }
 }

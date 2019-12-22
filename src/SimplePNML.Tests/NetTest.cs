@@ -17,12 +17,6 @@ namespace SimplePNML.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(net.Type));
         }
 
-        [Test]
-        public void WithPagesAddsPages()
-        {
-            Net net = new Net()
-                .WithPages(new Page());
-            Assert.AreEqual(1, net.Pages.Count);
-        }
+        
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Encapsulates the functionality to recursively collect all child entities
     /// </summary>
     public interface ICollectable
     {

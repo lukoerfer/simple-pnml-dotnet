@@ -42,38 +42,6 @@ namespace SimplePNML
         }
 
         /// <summary>
-        /// Creates a new PNML document
-        /// </summary>
-        /// <param name="nets">Some nets to add to this document</param>
-        public Document(Net net, params Net[] nets) : this()
-        {
-            Nets.Add(net);
-            Nets.AddRange(nets);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="transformation"></param>
-        /// <returns></returns>
-        public Document Apply(Action<Document> transformation)
-        {
-            transformation.Invoke(this);
-            return this;
-        }
-
-        /// <summary>
-        /// Adds nets to this PNML container
-        /// </summary>
-        /// <param name="nets">Some nets to add to this document</param>
-        /// <returns>A reference to this container</returns>
-        public Document WithNets(params Net[] nets)
-        {
-            Nets.AddRange(nets);
-            return this;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>

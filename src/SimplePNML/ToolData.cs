@@ -48,42 +48,11 @@ namespace SimplePNML
             Version = version;
             Content = content.ToList();
         }
-
+        
         /// <summary>
-        /// Sets the tool and the version, if defined
+        /// 
         /// </summary>
-        /// <param name="tool">The tool name</param>
-        /// <param name="version">An optional tool version</param>
-        /// <returns>A reference to itself</returns>
-        public ToolData ForTool(string tool, string version = null)
-        {
-            Tool = tool;
-            Version = version;
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the XML elements describing the tool-specific data
-        /// </summary>
-        /// <param name="content"></param>
-        /// <returns>A reference to itself</returns>
-        public ToolData WithContent(params XElement[] content)
-        {
-            Content = content.ToList();
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the XML elements describing the tool-specific data via tuples
-        /// </summary>
-        /// <param name="content"></param>
-        /// <returns>A reference to itself</returns>
-        public ToolData WithContent(params (string, string)[] content)
-        {
-            Content = content.Select(element => new XElement(element.Item1, element.Item2)).ToList();
-            return this;
-        }
-
+        /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
             yield return this;

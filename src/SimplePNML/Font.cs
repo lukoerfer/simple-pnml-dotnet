@@ -132,28 +132,6 @@ namespace SimplePNML
         public Font() { }
 
         /// <summary>
-        /// Creates a new font
-        /// </summary>
-        /// <param name="family">The font family, can be null</param>
-        /// <param name="style">An optional font style (CSS)</param>
-        /// <param name="weight">An optional font weight (CSS)</param>
-        /// <param name="size">An optional font size (CSS)</param>
-        /// <param name="decoration">An optional font decoration</param>
-        /// <param name="align">An optional font alignment</param>
-        /// <param name="rotation">An optional font rotation</param>
-        public Font(string family, string style = null, string weight = null, string size = null, 
-            FontDecoration? decoration = null, FontAlign? align = null, double? rotation = null)
-        {
-            Family = family;
-            Style = style;
-            Weight = weight;
-            Size = size;
-            Decoration = decoration;
-            Align = align;
-            Rotation = rotation;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>

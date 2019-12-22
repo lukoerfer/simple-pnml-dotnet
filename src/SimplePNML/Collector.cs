@@ -5,6 +5,9 @@ using System.Text;
 
 namespace SimplePNML
 {
+    /// <summary>
+    /// Utility class to collect child entitites recursively
+    /// </summary>
     internal class Collector
     {
         private IEnumerable<ICollectable> collectables;

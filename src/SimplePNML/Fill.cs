@@ -105,27 +105,9 @@ namespace SimplePNML
         public Fill() { }
 
         /// <summary>
-        /// Creates a new fill
+        /// 
         /// </summary>
-        /// <param name="color"></param>
-        /// <param name="gradientColor"></param>
-        /// <param name="gradientRotation"></param>
-        public Fill(Color color, Color? gradientColor = null, GradientRotation? gradientRotation = null)
-        {
-            Color = color;
-            GradientColor = gradientColor;
-            GradientRotation = gradientRotation;
-        }
-
-        /// <summary>
-        /// Creates a new fill
-        /// </summary>
-        /// <param name="image"></param>
-        public Fill(Uri image)
-        {
-            Image = image;
-        }
-
+        /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
             yield return this;

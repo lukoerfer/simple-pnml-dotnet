@@ -36,18 +36,6 @@ namespace SimplePNML.Tests
             }
         }
 
-        [Test]
-        public void CanModifyExampleDocument()
-        {
-            PNML.Read(Resource("Example.pnml"))
-                .Apply(document =>
-                {
-                    document.Collect().OfType<Net>()
-                        .ToList().ForEach(net => net.Name = null);
-                })
-                .Write(Console.Out);
-        }
-
         [Test, DocumentAutoData]
         public void CanRunExampleFromReadme(Document example)
         {

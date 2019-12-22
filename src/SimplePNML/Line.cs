@@ -111,21 +111,6 @@ namespace SimplePNML
         public Line() { }
 
         /// <summary>
-        /// Creates a new line
-        /// </summary>
-        /// <param name="color">A line color</param>
-        /// <param name="width">An optional line width</param>
-        /// <param name="shape">An optional line shape</param>
-        /// <param name="style">An optional line style</param>
-        public Line(Color color, double? width = null, LineShape? shape = null, LineStyle? style = null)
-        {
-            Color = color;
-            Width = width;
-            Shape = shape;
-            Style = style;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>

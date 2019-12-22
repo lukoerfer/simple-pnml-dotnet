@@ -44,69 +44,6 @@ namespace SimplePNML
             Id = id;
         }
 
-        /// <summary>
-        /// Sets the name of the place
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns>A reference to itself</returns>
-        public Place WithName(Label name)
-        {
-            Name = name;
-            return this;
-        }
-
-        /// <summary>
-        /// Defines how to visualize the place
-        /// </summary>
-        /// <param name="graphics"></param>
-        /// <returns>A reference to itself</returns>
-        public Place WithGraphics(Node graphics)
-        {
-            Graphics = graphics;
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="fill"></param>
-        /// <param name="line"></param>
-        /// <returns></returns>
-        public Place WithGraphics(double x, double y, Fill fill = null, Line line = null)
-        {
-            Graphics = new Node(x, y, fill, line);
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        /// <param name="fill"></param>
-        /// <param name="line"></param>
-        /// <returns></returns>
-        public Place WithGraphics(double x, double y, double width, double height, Fill fill = null, Line line = null)
-        {
-            Graphics = new Node(x, y, width, height, fill, line);
-            return this;
-        }
-
-        /// <summary>
-        /// Sets the initial marking of the place
-        /// </summary>
-        /// <param name="initialMarking"></param>
-        /// <returns>A reference to itself</returns>
-        public Place WithInitialMarking(Label initialMarking)
-        {
-            InitialMarking = initialMarking;
-            return this;
-        }
-
         public IEnumerable<ICollectable> Collect()
         {
             return Collector.Create(this)

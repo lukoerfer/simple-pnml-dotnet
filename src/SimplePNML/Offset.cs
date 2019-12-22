@@ -28,17 +28,6 @@ namespace SimplePNML
         public Offset() { }
 
         /// <summary>
-        /// Creates a new offset
-        /// </summary>
-        /// <param name="x">The position in X direction</param>
-        /// <param name="y">The position in Y direction</param>
-        public Offset(double x, double y)
-        {
-            X = x;
-            Y = y;
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>

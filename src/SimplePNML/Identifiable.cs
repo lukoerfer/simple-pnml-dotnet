@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// Encapsulates elements in place/transition nets that can be identified
+    /// Base of all elements in place/transition nets that can be identified
     /// </summary>
     public abstract class Identifiable
     {
@@ -17,7 +17,7 @@ namespace SimplePNML
         public string Id
         {
             get => _id;
-            set => _id = string.IsNullOrWhiteSpace(value) ? Guid.NewGuid().ToString() : value;
+            set => _id = value ?? Guid.NewGuid().ToString();
         }
     }
 }
