@@ -11,8 +11,6 @@ namespace SimplePNML.Tests
         {
             Page page = new Page(id);
             Assert.NotNull(page.Id);
-            Assert.IsNotEmpty(page.Id);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(page.Id));
         }
 
         [Test]

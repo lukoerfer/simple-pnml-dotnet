@@ -6,13 +6,11 @@ namespace SimplePNML.Tests
     [TestFixture]
     public class TransitionTest
     {
-        [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
-        public void DefaultsToValidId(string id)
+        [TestCase(null), TestCase("test-id")]
+        public void GeneratesIdIfNull(string id)
         {
             Transition transition = new Transition(id);
             Assert.NotNull(transition.Id);
-            Assert.IsNotEmpty(transition.Id);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(transition.Id));
         }
 
         [Test, AutoData]

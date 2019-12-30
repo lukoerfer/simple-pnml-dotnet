@@ -12,8 +12,6 @@ namespace SimplePNML.Tests
         {
             Arc arc = new Arc(id);
             Assert.NotNull(arc.Id);
-            Assert.IsNotEmpty(arc.Id);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(arc.Id));
         }
 
     }

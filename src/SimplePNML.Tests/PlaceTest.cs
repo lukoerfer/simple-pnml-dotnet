@@ -11,8 +11,6 @@ namespace SimplePNML.Tests
         {
             Place place = new Place(id);
             Assert.NotNull(place.Id);
-            Assert.IsNotEmpty(place.Id);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(place.Id));
         }
         
         
