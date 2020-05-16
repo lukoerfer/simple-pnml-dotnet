@@ -8,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Size : ICollectable
+    public class Size : ICollectable, IDefaults
     {
         /// <summary>
         /// Gets or sets the length in X direction
@@ -46,5 +46,7 @@ namespace SimplePNML
         {
             yield return this;
         }
+
+        public bool IsDefault() => Width == 0.0 && Height == 0.0;
     }
 }

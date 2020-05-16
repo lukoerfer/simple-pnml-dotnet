@@ -11,7 +11,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class ToolData : ICollectable
+    public class ToolSpecific : ICollectable
     {
         /// <summary>
         /// Gets or sets the name of the tool
@@ -34,7 +34,7 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new tool-specific data
         /// </summary>
-        public ToolData() { }
+        public ToolSpecific() { }
 
         /// <summary>
         /// Creates a new tool-specific data
@@ -42,7 +42,7 @@ namespace SimplePNML
         /// <param name="tool">The tool name</param>
         /// <param name="version">The tool version</param>
         /// <param name="content">XML elements describing the tool-specific data</param>
-        public ToolData(string tool, string version, params XElement[] content)
+        public ToolSpecific(string tool, string version, params XElement[] content)
         {
             Tool = tool;
             Version = version;

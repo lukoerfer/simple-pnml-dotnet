@@ -10,5 +10,9 @@
         /// </summary>
         /// <param name="connectable"></param>
         public static implicit operator string(Connectable connectable) => connectable.Id;
+
+        protected Connectable() : base() { }
+
+        protected Connectable(string id) : base(id) { }
     }
 }

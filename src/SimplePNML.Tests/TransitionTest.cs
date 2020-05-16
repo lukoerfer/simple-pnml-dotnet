@@ -16,7 +16,7 @@ namespace SimplePNML.Tests
         [Test, AutoData]
         public void CanCreateTransition(string name)
         {
-            Node node = new Node();
+            NodeGraphics node = new NodeGraphics();
             Transition transition = new Transition()
             {
                 Name = name,

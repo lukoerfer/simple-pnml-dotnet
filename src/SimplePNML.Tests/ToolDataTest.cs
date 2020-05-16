@@ -10,7 +10,7 @@ namespace SimplePNML.Tests
         [Test, AutoData]
         public void CanCreateToolData(string tool, string version)
         {
-            ToolData data = new ToolData(tool, version);
+            ToolSpecific data = new ToolSpecific(tool, version);
             Assert.AreEqual(tool, data.Tool);
             Assert.AreEqual(version, data.Version);
             Assert.IsNotNull(data.Content);

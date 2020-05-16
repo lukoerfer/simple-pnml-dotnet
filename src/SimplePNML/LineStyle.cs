@@ -11,16 +11,16 @@ namespace SimplePNML
         /// Solid line
         /// </summary>
         [XmlEnum("solid")]
-        Solid,
+        Solid = 0,
         /// <summary>
         /// Dashed line
         /// </summary>
         [XmlEnum("dash")]
-        Dash,
+        Dash = 1,
         /// <summary>
         /// Dotted line
         /// </summary>
         [XmlEnum("dot")]
-        Dot
+        Dot = 2
     }
 }

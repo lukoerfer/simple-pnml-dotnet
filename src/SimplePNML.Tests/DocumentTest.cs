@@ -63,7 +63,7 @@ namespace SimplePNML.Tests
                     customize.Without(fill => fill.ColorValue)
                         .Without(fill => fill.GradientColorValue)
                         .Without(fill => fill.ImageValue));
-                fixture.Customize<ToolData>(customize =>
+                fixture.Customize<ToolSpecific>(customize =>
                     customize.Without(toolSpecific => toolSpecific.Content));
                 return fixture;
             }

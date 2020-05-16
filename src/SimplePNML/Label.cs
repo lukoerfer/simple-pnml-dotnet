@@ -8,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Label : ICollectable, IAnnotationElement
+    public class Label : ICollectable, IAnnotation, IDefaults
     {
         /// <summary>
         /// Implicitly creates a label from an integer value
@@ -38,7 +38,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize the label
         /// </summary>
         [XmlElement("graphics")]
-        public Annotation Graphics { get; set; }
+        public AnnotationGraphics Graphics { get; set; }
 
         /// <summary>
         /// Creates a new label
@@ -52,9 +52,14 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Graphics)
-                .Build();
+            return new Collector(this)
+                .Include(Graphics)
+                .Collect();
+        }
+
+        public bool IsDefault()
+        {
+            return Text.IsEmpty() && Graphics.IsDefault();
         }
     }
 }

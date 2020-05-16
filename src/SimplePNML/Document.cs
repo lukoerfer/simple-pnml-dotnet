@@ -29,7 +29,6 @@ namespace SimplePNML
         /// <summary>
         /// Gets or sets the nets in the document
         /// </summary>
-        [NotNull]
         [XmlElement("net")]
         public List<Net> Nets { get; set; } = new List<Net>();
 
@@ -47,9 +46,9 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Nets)
-                .Build();
+            return new Collector(this)
+                .Include(Nets)
+                .Collect();
         }
     }
 }

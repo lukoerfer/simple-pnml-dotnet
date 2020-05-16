@@ -10,7 +10,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Edge : ICollectable, ILined
+    public class EdgeGraphics : ICollectable, ILined
     {
         /// <summary>
         /// Gets or sets how to visualize the line
@@ -21,14 +21,13 @@ namespace SimplePNML
         /// <summary>
         /// Gets or sets the points of the edge
         /// </summary>
-        [NotNull]
         [XmlElement("position")]
         public List<Position> Positions { get; set; } = new List<Position>();
 
         /// <summary>
         /// Creates a new graphics description for an edge element
         /// </summary>
-        public Edge() { }
+        public EdgeGraphics() { }
 
         /// <summary>
         /// Collects all child elements of this edge recursively
@@ -36,10 +35,10 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Positions)
-                .Collect(Line)
-                .Build();
+            return new Collector(this)
+                .Include(Positions)
+                .Include(Line)
+                .Collect();
         }
     }
 }

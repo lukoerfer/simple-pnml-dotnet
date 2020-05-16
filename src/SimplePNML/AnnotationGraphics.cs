@@ -11,12 +11,11 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Annotation : ICollectable, IFilled, ILined
+    public class AnnotationGraphics : ICollectable, IFilled, ILined, IDefaults
     {
         /// <summary>
         /// Gets or sets the offset
         /// </summary>
-        [NotNull]
         [XmlElement("offset")]
         public Offset Offset { get; set; } = new Offset();
 
@@ -41,7 +40,7 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new graphical annotation
         /// </summary>
-        public Annotation() { }
+        public AnnotationGraphics() { }
 
         /// <summary>
         /// Collects the child elements of this annotation recursively
@@ -49,12 +48,14 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Offset)
-                .Collect(Fill)
-                .Collect(Line)
-                .Collect(Font)
-                .Build();
+            return new Collector(this)
+                .Include(Offset)
+                .Include(Fill)
+                .Include(Line)
+                .Include(Font)
+                .Collect();
         }
+
+        public bool IsDefault() => Offset.IsDefault() && Fill.IsDefault() && Line.IsDefault() && Font.IsDefault();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
 
@@ -139,5 +138,12 @@ namespace SimplePNML
         {
             yield return this;
         }
+
+        #region Internal serialization
+
+
+
+        #endregion
+
     }
 }

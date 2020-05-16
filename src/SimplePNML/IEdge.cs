@@ -7,8 +7,8 @@ namespace SimplePNML
     /// <summary>
     /// Marks the elements that have their graphics described by an edge
     /// </summary>
-    public interface IEdgeElement
+    public interface IEdge
     {
-        Edge Graphics { get; set; }
+        EdgeGraphics Graphics { get; set; }
     }
 }

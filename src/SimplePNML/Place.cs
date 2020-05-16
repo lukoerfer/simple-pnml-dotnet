@@ -9,7 +9,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("place")]
-    public class Place : Connectable, ICollectable, INamed, INodeElement
+    public class Place : Connectable, ICollectable, INamed, INode, IToolExtendable
     {
         /// <summary>
         /// Gets or sets a label containing the name of the place
@@ -21,7 +21,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize this place
         /// </summary>
         [XmlElement("graphics")]
-        public Node Graphics { get; set; }
+        public NodeGraphics Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets a label defining the initial marking of the place
@@ -31,26 +31,29 @@ namespace SimplePNML
         public Label InitialMarking { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public List<ToolSpecific> ToolSpecificData { get; set; } = new List<ToolSpecific>();
+
+        /// <summary>
         /// Creates a new place
         /// </summary>
-        public Place() : this(null) { }
+        public Place() : base() { }
 
         /// <summary>
         /// Creates a new place
         /// </summary>
         /// <param name="id"></param>
-        public Place(string id)
-        {
-            Id = id;
-        }
+        public Place(string id) : base(id) { }
 
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Name)
-                .Collect(Graphics)
-                .Collect(InitialMarking)
-                .Build();
+            return new Collector(this)
+                .Include(Name)
+                .Include(Graphics)
+                .Include(InitialMarking)
+                .Include(ToolSpecificData)
+                .Collect();
         }
     }
 }

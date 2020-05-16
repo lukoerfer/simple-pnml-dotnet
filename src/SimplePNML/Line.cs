@@ -11,99 +11,33 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Line : ICollectable
+    public class Line : ICollectable, IDefaults
     {
         /// <summary>
         /// Gets or sets the color
         /// </summary>
-        [XmlIgnore]
-        public Color? Color { get; set; }
-
-        #region Color Serialization
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("color")]
-        public string ColorValue
-        {
-            get => ColorTranslator.ToHtml(Color.Value);
-            set => Color = ColorTranslator.FromHtml(value);
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeColorValue() => Color.HasValue;
-
-        #endregion
+        public string Color { get; set; }
 
         /// <summary>
         /// Gets or sets the width
         /// </summary>
-        [XmlIgnore]
-        public double? Width { get; set; }
-
-        #region Width Serialization
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("width")]
-        public double WidthValue
-        {
-            get => Width.Value;
-            set => Width = value;
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeWidthValue() => Width.HasValue;
-
-        #endregion
+        public double Width { get; set; }
 
         /// <summary>
         /// Gets or sets the shape
         /// </summary>
-        [XmlIgnore]
-        public LineShape? Shape { get; set; }
-
-        #region Shape Serialization
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("shape")]
-        public LineShape ShapeValue
-        {
-            get => Shape.Value;
-            set => Shape = value;
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeShapeValue() => Shape.HasValue;
-
-        #endregion
+        public LineShape Shape { get; set; }
 
         /// <summary>
         /// Gets or sets the style
         /// </summary>
-        [XmlIgnore]
-        public LineStyle? Style { get; set; }
-
-        #region Style Serialization
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("style")]
-        public LineStyle StyleValue
-        {
-            get => Style.Value;
-            set => Style = value;
-        }
+        public LineStyle Style { get; set; }
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeStyleValue() => Style.HasValue;
-
-        #endregion
+        
 
         /// <summary>
         /// Creates a new line
@@ -118,5 +52,11 @@ namespace SimplePNML
         {
             yield return this;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool IsDefault() => Shape.IsDefault();
     }
 }
