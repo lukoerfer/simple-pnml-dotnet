@@ -7,20 +7,21 @@ namespace SimplePNML
     /// </summary>
     public enum GradientRotation
     {
+        None = 0,
         /// <summary>
         /// Vertical rotation
         /// </summary>
         [XmlEnum("vertical")]
-        Vertical,
+        Vertical = 1,
         /// <summary>
         /// Horizontal rotation
         /// </summary>
         [XmlEnum("horizontal")]
-        Horizontal,
+        Horizontal = 2,
         /// <summary>
         /// Diagonal rotation
         /// </summary>
         [XmlEnum("diagonal")]
-        Diagonal
+        Diagonal = 3
     }
 }

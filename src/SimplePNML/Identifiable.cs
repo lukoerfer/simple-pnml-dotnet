@@ -8,16 +8,20 @@ namespace SimplePNML
     /// </summary>
     public abstract class Identifiable
     {
-        private string _id;
-
         /// <summary>
         /// Gets or sets the identifier
         /// </summary>
         [XmlAttribute("id")]
-        public string Id
+        public string Id { get; set; }
+
+        protected Identifiable()
         {
-            get => _id;
-            set => _id = value ?? Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString();
+        }
+
+        protected Identifiable(string id)
+        {
+            Id = id;
         }
     }
 }

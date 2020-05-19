@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("arc")]
-    public class Arc : Identifiable, ICollectable, IEdgeElement
+    public class Arc : Identifiable, ICollectable, IEdge, IToolExtendable
     {
         /// <summary>
         /// Gets or sets the identifier of the arc source
@@ -27,7 +26,7 @@ namespace SimplePNML
         /// Gets or sets the arc graphics
         /// </summary>
         [XmlElement("graphics")]
-        public Edge Graphics { get; set; }
+        public EdgeGraphics Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets a label describing the inscription of this arc
@@ -36,18 +35,20 @@ namespace SimplePNML
         public Label Inscription { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public List<ToolSpecific> ToolSpecificData { get; set; } = new List<ToolSpecific>();
+
+        /// <summary>
         /// Creates a new arc
         /// </summary>
-        public Arc() : this(null) { }
+        public Arc() : base() { }
 
         /// <summary>
         /// Creates a new arc
         /// </summary>
         /// <param name="id"></param>
-        public Arc(string id)
-        {
-            Id = id;
-        }
+        public Arc(string id) : base(id) { }
 
         /// <summary>
         /// Collects all child elements of this arc recursively
@@ -55,10 +56,18 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Graphics)
-                .Collect(Inscription)
-                .Build();
+            return new Collector(this)
+                .Include(Graphics)
+                .Include(Inscription)
+                .Include(ToolSpecificData)
+                .Collect();
         }
+
+        #region Internal serialization
+
+
+
+        #endregion
+
     }
 }

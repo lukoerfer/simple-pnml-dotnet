@@ -8,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Position : ICollectable
+    public class Position : ICollectable, IDefaults
     {
         /// <summary>
         /// Gets or sets the position in X direction
@@ -46,5 +46,7 @@ namespace SimplePNML
         {
             yield return this;
         }
+
+        public bool IsDefault() => X == 0.0 && Y == 0.0;
     }
 }

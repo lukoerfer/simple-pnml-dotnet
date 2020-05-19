@@ -10,7 +10,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("page")]
-    public class Page : Identifiable, ICollectable, INamed, INodeElement
+    public class Page : Identifiable, ICollectable, INamed, INode, IToolExtendable
     {
         /// <summary>
         /// Gets or sets a label containing the name
@@ -22,36 +22,37 @@ namespace SimplePNML
         /// Gets or sets how to visualize the page
         /// </summary>
         [XmlElement("graphics")]
-        public Node Graphics { get; set; }
+        public NodeGraphics Graphics { get; set; }
 
         /// <summary>
         /// Gets or sets the sub-pages of this page
         /// </summary>
-        [NotNull]
         [XmlElement("page")]
         public List<Page> Pages { get; set; } = new List<Page>();
 
         /// <summary>
         /// Gets or sets the places on this page
         /// </summary>
-        [NotNull]
         [XmlElement("place")]
         public List<Place> Places { get; set; } = new List<Place>();
 
         /// <summary>
         /// Gets or sets the transitions on this page
         /// </summary>
-        [NotNull]
         [XmlElement("transition")]
         public List<Transition> Transitions { get; set; } = new List<Transition>();
 
         /// <summary>
         /// Gets or sets the arcs on this page
         /// </summary>
-        [NotNull]
         [XmlElement("arc")]
         public List<Arc> Arcs { get; set; } = new List<Arc>();
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<ToolSpecific> ToolSpecificData { get; set; } = new List<ToolSpecific>();
+
         /// <summary>
         /// Creates a new page
         /// </summary>
@@ -72,14 +73,15 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Name)
-                .Collect(Graphics)
-                .Collect(Pages)
-                .Collect(Places)
-                .Collect(Transitions)
-                .Collect(Arcs)
-                .Build();
+            return new Collector(this)
+                .Include(Name)
+                .Include(Graphics)
+                .Include(Pages)
+                .Include(Places)
+                .Include(Transitions)
+                .Include(Arcs)
+                .Include(ToolSpecificData)
+                .Collect();
         }
     }
 }

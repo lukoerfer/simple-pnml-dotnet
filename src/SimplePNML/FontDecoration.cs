@@ -7,21 +7,21 @@ namespace SimplePNML
     /// </summary>
     public enum FontDecoration
     {
+        None = 0,
         /// <summary>
         /// Underlined text
         /// </summary>
         [XmlEnum("underline")]
-        Underline,
+        Underline = 1,
         /// <summary>
         /// Overlined text
         /// </summary>
         [XmlEnum("overline")]
-        Overline,
+        Overline = 2,
         /// <summary>
         /// Strikethrough text
         /// </summary>
         [XmlEnum("line-through")]
-        LineThrough
-
+        LineThrough = 3
     }
 }

@@ -11,11 +11,11 @@ namespace SimplePNML
         /// Straight line
         /// </summary>
         [XmlEnum("line")]
-        Line,
+        Line = 0,
         /// <summary>
         /// Curved line
         /// </summary>
         [XmlEnum("curve")]
-        Curve
+        Curve = 1
     }
 }

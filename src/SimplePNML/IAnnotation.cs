@@ -7,8 +7,8 @@ namespace SimplePNML
     /// <summary>
     /// Marks the elements that have their graphics described by an annotation
     /// </summary>
-    public interface IAnnotationElement
+    public interface IAnnotation
     {
-        Annotation Graphics { get; set; }
+        AnnotationGraphics Graphics { get; set; }
     }
 }

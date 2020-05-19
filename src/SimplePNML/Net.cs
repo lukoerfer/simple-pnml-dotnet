@@ -16,28 +16,21 @@ namespace SimplePNML
         /// </summary>
         public const string PLACE_TRANSITION_NET_TYPE = "http://www.pnml.org/version-2009/grammar/ptnet";
 
-        private string _type;
-
         /// <summary>
         /// Gets or sets the type of this net
         /// </summary>
         [XmlAttribute("type")]
-        public string Type
-        {
-            get => _type;
-            set => _type = value ?? PLACE_TRANSITION_NET_TYPE;
-        }
+        public string Type { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [XmlElement("name")]
-        public Label Name { get; set; }
+        public Label Name { get; set; } = new Label();
 
         /// <summary>
         /// Gets a collection containing the pages of this net
         /// </summary>
-        [NotNull]
         [XmlElement("page")]
         public List<Page> Pages { get; set; } = new List<Page>();
 
@@ -63,10 +56,17 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Name)
-                .Collect(Pages)
-                .Build();
+            return new Collector(this)
+                .Include(Name)
+                .Include(Pages)
+                .Collect();
         }
+
+        #region Internal serialization
+
+        public bool ShouldSerializeName() => Name.IsDefault();
+
+        #endregion
+
     }
 }

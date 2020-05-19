@@ -11,12 +11,11 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Node : ICollectable, IFilled, ILined
+    public class NodeGraphics : ICollectable, IFilled, ILined, IDefaults
     {
         /// <summary>
         /// Gets or sets the position
         /// </summary>
-        [NotNull]
         [XmlElement("position")]
         public Position Position { get; set; } = new Position();
 
@@ -38,10 +37,11 @@ namespace SimplePNML
         [XmlElement("line")]
         public Line Line { get; set; }
 
+
         /// <summary>
         /// Creates a new graphical node
         /// </summary>
-        public Node() { }
+        public NodeGraphics() { }
 
         /// <summary>
         /// 
@@ -49,12 +49,14 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Position)
-                .Collect(Size)
-                .Collect(Fill)
-                .Collect(Line)
-                .Build();
+            return new Collector(this)
+                .Include(Position)
+                .Include(Size)
+                .Include(Fill)
+                .Include(Line)
+                .Collect();
         }
+
+        public bool IsDefault() => Position.IsDefault() && Size.IsDefault() && Fill.IsDefault() && Line.IsDefault();
     }
 }

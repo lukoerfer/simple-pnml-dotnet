@@ -8,7 +8,7 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("transition")]
-    public class Transition : Connectable, ICollectable, INamed, INodeElement
+    public class Transition : Connectable, ICollectable, INamed, INode, IToolExtendable
     {
         /// <summary>
         /// Gets or sets the name 
@@ -20,21 +20,23 @@ namespace SimplePNML
         /// Gets or sets the graphics
         /// </summary>
         [XmlElement("graphics")]
-        public Node Graphics { get; set; }
+        public NodeGraphics Graphics { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<ToolSpecific> ToolSpecificData { get; set; } = new List<ToolSpecific>();
 
         /// <summary>
         /// Creates a new transition with a generated ID
         /// </summary>
-        public Transition() : this(null) { }
+        public Transition() : base() { }
 
         /// <summary>
         /// Creates a new transition
         /// </summary>
         /// <param name="id"></param>
-        public Transition(string id)
-        {
-            Id = id;
-        }
+        public Transition(string id) : base(id) { }
 
         /// <summary>
         /// 
@@ -42,10 +44,11 @@ namespace SimplePNML
         /// <returns></returns>
         public IEnumerable<ICollectable> Collect()
         {
-            return Collector.Create(this)
-                .Collect(Name)
-                .Collect(Graphics)
-                .Build();
+            return new Collector(this)
+                .Include(Name)
+                .Include(Graphics)
+                .Include(ToolSpecificData)
+                .Collect();
         }
     }
 }
