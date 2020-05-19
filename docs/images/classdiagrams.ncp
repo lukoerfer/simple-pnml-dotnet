@@ -1,0 +1,478 @@
+<Project>
+  <Name>SimplePNML</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Logic</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Transition</Name>
+        <Access>Public</Access>
+        <Location left="903" top="513" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Label Name { get; set; }</Member>
+        <Member type="Property">public Node Graphics { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Identifiable</Name>
+        <Access>Public</Access>
+        <Location left="959" top="265" />
+        <Size width="163" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string Id { get; }</Member>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Arc</Name>
+        <Access>Public</Access>
+        <Location left="1161" top="193" />
+        <Size width="163" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string Source { get; set; }</Member>
+        <Member type="Property">public string Target { get; set; }</Member>
+        <Member type="Property">public Edge Graphics { get; set; }</Member>
+        <Member type="Property">public Label Inscription { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Label</Name>
+        <Access>Public</Access>
+        <Location left="515" top="531" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string Text { get; set; }</Member>
+        <Member type="Property">public Annotation Graphics { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Place</Name>
+        <Access>Public</Access>
+        <Location left="720" top="499" />
+        <Size width="163" height="142" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Label Name { get; set; }</Member>
+        <Member type="Property">public Node Graphics { get; set; }</Member>
+        <Member type="Property">public Label InitialMarking { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Connectable</Name>
+        <Access>Public</Access>
+        <Location left="959" top="394" />
+        <Size width="163" height="77" />
+        <Collapsed>False</Collapsed>
+        <Modifier>Abstract</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Page</Name>
+        <Access>Public</Access>
+        <Location left="745" top="193" />
+        <Size width="173" height="179" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Label Name { get; set; }</Member>
+        <Member type="Property">public Node Graphics { get; set; }</Member>
+        <Member type="Property">public List&lt;Page&gt; Pages { get; set; }</Member>
+        <Member type="Property">public List&lt;Place&gt; Places { get; set; }</Member>
+        <Member type="Property">public List&lt;Transition&gt; Transitions { get; set; }</Member>
+        <Member type="Property">public List&lt;Arc&gt; Arcs { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Net</Name>
+        <Access>Public</Access>
+        <Location left="515" top="334" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string Type { get; set; }</Member>
+        <Member type="Property">public List&lt;Page&gt; Pages { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Document</Name>
+        <Access>Public</Access>
+        <Location left="515" top="193" />
+        <Size width="163" height="94" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public List&lt;Net&gt; Nets { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="0" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>983</X>
+          <Y>688</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>604</X>
+          <Y>667</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>866</X>
+          <Y>667</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1095</X>
+          <Y>602</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="6" second="1">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>950</X>
+          <Y>215</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1008</X>
+          <Y>234</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="2" second="1">
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1123</X>
+          <Y>214</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1063</X>
+          <Y>214</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Association" first="6" second="2">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>880</X>
+          <Y>161</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1179</X>
+          <Y>168</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="6" second="0">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>876</X>
+          <Y>406</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>927</X>
+          <Y>488</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="6" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>825</X>
+          <Y>406</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>825</X>
+          <Y>469</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="7" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>706</X>
+          <Y>356</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>720</X>
+          <Y>216</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="8" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>592</X>
+          <Y>309</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="2" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1245</X>
+          <Y>706</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>557</X>
+          <Y>670</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="6" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>777</X>
+          <Y>452</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>592</X>
+          <Y>489</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..1</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="6" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>792</X>
+          <Y>168</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>834</X>
+          <Y>168</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..*</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Association" first="4" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>644</X>
+          <Y>671</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+        <EndMultiplicity>0..2</EndMultiplicity>
+      </Relationship>
+      <Relationship type="Generalization" first="0" second="5">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1015</X>
+          <Y>504</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1040</X>
+          <Y>384</Y>
+        </BendPoint>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>Graphics</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Enum">
+        <Name>FontAlign</Name>
+        <Access>Public</Access>
+        <Location left="1300" top="746" />
+        <Size width="163" height="115" />
+        <Collapsed>False</Collapsed>
+        <Value>Left</Value>
+        <Value>Center</Value>
+        <Value>Right</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>FontDecoration</Name>
+        <Access>Public</Access>
+        <Location left="1116" top="747" />
+        <Size width="163" height="113" />
+        <Collapsed>False</Collapsed>
+        <Value>Underline</Value>
+        <Value>Overline</Value>
+        <Value>LineThrough</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>GradientRotation</Name>
+        <Access>Public</Access>
+        <Location left="561" top="747" />
+        <Size width="163" height="113" />
+        <Collapsed>False</Collapsed>
+        <Value>Vertical</Value>
+        <Value>Horizontal</Value>
+        <Value>Diagonal</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>LineShape</Name>
+        <Access>Public</Access>
+        <Location left="746" top="747" />
+        <Size width="163" height="100" />
+        <Collapsed>False</Collapsed>
+        <Value>Line</Value>
+        <Value>Curve</Value>
+      </Entity>
+      <Entity type="Enum">
+        <Name>LineStyle</Name>
+        <Access>Public</Access>
+        <Location left="928" top="747" />
+        <Size width="163" height="112" />
+        <Collapsed>False</Collapsed>
+        <Value>Solid</Value>
+        <Value>Dash</Value>
+        <Value>Dot</Value>
+      </Entity>
+      <Entity type="Class">
+        <Name>Fill</Name>
+        <Access>Public</Access>
+        <Location left="668" top="509" />
+        <Size width="203" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string Color { get; set; }</Member>
+        <Member type="Property">public string GradientColor { get; set; }</Member>
+        <Member type="Property">public GradientRotation GradientRotation { get; set; }</Member>
+        <Member type="Property">public Uri Image { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Line</Name>
+        <Access>Public</Access>
+        <Location left="928" top="509" />
+        <Size width="163" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string Color { get; set; }</Member>
+        <Member type="Property">public double Width { get; set; }</Member>
+        <Member type="Property">public LineShape Shape { get; set; }</Member>
+        <Member type="Property">public LineStyle Style { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Font</Name>
+        <Access>Public</Access>
+        <Location left="1202" top="509" />
+        <Size width="165" height="196" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string Family { get; set; }</Member>
+        <Member type="Property">public string Style { get; set; }</Member>
+        <Member type="Property">public string Weight { get; set; }</Member>
+        <Member type="Property">public string Size { get; set; }</Member>
+        <Member type="Property">public FontDecoration Decoration { get; set; }</Member>
+        <Member type="Property">public FontAlign Align { get; set; }</Member>
+        <Member type="Property">public double Rotation { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Node</Name>
+        <Access>Public</Access>
+        <Location left="561" top="272" />
+        <Size width="182" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Coordinates Position { get; set; }</Member>
+        <Member type="Property">public Dimension Size { get; set; }</Member>
+        <Member type="Property">public Fill Fill { get; set; }</Member>
+        <Member type="Property">public Line Line { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Edge</Name>
+        <Access>Public</Access>
+        <Location left="982" top="272" />
+        <Size width="182" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public List&lt;Coordinates&gt; Positions { get; set; }</Member>
+        <Member type="Property">public Line Line { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Annotation</Name>
+        <Access>Public</Access>
+        <Location left="768" top="272" />
+        <Size width="182" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public Coordinates Offset { get; set; }</Member>
+        <Member type="Property">public Fill Fill { get; set; }</Member>
+        <Member type="Property">public Line Line { get; set; }</Member>
+        <Member type="Property">public Font Font { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Coordinates</Name>
+        <Access>Public</Access>
+        <Location left="713" top="106" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public double X { get; set; }</Member>
+        <Member type="Property">public double Y { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Dimension</Name>
+        <Access>Public</Access>
+        <Location left="897" top="106" />
+        <Size width="163" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public double Width { get; set; }</Member>
+        <Member type="Property">public double Height { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Association" first="7" second="1">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1226</X>
+          <Y>722</Y>
+        </BendPoint>
+        <Direction>Bidirectional</Direction>
+        <AssociationType>Aggregation</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
