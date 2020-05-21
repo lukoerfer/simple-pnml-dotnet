@@ -17,27 +17,25 @@ namespace SimplePNML
         /// Gets or sets the color
         /// </summary>
         [XmlAttribute("color")]
-        public string Color { get; set; }
+        public string Color { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the width
         /// </summary>
         [XmlAttribute("width")]
-        public double Width { get; set; }
+        public double Width { get; set; } = 0.0;
 
         /// <summary>
         /// Gets or sets the shape
         /// </summary>
         [XmlAttribute("shape")]
-        public LineShape Shape { get; set; }
+        public LineShape Shape { get; set; } = LineShape.Line;
 
         /// <summary>
         /// Gets or sets the style
         /// </summary>
         [XmlAttribute("style")]
-        public LineStyle Style { get; set; }
-
-        
+        public LineStyle Style { get; set; } = LineStyle.Solid;
 
         /// <summary>
         /// Creates a new line
@@ -57,6 +55,33 @@ namespace SimplePNML
         /// 
         /// </summary>
         /// <returns></returns>
-        public bool IsDefault() => Shape.IsDefault();
+        public bool IsDefault()
+        {
+            return Color.IsEmpty()
+                && Width == 0.0
+                && Shape.IsDefault()
+                && Style.IsDefault();
+        }
+
+        #region Internal serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeColor() => !Color.IsEmpty();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeWidth() => Width != 0.0;
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeShape() => !Shape.IsDefault();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeStyle() => !Style.IsDefault();
+
+        #endregion
+
     }
 }

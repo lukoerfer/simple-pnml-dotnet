@@ -1,10 +1,13 @@
 ﻿namespace SimplePNML
 {
     /// <summary>
-    /// Marks the elements that have a graphical fill
+    /// Marks graphical elements that have a fill
     /// </summary>
     public interface IFilled
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Fill Fill { get; set; }
     }
 }

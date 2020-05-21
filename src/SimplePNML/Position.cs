@@ -14,13 +14,13 @@ namespace SimplePNML
         /// Gets or sets the position in X direction
         /// </summary>
         [XmlAttribute("x")]
-        public double X { get; set; }
+        public double X { get; set; } = 0.0;
 
         /// <summary>
         /// Gets or sets the position in Y direction
         /// </summary>
         [XmlAttribute("y")]
-        public double Y { get; set; }
+        public double Y { get; set; } = 0.0;
 
         /// <summary>
         /// Creates an empty set of coordinates
@@ -47,6 +47,10 @@ namespace SimplePNML
             yield return this;
         }
 
-        public bool IsDefault() => X == 0.0 && Y == 0.0;
+        public bool IsDefault()
+        {
+            return X == 0.0
+                && Y == 0.0;
+        }
     }
 }

@@ -14,13 +14,13 @@ namespace SimplePNML
         /// Gets or sets the offset in X direction
         /// </summary>
         [XmlAttribute("x")]
-        public double X { get; set; }
+        public double X { get; set; } = 0.0;
 
         /// <summary>
         /// Gets or sets the offset in Y direction
         /// </summary>
         [XmlAttribute("y")]
-        public double Y { get; set; }
+        public double Y { get; set; } = 0.0;
 
         /// <summary>
         /// Creates an empty offset

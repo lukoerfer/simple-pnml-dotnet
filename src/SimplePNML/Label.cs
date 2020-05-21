@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -10,41 +11,38 @@ namespace SimplePNML
     [XmlType]
     public class Label : ICollectable, IAnnotation, IDefaults
     {
-        /// <summary>
-        /// Implicitly creates a label from an integer value
-        /// </summary>
-        /// <param name="value"></param>
-        public static implicit operator Label(int value) => new Label() { Text = value.ToString() };
-
-        /// <summary>
-        /// Implicitly creates a label from a double value
-        /// </summary>
-        /// <param name="value"></param>
-        public static implicit operator Label(double value) => new Label() { Text = value.ToString() };
-
-        /// <summary>
-        /// Implicitly creates a label from a character string
-        /// </summary>
-        /// <param name="text"></param>
-        public static implicit operator Label(string value) => new Label() { Text = value };
+        private AnnotationGraphics graphics;
 
         /// <summary>
         /// Gets or sets the text of the label
         /// </summary>
         [XmlElement("text")]
-        public string Text { get; set; }
+        public string Text { get; set; } = "";
 
         /// <summary>
         /// Gets or sets how to visualize the label
         /// </summary>
         [XmlElement("graphics")]
-        public AnnotationGraphics Graphics { get; set; }
+        public AnnotationGraphics Graphics
+        {
+            get => graphics ?? (graphics = new AnnotationGraphics());
+            set => graphics = value;
+        }
 
         /// <summary>
         /// Creates a new label
         /// </summary>
         /// <returns>A new label</returns>
         public Label() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        public Label(string text)
+        {
+            Text = text;
+        }
 
         /// <summary>
         /// 
@@ -57,9 +55,22 @@ namespace SimplePNML
                 .Collect();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool IsDefault()
         {
-            return Text.IsEmpty() && Graphics.IsDefault();
+            return Text.IsEmpty()
+                && Graphics.IsDefault();
         }
+
+        #region Internal serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeGraphics() => !Graphics.IsDefault();
+
+        #endregion
     }
 }

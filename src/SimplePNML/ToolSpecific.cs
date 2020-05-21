@@ -13,23 +13,29 @@ namespace SimplePNML
     [XmlType]
     public class ToolSpecific : ICollectable
     {
+        private List<XElement> content;
+
         /// <summary>
         /// Gets or sets the name of the tool
         /// </summary>
         [XmlAttribute]
-        public string Tool { get; set; }
+        public string Tool { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the version of the tool
         /// </summary>
         [XmlAttribute]
-        public string Version { get; set; }
+        public string Version { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the XML elements describing the tool data
         /// </summary>
         [XmlAnyElement]
-        public List<XElement> Content { get; set; } = new List<XElement>();
+        public IList<XElement> Content
+        {
+            get => content ?? (content = new List<XElement>());
+            set => content = new List<XElement>(value);
+        }
 
         /// <summary>
         /// Creates a new tool-specific data

@@ -5,7 +5,7 @@ using System.Text;
 namespace SimplePNML
 {
     /// <summary>
-    /// Marks the elements that have their graphics described by an annotation
+    /// Marks elements that are graphically represented by an annotation
     /// </summary>
     public interface IAnnotation
     {

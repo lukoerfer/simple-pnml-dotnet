@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SimplePNML
+﻿namespace SimplePNML
 {
     /// <summary>
-    /// Marks the elements that have a graphical line
+    /// Marks graphical elements that have a border line
     /// </summary>
     public interface ILined
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Line Line { get; set; }
     }
 }

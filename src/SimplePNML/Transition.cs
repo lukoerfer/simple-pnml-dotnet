@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -8,35 +10,62 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("transition")]
-    public class Transition : Connectable, ICollectable, INamed, INode, IToolExtendable
+    public class Transition : IConnectable, ICollectable, INamed, INode, IToolExtendable
     {
+        private string id;
+        private Label name;
+        private NodeGraphics graphics;
+        private List<ToolSpecific> toolSpecifics;
+
+        [XmlElement("id")]
+        public string Id
+        {
+            get => id ?? (id = Guid.NewGuid().ToString());
+            set => id = value;
+        }
+
         /// <summary>
         /// Gets or sets the name 
         /// </summary>
         [XmlElement("name")]
-        public Label Name { get; set; }
+        public Label Name
+        {
+            get => name ?? (name = new Label());
+            set => name = value;
+        }
 
         /// <summary>
         /// Gets or sets the graphics
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphics { get; set; }
+        public NodeGraphics Graphics
+        {
+            get => graphics ?? (graphics = new NodeGraphics());
+            set => graphics = value;
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<ToolSpecific> ToolSpecificData { get; set; } = new List<ToolSpecific>();
+        public IList<ToolSpecific> ToolSpecifics
+        {
+            get => toolSpecifics ?? (toolSpecifics = new List<ToolSpecific>());
+            set => toolSpecifics = new List<ToolSpecific>(value);
+        }
 
         /// <summary>
         /// Creates a new transition with a generated ID
         /// </summary>
-        public Transition() : base() { }
+        public Transition() { }
 
         /// <summary>
         /// Creates a new transition
         /// </summary>
         /// <param name="id"></param>
-        public Transition(string id) : base(id) { }
+        public Transition(string id)
+        {
+            Id = id;
+        }
 
         /// <summary>
         /// 
@@ -47,8 +76,20 @@ namespace SimplePNML
             return new Collector(this)
                 .Include(Name)
                 .Include(Graphics)
-                .Include(ToolSpecificData)
+                .Include(ToolSpecifics)
                 .Collect();
         }
+
+        #region Internal serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeName() => !Name.IsDefault();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeGraphics() => !Graphics.IsDefault();
+
+        #endregion
     }
 }

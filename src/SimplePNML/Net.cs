@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -9,42 +11,79 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("net")]
-    public class Net : Identifiable, ICollectable
+    public class Net : IIdentifiable, ICollectable
     {
         /// <summary>
         /// Defines the PNML grammar for place-transitions nets
         /// </summary>
         public const string PLACE_TRANSITION_NET_TYPE = "http://www.pnml.org/version-2009/grammar/ptnet";
 
+        private string id;
+        private string type;
+        private Label name;
+        private List<Page> pages;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlAttribute("id")]
+        public string Id
+        {
+            get => id ?? (id = Guid.NewGuid().ToString());
+            set => id = value;
+        }
+
         /// <summary>
         /// Gets or sets the type of this net
         /// </summary>
         [XmlAttribute("type")]
-        public string Type { get; set; }
+        public string Type
+        {
+            get => type ?? (type = PLACE_TRANSITION_NET_TYPE);
+            set => type = value;
+        }
 
         /// <summary>
         /// 
         /// </summary>
         [XmlElement("name")]
-        public Label Name { get; set; } = new Label();
+        public Label Name
+        {
+            get => name ?? (name = new Label());
+            set => name = value;
+        }
 
         /// <summary>
         /// Gets a collection containing the pages of this net
         /// </summary>
         [XmlElement("page")]
-        public List<Page> Pages { get; set; } = new List<Page>();
+        public IList<Page> Pages
+        {
+            get => pages ?? (pages = new List<Page>());
+            set => pages = new List<Page>(value);
+        }
 
         /// <summary>
         /// Creates a new net
         /// </summary>
-        public Net() : this(null) { }
+        public Net() { }
 
         /// <summary>
         /// Creates a new net
         /// </summary>
         /// <param name="id"></param>
         /// <param name="type"></param>
-        public Net(string id, string type = null)
+        public Net(string id)
+        {
+            Id = id;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="type"></param>
+        public Net(string id, string type)
         {
             Id = id;
             Type = type;
@@ -64,7 +103,9 @@ namespace SimplePNML
 
         #region Internal serialization
 
-        public bool ShouldSerializeName() => Name.IsDefault();
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeName() => !Name.IsDefault();
 
         #endregion
 

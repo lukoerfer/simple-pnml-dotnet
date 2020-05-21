@@ -14,13 +14,13 @@ namespace SimplePNML
         /// Gets or sets the length in X direction
         /// </summary>
         [XmlAttribute("x")]
-        public double Width { get; set; }
+        public double Width { get; set; } = 0.0;
 
         /// <summary>
         /// Gets or sets the length in Y direction
         /// </summary>
         [XmlAttribute("y")]
-        public double Height { get; set; }
+        public double Height { get; set; } = 0.0;
 
         /// <summary>
         /// Creates an empty dimension information
@@ -47,6 +47,10 @@ namespace SimplePNML
             yield return this;
         }
 
-        public bool IsDefault() => Width == 0.0 && Height == 0.0;
+        public bool IsDefault()
+        {
+            return Width == 0.0
+                && Height == 0.0;
+        }
     }
 }

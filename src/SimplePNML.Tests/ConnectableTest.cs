@@ -10,7 +10,7 @@ namespace SimplePNML.Tests
         [Test, AutoData]
         public void CanConvertConnectableToId(string id)
         {
-            Connectable connectable = Mock.Of<Connectable>(obj => obj.Id == id);
+            IConnectable connectable = Mock.Of<IConnectable>(obj => obj.Id == id);
             string result = connectable;
             Assert.AreEqual(id, result);
         }

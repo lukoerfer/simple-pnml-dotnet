@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -8,47 +10,79 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("arc")]
-    public class Arc : Identifiable, ICollectable, IEdge, IToolExtendable
+    public class Arc : IIdentifiable, ICollectable, IEdge, IToolExtendable
     {
+        private string id;
+        private EdgeGraphics graphics;
+        private Label inscription;
+        private List<ToolSpecific> toolSpecifics;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [XmlAttribute("id")]
+        public string Id
+        {
+            get => id ?? (id = Guid.NewGuid().ToString());
+            set => id = value;
+        }
+
         /// <summary>
         /// Gets or sets the identifier of the arc source
         /// </summary>
         [XmlAttribute("source")]
-        public string Source { get; set; }
+        public string Source { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the identifier of the arc target
         /// </summary>
         [XmlAttribute("target")]
-        public string Target { get; set; }
+        public string Target { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the arc graphics
         /// </summary>
         [XmlElement("graphics")]
-        public EdgeGraphics Graphics { get; set; }
+        public EdgeGraphics Graphics
+        {
+            get => graphics ?? (graphics = new EdgeGraphics());
+            set => graphics = value;
+        }
 
         /// <summary>
         /// Gets or sets a label describing the inscription of this arc
         /// </summary>
         [XmlElement("inscription")]
-        public Label Inscription { get; set; }
+        public Label Inscription
+        {
+            get => inscription ?? (inscription = new Label());
+            set => inscription = value;
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<ToolSpecific> ToolSpecificData { get; set; } = new List<ToolSpecific>();
+        [XmlElement("toolspecific")]
+        public IList<ToolSpecific> ToolSpecifics
+        {
+            get => toolSpecifics ?? (toolSpecifics = new List<ToolSpecific>());
+            set => toolSpecifics = new List<ToolSpecific>(value);
+        }
+
 
         /// <summary>
         /// Creates a new arc
         /// </summary>
-        public Arc() : base() { }
+        public Arc() { }
 
         /// <summary>
         /// Creates a new arc
         /// </summary>
         /// <param name="id"></param>
-        public Arc(string id) : base(id) { }
+        public Arc(string id)
+        {
+            Id = id;
+        }
 
         /// <summary>
         /// Collects all child elements of this arc recursively
@@ -59,13 +93,15 @@ namespace SimplePNML
             return new Collector(this)
                 .Include(Graphics)
                 .Include(Inscription)
-                .Include(ToolSpecificData)
+                .Include(ToolSpecifics)
                 .Collect();
         }
 
         #region Internal serialization
 
-
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeGraphics() => Graphics.IsDefault();
 
         #endregion
 

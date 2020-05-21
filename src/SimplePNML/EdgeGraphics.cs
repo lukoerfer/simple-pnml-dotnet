@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Xml.Serialization;
@@ -10,19 +11,30 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class EdgeGraphics : ICollectable, ILined
+    public class EdgeGraphics : ICollectable, ILined, IDefaults
     {
-        /// <summary>
-        /// Gets or sets how to visualize the line
-        /// </summary>
-        [XmlElement("line")]
-        public Line Line { get; set; }
+        private List<Position> positions;
+        private Line line;
 
         /// <summary>
         /// Gets or sets the points of the edge
         /// </summary>
         [XmlElement("position")]
-        public List<Position> Positions { get; set; } = new List<Position>();
+        public IList<Position> Positions
+        {
+            get => positions ?? (positions = new List<Position>());
+            set => positions = new List<Position>(value);
+        }
+
+        /// <summary>
+        /// Gets or sets how to visualize the line
+        /// </summary>
+        [XmlElement("line")]
+        public Line Line
+        {
+            get => line ?? (line = new Line());
+            set => line = value;
+        }
 
         /// <summary>
         /// Creates a new graphics description for an edge element
@@ -40,5 +52,23 @@ namespace SimplePNML
                 .Include(Line)
                 .Collect();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool IsDefault()
+        {
+            return Line.IsDefault()
+                && Positions.Count == 0;
+        }
+
+        #region Internal serialization
+
+        [Browsable(true)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeLine() => !Line.IsDefault();
+
+        #endregion
     }
 }

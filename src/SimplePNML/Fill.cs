@@ -11,93 +11,31 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Fill : ICollectable
+    public class Fill : ICollectable, IDefaults
     {
         /// <summary>
         /// Gets or sets the fill color
         /// </summary>
-        [XmlIgnore]
-        public Color? Color { get; set; }
-
-        #region Color Serialization
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("color")]
-        public string ColorValue
-        {
-            get => ColorTranslator.ToHtml(Color.Value);
-            set => Color = ColorTranslator.FromHtml(value);
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeColorValue() => Color.HasValue;
-
-        #endregion
+        public string Color { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the gradient color
         /// </summary>
-        [XmlIgnore]
-        public Color? GradientColor { get; set; }
-
-        #region GradientColor Serialization
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("gradient-color")]
-        public string GradientColorValue
-        {
-            get => ColorTranslator.ToHtml(GradientColor.Value);
-            set => GradientColor = ColorTranslator.FromHtml(value);
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeGradientColorValue() => GradientColor.HasValue;
-
-        #endregion
+        public string GradientColor { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the gradient rotation
         /// </summary>
-        [XmlIgnore]
-        public GradientRotation? GradientRotation { get; set; }
-
-        #region GradientRotation Serialization
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("gradient-rotation")]
-        public GradientRotation GradientRotationValue
-        {
-            get => GradientRotation.Value;
-            set => GradientRotation = value;
-        }
-
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeGradientRotationValue() => GradientRotation.HasValue;
-
-        #endregion
+        public GradientRotation GradientRotation { get; set; } = GradientRotation.None;
 
         /// <summary>
         /// 
         /// </summary>
-        [XmlIgnore]
-        public Uri Image { get; set; }
-
-        #region Image Serialization
-
         [XmlAttribute("image")]
-        public string ImageValue
-        {
-            get => Image?.ToString();
-            set => Image = new Uri(value);
-        }
-
-        #endregion
+        public string Image { get; set; } = "";
 
         /// <summary>
         /// Creates a new fill
@@ -113,5 +51,32 @@ namespace SimplePNML
             yield return this;
         }
 
+        public bool IsDefault()
+        {
+            return Color.IsEmpty()
+                && GradientColor.IsEmpty()
+                && GradientRotation.IsDefault()
+                && Image.IsEmpty();
+        }
+
+        #region Internal serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeColor() => !Color.IsEmpty();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeGradientColor() => !GradientColor.IsEmpty();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeGradientRotation() => !GradientRotation.IsDefault();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeImage() => !Image.IsEmpty();
+
+        #endregion
     }
 }

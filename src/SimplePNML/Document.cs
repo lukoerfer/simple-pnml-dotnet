@@ -18,6 +18,8 @@ namespace SimplePNML
         /// </summary>
         public const string PNML_NAMESPACE = "http://www.pnml.org/version-2009/grammar/pnml";
 
+        private List<Net> nets;
+
         /// <summary>
         /// Gets or sets the document namespaces
         /// </summary>
@@ -30,7 +32,11 @@ namespace SimplePNML
         /// Gets or sets the nets in the document
         /// </summary>
         [XmlElement("net")]
-        public List<Net> Nets { get; set; } = new List<Net>();
+        public IList<Net> Nets
+        {
+            get => nets ?? (nets = new List<Net>());
+            set => nets = new List<Net>(value);
+        }
 
         /// <summary>
         /// Creates a new PNML document

@@ -5,7 +5,7 @@ using System.Text;
 namespace SimplePNML
 {
     /// <summary>
-    /// Marks the elements that have their graphics described by an edge
+    /// Marks elements that are graphically represented by an edge
     /// </summary>
     public interface IEdge
     {

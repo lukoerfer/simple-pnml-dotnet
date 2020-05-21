@@ -9,121 +9,49 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType]
-    public class Font : ICollectable
+    public class Font : ICollectable, IDefaults
     {
         /// <summary>
         /// Gets or sets the font family (CSS)
         /// </summary>
         [XmlAttribute("family")]
-        public string Family { get; set; }
+        public string Family { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the font style (CSS)
         /// </summary>
         [XmlAttribute("style")]
-        public string Style { get; set; }
+        public string Style { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the font weight (CSS)
         /// </summary>
         [XmlAttribute("weight")]
-        public string Weight { get; set; }
+        public string Weight { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the font size (CSS)
         /// </summary>
         [XmlAttribute("size")]
-        public string Size { get; set; }
+        public string Size { get; set; } = "";
 
         /// <summary>
         /// Gets or sets the font decoration
         /// </summary>
-        [XmlIgnore]
-        public FontDecoration? Decoration { get; set; }
-
-        #region Decoration Serialization
-
-        /// <summary>
-        /// Serializes or deserializes the font decoration value
-        /// </summary>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("decoration")]
-        public FontDecoration DecorationValue
-        {
-            get => Decoration.Value;
-            set => Decoration = value;
-        }
-
-        /// <summary>
-        /// Defines whether the font decoration should be serialized
-        /// </summary>
-        /// <returns>True if the font decoration should be serialized, false if not</returns>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeDecorationValue() => Decoration.HasValue;
-
-        #endregion
+        public FontDecoration Decoration { get; set; } = FontDecoration.None;
 
         /// <summary>
         /// Gets or sets the font alignment
         /// </summary>
-        [XmlIgnore]
-        public FontAlign? Align { get; set; }
-
-        #region Align Serialization
-
-        /// <summary>
-        /// Serializes or deserializes the font alignment value
-        /// </summary>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("align")]
-        public FontAlign AlignValue
-        {
-            get => Align.Value;
-            set => Align = value;
-        }
-
-        /// <summary>
-        /// Defines whether the font alignment should be serialized
-        /// </summary>
-        /// <returns>True if the font alignment should be serialized, false if not</returns>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeAlignValue() => Align.HasValue;
-
-        #endregion
+        public FontAlign Align { get; set; } = FontAlign.Left;
 
         /// <summary>
         /// Gets or sets the font rotation in degrees
         /// </summary>
-        [XmlIgnore]
-        public double? Rotation { get; set; }
-
-        #region Rotation Serialization
-
-        /// <summary>
-        /// Serializes or deserializes the font rotation value
-        /// </summary>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [XmlAttribute("rotation")]
-        public double RotationValue
-        {
-            get => Rotation.Value;
-            set => Rotation = value;
-        }
-
-        /// <summary>
-        /// Defines whether the font rotation should be serialized
-        /// </summary>
-        /// <returns>True if the font rotation should be serialized, false if not</returns>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ShouldSerializeRotationValue() => Rotation.HasValue;
-
-        #endregion
+        public double Rotation { get; set; } = 0.0;
 
         /// <summary>
         /// Creates a new font
@@ -139,9 +67,46 @@ namespace SimplePNML
             yield return this;
         }
 
+        public bool IsDefault()
+        {
+            return Family.IsEmpty()
+                && Style.IsEmpty()
+                && Weight.IsEmpty()
+                && Size.IsEmpty()
+                && Decoration.IsDefault()
+                && Align.IsDefault()
+                && Rotation == 0.0;
+        }
+
         #region Internal serialization
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeFamily() => !Family.IsEmpty();
 
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeStyle() => !Style.IsEmpty();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeWeight() => !Weight.IsEmpty();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeSize() => !Size.IsEmpty();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeDecoration() => !Decoration.IsDefault();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeAlign() => !Align.IsDefault();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeRotation() => Rotation != 0.0;
 
         #endregion
 

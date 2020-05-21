@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -10,48 +11,92 @@ namespace SimplePNML
     /// </summary>
     [Equals]
     [XmlType("page")]
-    public class Page : Identifiable, ICollectable, INamed, INode, IToolExtendable
+    public class Page : IIdentifiable, ICollectable, INamed, INode, IToolExtendable
     {
+        private string id;
+        private Label name;
+        private NodeGraphics graphics;
+        private List<Page> pages;
+        private List<Place> places;
+        private List<Transition> transitions;
+        private List<Arc> arcs;
+        private List<ToolSpecific> toolSpecifics;
+
+        [XmlElement("id")]
+        public string Id
+        {
+            get => id ?? (id = Guid.NewGuid().ToString());
+            set => id = value;
+        }
+
         /// <summary>
         /// Gets or sets a label containing the name
         /// </summary>
         [XmlElement("name")]
-        public Label Name { get; set; }
+        public Label Name
+        {
+            get => name ?? (name = new Label());
+            set => name = value;
+        }
 
         /// <summary>
         /// Gets or sets how to visualize the page
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphics { get; set; }
+        public NodeGraphics Graphics
+        {
+            get => graphics ?? (graphics = new NodeGraphics());
+            set => graphics = value;
+        }
 
         /// <summary>
         /// Gets or sets the sub-pages of this page
         /// </summary>
         [XmlElement("page")]
-        public List<Page> Pages { get; set; } = new List<Page>();
+        public IList<Page> Pages
+        {
+            get => pages ?? (pages = new List<Page>());
+            set => pages = new List<Page>(value);
+        }
 
         /// <summary>
         /// Gets or sets the places on this page
         /// </summary>
         [XmlElement("place")]
-        public List<Place> Places { get; set; } = new List<Place>();
+        public IList<Place> Places
+        {
+            get => places ?? (places = new List<Place>());
+            set => places = new List<Place>(value);
+        }
 
         /// <summary>
         /// Gets or sets the transitions on this page
         /// </summary>
         [XmlElement("transition")]
-        public List<Transition> Transitions { get; set; } = new List<Transition>();
+        public IList<Transition> Transitions
+        {
+            get => transitions ?? (transitions = new List<Transition>());
+            set => transitions = new List<Transition>(value);
+        }
 
         /// <summary>
         /// Gets or sets the arcs on this page
         /// </summary>
         [XmlElement("arc")]
-        public List<Arc> Arcs { get; set; } = new List<Arc>();
+        public IList<Arc> Arcs
+        {
+            get => arcs ?? (arcs = new List<Arc>());
+            set => arcs = new List<Arc>(value);
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<ToolSpecific> ToolSpecificData { get; set; } = new List<ToolSpecific>();
+        public IList<ToolSpecific> ToolSpecifics
+        {
+            get => toolSpecifics ?? (toolSpecifics = new List<ToolSpecific>());
+            set => toolSpecifics = new List<ToolSpecific>(value);
+        }
 
         /// <summary>
         /// Creates a new page
@@ -80,8 +125,20 @@ namespace SimplePNML
                 .Include(Places)
                 .Include(Transitions)
                 .Include(Arcs)
-                .Include(ToolSpecificData)
+                .Include(ToolSpecifics)
                 .Collect();
         }
+
+        #region Internal serialization
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeName() => !Name.IsDefault();
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ShouldSerializeGraphics() => !Graphics.IsDefault();
+
+        #endregion
     }
 }

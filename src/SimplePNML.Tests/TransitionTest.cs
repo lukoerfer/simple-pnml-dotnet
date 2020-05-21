@@ -1,27 +1,31 @@
 ﻿using AutoFixture.NUnit3;
 using NUnit.Framework;
+using System.Linq;
 
 namespace SimplePNML.Tests
 {
     [TestFixture]
     public class TransitionTest
     {
-        [TestCase(null), TestCase("test-id")]
-        public void GeneratesIdIfNull(string id)
+        [Test]
+        public void CanCreate()
         {
-            Transition transition = new Transition(id);
-            Assert.NotNull(transition.Id);
+            Transition transition = new Transition();
+            Assert.IsNotNull(transition.Id);
+            Assert.IsNotEmpty(transition.Id);
+            Assert.Greater(transition.Collect().Count(), 1);
         }
 
-        [Test, AutoData]
-        public void CanCreateTransition(string name)
+        [Test]
+        public void CanCreateUsingInitializer()
         {
-            NodeGraphics node = new NodeGraphics();
+            string id = "my-transition";
             Transition transition = new Transition()
             {
-                Name = name,
-                Graphics = node
+                Id = id
             };
+            Assert.AreEqual(id, transition.Id);
+            Assert.Greater(transition.Collect().Count(), 1);
         }
     }
 }
