@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -10,54 +7,33 @@ namespace SimplePNML
     /// <summary>
     /// Describes the graphics of a node element
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
-    public class NodeGraphics : ICollectable, IFilled, ILined, IDefaults
+    public class NodeGraphics : ICollectable, IFilled, ILined, IDefaultable
     {
-        private Position position;
-        private Size size;
-        private Fill fill;
-        private Line line;
-
         /// <summary>
         /// Gets or sets the position
         /// </summary>
         [XmlElement("position")]
-        public Position Position
-        {
-            get => position ?? (position = new Position());
-            set => position = value;
-        }
+        public Position Position { get; set; } = new Position();
 
         /// <summary>
         /// Gets or sets the size
         /// </summary>
         [XmlElement("dimension")]
-        public Size Size
-        {
-            get => size ?? (size = new Size());
-            set => size = value;
-        }
+        public Size Size { get; set; } = new Size();
 
         /// <summary>
         /// Gets or sets the fill
         /// </summary>
         [XmlElement("fill")]
-        public Fill Fill
-        {
-            get => fill ?? (fill = new Fill());
-            set => fill = value;
-        }
+        public Fill Fill { get; set; } = new Fill();
 
         /// <summary>
         /// Gets or sets the line
         /// </summary>
         [XmlElement("line")]
-        public Line Line
-        {
-            get => line ?? (line = new Line());
-            set => line = value;
-        }
+        public Line Line { get; set; } = new Line();
 
 
         /// <summary>

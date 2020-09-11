@@ -3,10 +3,9 @@
 namespace SimplePNML.Tests
 {
     [TestFixture]
-    public class NetTest
+    public class OffsetTest
     {
-        
 
-        
+
     }
 }

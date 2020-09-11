@@ -1,18 +1,35 @@
-﻿using AutoFixture.NUnit3;
-using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+
+using System.Linq;
 
 namespace SimplePNML.Tests
 {
     [TestFixture]
     public class ArcTest
     {
-        [TestCase(null), TestCase(""), TestCase("   "), TestCase("test")]
-        public void CreateGivesValidId(string id)
+        private Arc arc;
+
+        [SetUp]
+        public void Setup()
         {
-            Arc arc = new Arc(id);
-            Assert.NotNull(arc.Id);
+            arc = new Arc();
         }
 
+        [Test]
+        public void Id_NewInstance_NotNullOrEmpty()
+        {
+            var id = arc.Id;
+
+            Assert.IsNotNull(id);
+            Assert.IsNotEmpty(id);
+        }
+
+        [Test]
+        public void Collect_NewInstance_ContainsMoreThanOneElement()
+        {
+            var children = arc.Collect();
+
+            Assert.Greater(children.Count(), 1);
+        }
     }
 }

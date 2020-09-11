@@ -6,9 +6,9 @@ namespace SimplePNML
     /// <summary>
     /// Describes dimension information (size) of a graphical element
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
-    public class Size : ICollectable, IDefaults
+    public class Size : ICollectable, IDefaultable
     {
         /// <summary>
         /// Gets or sets the length in X direction

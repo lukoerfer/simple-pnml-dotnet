@@ -1,7 +1,7 @@
 ﻿namespace SimplePNML
 {
     /// <summary>
-    /// Marks graphical elements that have a fill
+    /// Marks all graphical representations that have a fill
     /// </summary>
     public interface IFilled
     {

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,20 +7,19 @@ namespace SimplePNML
     /// <summary>
     /// Describes the graphics of an edge element
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
-    public class EdgeGraphics : ICollectable, ILined, IDefaults
+    public class EdgeGraphics : ICollectable, ILined, IDefaultable
     {
-        private List<Position> positions;
-        private Line line;
+        private List<Position> positions = new List<Position>();
 
         /// <summary>
         /// Gets or sets the points of the edge
         /// </summary>
         [XmlElement("position")]
-        public IList<Position> Positions
+        public List<Position> Positions
         {
-            get => positions ?? (positions = new List<Position>());
+            get => positions;
             set => positions = new List<Position>(value);
         }
 
@@ -30,11 +27,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize the line
         /// </summary>
         [XmlElement("line")]
-        public Line Line
-        {
-            get => line ?? (line = new Line());
-            set => line = value;
-        }
+        public Line Line { get; set; } = new Line();
 
         /// <summary>
         /// Creates a new graphics description for an edge element

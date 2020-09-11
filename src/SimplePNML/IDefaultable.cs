@@ -3,9 +3,9 @@
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Encapsulates petri net elements that may be in default state
     /// </summary>
-    public interface IDefaults
+    public interface IDefaultable
     {
         /// <summary>
         /// 

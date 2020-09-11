@@ -8,20 +8,17 @@ namespace SimplePNML
     /// <summary>
     /// Represents a PNML place
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType("place")]
     public class Place : IConnectable, ICollectable, INamed, INode, IToolExtendable
     {
         private string id;
-        private Label name;
-        private NodeGraphics graphics;
-        private Label initialMarking;
-        private List<ToolSpecific> toolSpecifics;
+        private List<ToolSpecific> toolSpecifics = new List<ToolSpecific>();
 
         [XmlElement("id")]
         public string Id
         {
-            get => id ?? (id = Guid.NewGuid().ToString());
+            get => id ??= Guid.NewGuid().ToString();
             set => id = value;
         }
 
@@ -29,39 +26,27 @@ namespace SimplePNML
         /// Gets or sets a label containing the name of the place
         /// </summary>
         [XmlElement("name")]
-        public Label Name
-        {
-            get => name ?? (name = new Label());
-            set => name = value;
-        }
+        public Label Name { get; set; } = new Label();
 
         /// <summary>
         /// Gets or sets how to visualize this place
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphics
-        {
-            get => graphics ?? (graphics = new NodeGraphics());
-            set => graphics = value;
-        }
+        public NodeGraphics Graphics { get; set; } = new NodeGraphics();
 
         /// <summary>
         /// Gets or sets a label defining the initial marking of the place
         /// </summary>
         /// <remarks>This label should contain a positive integer</remarks>
         [XmlElement("initialMarking")]
-        public Label InitialMarking
-        {
-            get => initialMarking ?? (initialMarking = new Label());
-            set => initialMarking = value;
-        }
+        public Label InitialMarking = new Label();
 
         /// <summary>
         /// 
         /// </summary>
-        public IList<ToolSpecific> ToolSpecifics
+        public List<ToolSpecific> ToolSpecifics
         {
-            get => toolSpecifics ?? (toolSpecifics = new List<ToolSpecific>());
+            get => toolSpecifics;
             set => toolSpecifics = new List<ToolSpecific>(value);
         }
 

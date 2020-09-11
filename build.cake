@@ -2,11 +2,7 @@
 
 #addin nuget:?package=Cake.Coverlet&version=2.3.4
 
-#addin nuget:?package=Cake.Coveralls&version=0.10.0
-#tool nuget:?package=coveralls.net&version=0.7.0
 
-#addin nuget:?package=Cake.DocFx&version=0.13.0
-#tool nuget:?package=docfx.console&version=2.43.1
 
 var target = Argument("target", "Build");
 var configuration = Argument("configuration", "Debug");
@@ -23,23 +19,12 @@ Task("Clean")
     CleanDirectories("./src/**/obj");
 });
 
-Task("Restore")
-    .Does(() =>
-{
-    DotNetCoreRestore(solution, new DotNetCoreRestoreSettings()
-    {
-        Verbosity = DotNetCoreVerbosity.Quiet
-    });
-});
-
 Task("Build")
-    .IsDependentOn("Restore")
     .Does(() =>
 {
     DotNetCoreBuild(solution, new DotNetCoreBuildSettings()
     {
         Configuration = configuration,
-        NoRestore = true,
         Verbosity = DotNetCoreVerbosity.Quiet
     });
 });
@@ -51,7 +36,6 @@ Task("Test")
     DotNetCoreTest(testProject, new DotNetCoreTestSettings()
     {
 		NoBuild = true,
-        NoRestore = true,
         Verbosity = DotNetCoreVerbosity.Minimal
     },
     new CoverletSettings()
@@ -60,23 +44,6 @@ Task("Test")
         CoverletOutputDirectory = "./artifacts/coverage/coverage",
         CoverletOutputFormat = CoverletOutputFormat.opencover
     });
-
-    if (HasEnvironmentVariable("COVERALLS_TOKEN"))
-    {
-        var branch = GitBranchCurrent(".");
-
-        CoverallsNet("./artifacts/coverage/coverage.opencover.xml", CoverallsNetReportType.OpenCover, new CoverallsNetSettings()
-        {
-            RepoTokenVariable = "COVERALLS_TOKEN",
-            CommitBranch = branch.FriendlyName,
-            CommitId = branch.Tip.Sha,
-            CommitAuthor = branch.Tip.Author.Name,
-            CommitEmail = branch.Tip.Author.Email,
-            CommitMessage = branch.Tip.MessageShort,
-            UseRelativePaths = true,
-            TreatUploadErrorsAsWarnings = true
-        });
-    }
 });
 
 Task("Pack")
@@ -84,7 +51,6 @@ Task("Pack")
     .Does(() =>
 {
     DotNetCorePack(project, new DotNetCorePackSettings() {
-        NoRestore = true,
         NoBuild = true,
         OutputDirectory = "./artifacts/nuget",
         Verbosity = DotNetCoreVerbosity.Quiet
@@ -105,15 +71,7 @@ Task("Push")
 Task("Documentation")
     .Does(() =>
 {
-    DocFxMetadata(new DocFxMetadataSettings()
-    {
-        Projects = GetFiles("./docs/docfx.json"),
-        LogLevel = DocFxLogLevel.Warning
-    });
-    DocFxBuild("./docs/docfx.json", new DocFxBuildSettings()
-    {
-        LogLevel = DocFxLogLevel.Warning
-    });
+    
 });
 
 RunTarget(target);

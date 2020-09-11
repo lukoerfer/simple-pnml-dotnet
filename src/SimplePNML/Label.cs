@@ -5,14 +5,12 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// Describes a text at a specific position
+    /// Describes a textual annotation
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
-    public class Label : ICollectable, IAnnotation, IDefaults
+    public class Label : ICollectable, IAnnotation, IDefaultable
     {
-        private AnnotationGraphics graphics;
-
         /// <summary>
         /// Gets or sets the text of the label
         /// </summary>
@@ -23,11 +21,7 @@ namespace SimplePNML
         /// Gets or sets how to visualize the label
         /// </summary>
         [XmlElement("graphics")]
-        public AnnotationGraphics Graphics
-        {
-            get => graphics ?? (graphics = new AnnotationGraphics());
-            set => graphics = value;
-        }
+        public AnnotationGraphics Graphics { get; set; } = new AnnotationGraphics();
 
         /// <summary>
         /// Creates a new label

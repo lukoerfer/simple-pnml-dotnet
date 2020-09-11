@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace SimplePNML
 {
     /// <summary>
-    /// Encapsulates the functionality to recursively collect child elements
+    /// Marks elements whose sub-elements can be collected
     /// </summary>
     public interface ICollectable
     {

@@ -3,7 +3,7 @@
 namespace SimplePNML.Tests
 {
     [TestFixture]
-    public class NodeTest
+    public class NodeGraphicsTest
     {
 
     }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,7 +8,7 @@ namespace SimplePNML
     /// <summary>
     /// Represents a PNML net
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType("net")]
     public class Net : IIdentifiable, ICollectable
     {
@@ -20,8 +19,7 @@ namespace SimplePNML
 
         private string id;
         private string type;
-        private Label name;
-        private List<Page> pages;
+        private List<Page> pages = new List<Page>();
 
         /// <summary>
         /// 
@@ -29,7 +27,7 @@ namespace SimplePNML
         [XmlAttribute("id")]
         public string Id
         {
-            get => id ?? (id = Guid.NewGuid().ToString());
+            get => id ??= Guid.NewGuid().ToString();
             set => id = value;
         }
 
@@ -39,7 +37,7 @@ namespace SimplePNML
         [XmlAttribute("type")]
         public string Type
         {
-            get => type ?? (type = PLACE_TRANSITION_NET_TYPE);
+            get => type ??= PLACE_TRANSITION_NET_TYPE;
             set => type = value;
         }
 
@@ -47,19 +45,15 @@ namespace SimplePNML
         /// 
         /// </summary>
         [XmlElement("name")]
-        public Label Name
-        {
-            get => name ?? (name = new Label());
-            set => name = value;
-        }
+        public Label Name { get; set; } = new Label();
 
         /// <summary>
         /// Gets a collection containing the pages of this net
         /// </summary>
         [XmlElement("page")]
-        public IList<Page> Pages
+        public List<Page> Pages
         {
-            get => pages ?? (pages = new List<Page>());
+            get => pages;
             set => pages = new List<Page>(value);
         }
 

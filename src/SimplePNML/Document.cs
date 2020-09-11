@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace SimplePNML
 {
     /// <summary>
-    /// Container for PNML nets
+    /// Provides a container for petri nets
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlRoot("pnml", Namespace = PNML_NAMESPACE)]
     public class Document : ICollectable
     {
@@ -18,7 +16,7 @@ namespace SimplePNML
         /// </summary>
         public const string PNML_NAMESPACE = "http://www.pnml.org/version-2009/grammar/pnml";
 
-        private List<Net> nets;
+        private List<Net> nets = new List<Net>();
 
         /// <summary>
         /// Gets or sets the document namespaces
@@ -32,9 +30,9 @@ namespace SimplePNML
         /// Gets or sets the nets in the document
         /// </summary>
         [XmlElement("net")]
-        public IList<Net> Nets
+        public List<Net> Nets
         {
-            get => nets ?? (nets = new List<Net>());
+            get => nets;
             set => nets = new List<Net>(value);
         }
 

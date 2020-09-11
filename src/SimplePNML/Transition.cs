@@ -8,19 +8,17 @@ namespace SimplePNML
     /// <summary>
     /// Represents a PNML transition
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType("transition")]
     public class Transition : IConnectable, ICollectable, INamed, INode, IToolExtendable
     {
         private string id;
-        private Label name;
-        private NodeGraphics graphics;
-        private List<ToolSpecific> toolSpecifics;
+        private List<ToolSpecific> toolSpecifics = new List<ToolSpecific>();
 
         [XmlElement("id")]
         public string Id
         {
-            get => id ?? (id = Guid.NewGuid().ToString());
+            get => id ??= Guid.NewGuid().ToString();
             set => id = value;
         }
 
@@ -28,28 +26,20 @@ namespace SimplePNML
         /// Gets or sets the name 
         /// </summary>
         [XmlElement("name")]
-        public Label Name
-        {
-            get => name ?? (name = new Label());
-            set => name = value;
-        }
+        public Label Name { get; set; } = new Label();
 
         /// <summary>
         /// Gets or sets the graphics
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphics
-        {
-            get => graphics ?? (graphics = new NodeGraphics());
-            set => graphics = value;
-        }
+        public NodeGraphics Graphics { get; set; } = new NodeGraphics();
 
         /// <summary>
         /// 
         /// </summary>
-        public IList<ToolSpecific> ToolSpecifics
+        public List<ToolSpecific> ToolSpecifics
         {
-            get => toolSpecifics ?? (toolSpecifics = new List<ToolSpecific>());
+            get => toolSpecifics;
             set => toolSpecifics = new List<ToolSpecific>(value);
         }
 

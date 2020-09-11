@@ -3,8 +3,9 @@
 namespace SimplePNML.Tests
 {
     [TestFixture]
-    public class EdgeTest
+    public class SizeTest
     {
-        
+
     }
 }
+

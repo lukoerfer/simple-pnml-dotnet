@@ -9,11 +9,11 @@ namespace SimplePNML
     /// <summary>
     /// Describes tool-specific data
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
     public class ToolSpecific : ICollectable
     {
-        private List<XElement> content;
+        private List<XElement> contents = new List<XElement>();
 
         /// <summary>
         /// Gets or sets the name of the tool
@@ -31,10 +31,10 @@ namespace SimplePNML
         /// Gets or sets the XML elements describing the tool data
         /// </summary>
         [XmlAnyElement]
-        public IList<XElement> Content
+        public List<XElement> Contents
         {
-            get => content ?? (content = new List<XElement>());
-            set => content = new List<XElement>(value);
+            get => contents;
+            set => contents = new List<XElement>(value);
         }
 
         /// <summary>
@@ -47,12 +47,12 @@ namespace SimplePNML
         /// </summary>
         /// <param name="tool">The tool name</param>
         /// <param name="version">The tool version</param>
-        /// <param name="content">XML elements describing the tool-specific data</param>
-        public ToolSpecific(string tool, string version, params XElement[] content)
+        /// <param name="contents">XML elements describing the tool-specific data</param>
+        public ToolSpecific(string tool, string version, params XElement[] contents)
         {
             Tool = tool;
             Version = version;
-            Content = content.ToList();
+            Contents = contents.ToList();
         }
         
         /// <summary>

@@ -6,9 +6,9 @@ namespace SimplePNML
     /// <summary>
     /// Stores an offset in two dimensions
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
-    public class Offset : ICollectable, IDefaults
+    public class Offset : ICollectable, IDefaultable
     {
         /// <summary>
         /// Gets or sets the offset in X direction
@@ -26,6 +26,17 @@ namespace SimplePNML
         /// Creates an empty offset
         /// </summary>
         public Offset() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public Offset(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
 
         /// <summary>
         /// 

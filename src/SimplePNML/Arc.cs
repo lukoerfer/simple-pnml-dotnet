@@ -6,16 +6,14 @@ using System.Xml.Serialization;
 namespace SimplePNML
 {
     /// <summary>
-    /// Describes a PNML arc
+    /// Represents an arc in a petri net
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType("arc")]
     public class Arc : IIdentifiable, ICollectable, IEdge, IToolExtendable
     {
         private string id;
-        private EdgeGraphics graphics;
-        private Label inscription;
-        private List<ToolSpecific> toolSpecifics;
+        private List<ToolSpecific> toolSpecifics = new List<ToolSpecific>();
 
         /// <summary>
         /// 
@@ -23,7 +21,7 @@ namespace SimplePNML
         [XmlAttribute("id")]
         public string Id
         {
-            get => id ?? (id = Guid.NewGuid().ToString());
+            get => id ??= Guid.NewGuid().ToString();
             set => id = value;
         }
 
@@ -43,29 +41,21 @@ namespace SimplePNML
         /// Gets or sets the arc graphics
         /// </summary>
         [XmlElement("graphics")]
-        public EdgeGraphics Graphics
-        {
-            get => graphics ?? (graphics = new EdgeGraphics());
-            set => graphics = value;
-        }
+        public EdgeGraphics Graphics { get; set; } = new EdgeGraphics();
 
         /// <summary>
         /// Gets or sets a label describing the inscription of this arc
         /// </summary>
         [XmlElement("inscription")]
-        public Label Inscription
-        {
-            get => inscription ?? (inscription = new Label());
-            set => inscription = value;
-        }
+        public Label Inscription { get; set; } = new Label();
 
         /// <summary>
         /// 
         /// </summary>
         [XmlElement("toolspecific")]
-        public IList<ToolSpecific> ToolSpecifics
+        public List<ToolSpecific> ToolSpecifics
         {
-            get => toolSpecifics ?? (toolSpecifics = new List<ToolSpecific>());
+            get => toolSpecifics;
             set => toolSpecifics = new List<ToolSpecific>(value);
         }
 

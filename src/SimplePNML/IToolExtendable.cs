@@ -3,13 +3,13 @@
 namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Marks elements that can be extended with tool-specific elements
     /// </summary>
     public interface IToolExtendable
     {
         /// <summary>
         /// 
         /// </summary>
-        IList<ToolSpecific> ToolSpecifics { get; set; }
+        List<ToolSpecific> ToolSpecifics { get; set; }
     }
 }

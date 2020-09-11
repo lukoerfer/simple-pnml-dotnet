@@ -1,10 +1,7 @@
-﻿using System;
-using System.Xml.Serialization;
-
-namespace SimplePNML
+﻿namespace SimplePNML
 {
     /// <summary>
-    /// 
+    /// Encapsulates petri net elements that can be identified
     /// </summary>
     public interface IIdentifiable
     {

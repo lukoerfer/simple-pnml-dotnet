@@ -1,7 +1,7 @@
 ﻿namespace SimplePNML
 {
     /// <summary>
-    /// Marks graphical elements that have a border line
+    /// Marks all graphical representations that have a line
     /// </summary>
     public interface ILined
     {

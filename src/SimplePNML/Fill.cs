@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,9 +7,9 @@ namespace SimplePNML
     /// <summary>
     /// Describes the fill of a graphical element
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
-    public class Fill : ICollectable, IDefaults
+    public class Fill : ICollectable, IDefaultable
     {
         /// <summary>
         /// Gets or sets the fill color

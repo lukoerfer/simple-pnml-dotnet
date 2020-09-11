@@ -6,25 +6,43 @@ namespace SimplePNML.Tests
     [TestFixture]
     public class FillTest
     {
-        [Test]
-        void CanCreate()
+        private Fill fill;
+
+        [SetUp]
+        public void Setup()
         {
-            Fill fill = new Fill();
-            Assert.IsTrue(fill.IsDefault());
-            Assert.AreEqual(1, fill.Collect().Count());
+            fill = new Fill();
         }
 
         [Test]
-        void CanCreateUsingInitializer()
+        public void IsDefault_NewInstance_True()
         {
-            string color = "red";
-            Fill fill = new Fill()
-            {
-                Color = color
-            };
-            Assert.AreEqual(color, fill.Color);
+            Assert.IsTrue(fill.IsDefault());
+        }
+
+        [Test]
+        public void IsDefault_ColorNonEmpty_False()
+        {
+            fill.Color = "red";
+
             Assert.IsFalse(fill.IsDefault());
-            Assert.AreEqual(1, fill.Collect().Count());
+        }
+
+        [Test]
+        public void Collect_NewInstance_HasOneElement()
+        {
+            var children = fill.Collect();
+
+            Assert.AreEqual(1, children.Count());
+        }
+
+        public void Collect_ColorNonEmpty_HasOneElement()
+        {
+            fill.Color = "red";
+
+            var children = fill.Collect();
+
+            Assert.AreEqual(1, children.Count());
         }
     }
 }

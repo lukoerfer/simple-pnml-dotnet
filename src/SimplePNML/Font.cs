@@ -7,9 +7,9 @@ namespace SimplePNML
     /// <summary>
     /// Specifies a font in PNML
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
-    public class Font : ICollectable, IDefaults
+    public class Font : ICollectable, IDefaultable
     {
         /// <summary>
         /// Gets or sets the font family (CSS)

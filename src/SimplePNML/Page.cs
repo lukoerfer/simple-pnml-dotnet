@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace SimplePNML
@@ -9,23 +8,21 @@ namespace SimplePNML
     /// <summary>
     /// Represents a PNML page
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType("page")]
     public class Page : IIdentifiable, ICollectable, INamed, INode, IToolExtendable
     {
         private string id;
-        private Label name;
-        private NodeGraphics graphics;
-        private List<Page> pages;
-        private List<Place> places;
-        private List<Transition> transitions;
-        private List<Arc> arcs;
-        private List<ToolSpecific> toolSpecifics;
+        private List<Page> pages = new List<Page>();
+        private List<Place> places = new List<Place>();
+        private List<Transition> transitions = new List<Transition>();
+        private List<Arc> arcs = new List<Arc>();
+        private List<ToolSpecific> toolSpecifics = new List<ToolSpecific>();
 
         [XmlElement("id")]
         public string Id
         {
-            get => id ?? (id = Guid.NewGuid().ToString());
+            get => id ??= Guid.NewGuid().ToString();
             set => id = value;
         }
 
@@ -33,29 +30,21 @@ namespace SimplePNML
         /// Gets or sets a label containing the name
         /// </summary>
         [XmlElement("name")]
-        public Label Name
-        {
-            get => name ?? (name = new Label());
-            set => name = value;
-        }
+        public Label Name { get; set; } = new Label();
 
         /// <summary>
         /// Gets or sets how to visualize the page
         /// </summary>
         [XmlElement("graphics")]
-        public NodeGraphics Graphics
-        {
-            get => graphics ?? (graphics = new NodeGraphics());
-            set => graphics = value;
-        }
+        public NodeGraphics Graphics { get; set; } = new NodeGraphics();
 
         /// <summary>
         /// Gets or sets the sub-pages of this page
         /// </summary>
         [XmlElement("page")]
-        public IList<Page> Pages
+        public List<Page> Pages
         {
-            get => pages ?? (pages = new List<Page>());
+            get => pages;
             set => pages = new List<Page>(value);
         }
 
@@ -63,9 +52,9 @@ namespace SimplePNML
         /// Gets or sets the places on this page
         /// </summary>
         [XmlElement("place")]
-        public IList<Place> Places
+        public List<Place> Places
         {
-            get => places ?? (places = new List<Place>());
+            get => places;
             set => places = new List<Place>(value);
         }
 
@@ -73,9 +62,9 @@ namespace SimplePNML
         /// Gets or sets the transitions on this page
         /// </summary>
         [XmlElement("transition")]
-        public IList<Transition> Transitions
+        public List<Transition> Transitions
         {
-            get => transitions ?? (transitions = new List<Transition>());
+            get => transitions;
             set => transitions = new List<Transition>(value);
         }
 
@@ -83,18 +72,18 @@ namespace SimplePNML
         /// Gets or sets the arcs on this page
         /// </summary>
         [XmlElement("arc")]
-        public IList<Arc> Arcs
+        public List<Arc> Arcs
         {
-            get => arcs ?? (arcs = new List<Arc>());
+            get => arcs;
             set => arcs = new List<Arc>(value);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public IList<ToolSpecific> ToolSpecifics
+        public List<ToolSpecific> ToolSpecifics
         {
-            get => toolSpecifics ?? (toolSpecifics = new List<ToolSpecific>());
+            get => toolSpecifics;
             set => toolSpecifics = new List<ToolSpecific>(value);
         }
 

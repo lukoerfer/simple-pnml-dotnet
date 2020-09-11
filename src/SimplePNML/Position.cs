@@ -6,9 +6,9 @@ namespace SimplePNML
     /// <summary>
     /// Stores a position in two dimensions
     /// </summary>
-    [Equals]
+    [Equals(DoNotAddEqualityOperators = true)]
     [XmlType]
-    public class Position : ICollectable, IDefaults
+    public class Position : ICollectable, IDefaultable
     {
         /// <summary>
         /// Gets or sets the position in X direction

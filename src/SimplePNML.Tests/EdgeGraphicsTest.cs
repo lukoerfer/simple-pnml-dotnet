@@ -5,14 +5,14 @@ using System.Linq;
 namespace SimplePNML.Tests
 {
     [TestFixture]
-    public class AnnotationGraphicsTest
+    public class EdgeGraphicsTest
     {
-        private AnnotationGraphics graphics;
+        private EdgeGraphics graphics;
 
         [SetUp]
         public void Setup()
         {
-            graphics = new AnnotationGraphics();
+            graphics = new EdgeGraphics();
         }
 
         [Test]
@@ -24,9 +24,9 @@ namespace SimplePNML.Tests
         }
 
         [Test]
-        public void IsDefault_OffsetNotDefault_False()
+        public void IsDefault_PositionsNonEmpty_False()
         {
-            graphics.Offset = new Offset(2.2, 5.6);
+            graphics.Positions.Add(new Position(4.2, 1.3));
 
             var isDefault = graphics.IsDefault();
 
@@ -34,7 +34,7 @@ namespace SimplePNML.Tests
         }
 
         [Test]
-        public void Collect_NewInstance_ContainsMoreThanOneElement()
+        public void Collect_NewInstance_ContainsOneThanMoreElement()
         {
             var children = graphics.Collect();
 
