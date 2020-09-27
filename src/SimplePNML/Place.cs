@@ -12,15 +12,10 @@ namespace SimplePNML
     [XmlType("place")]
     public class Place : IConnectable, ICollectable, INamed, INode, IToolExtendable
     {
-        private string id;
         private List<ToolSpecific> toolSpecifics = new List<ToolSpecific>();
 
-        [XmlElement("id")]
-        public string Id
-        {
-            get => id ??= Guid.NewGuid().ToString();
-            set => id = value;
-        }
+        [XmlAttribute("id")]
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets a label containing the name of the place
@@ -58,7 +53,7 @@ namespace SimplePNML
         /// <summary>
         /// Creates a new place
         /// </summary>
-        /// <param name="id"></param>
+/// <param name="id"></param>
         public Place(string id)
         {
             Id = id;

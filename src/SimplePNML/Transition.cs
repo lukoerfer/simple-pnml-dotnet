@@ -12,15 +12,10 @@ namespace SimplePNML
     [XmlType("transition")]
     public class Transition : IConnectable, ICollectable, INamed, INode, IToolExtendable
     {
-        private string id;
         private List<ToolSpecific> toolSpecifics = new List<ToolSpecific>();
 
-        [XmlElement("id")]
-        public string Id
-        {
-            get => id ??= Guid.NewGuid().ToString();
-            set => id = value;
-        }
+        [XmlAttribute("id")]
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name 
