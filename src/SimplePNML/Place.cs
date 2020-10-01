@@ -39,7 +39,7 @@ namespace SimplePNML
         /// </summary>
         /// <remarks>This label should contain a positive integer</remarks>
         [XmlElement("initialMarking")]
-        public Label InitialMarking = new Label();
+        public Label InitialMarking { get; set; } = new Label();
 
         /// <summary>
         /// 
@@ -74,8 +74,6 @@ namespace SimplePNML
                 .Collect();
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeName() => !Name.IsDefault();
@@ -88,6 +86,5 @@ namespace SimplePNML
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeInitialMarking() => !InitialMarking.IsDefault();
 
-        #endregion
     }
 }

@@ -20,7 +20,7 @@
 		July 2008 - L.H
 	</a:documentation>
 
-	<include href="http://www.pnml.org/version-2009/grammar/anyElement.rng"/>
+	<include href="anyElement.rng"/>
 
 	<start>
 		<ref name="pnml.element"/>

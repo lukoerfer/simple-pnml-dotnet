@@ -57,8 +57,6 @@ namespace SimplePNML
                 && Image.IsEmpty();
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeColor() => !Color.IsEmpty();
@@ -75,6 +73,5 @@ namespace SimplePNML
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeImage() => !Image.IsEmpty();
 
-        #endregion
     }
 }

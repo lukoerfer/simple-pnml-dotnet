@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 
+using System;
+using System.Linq;
+
 namespace SimplePNML.Tests
 {
     [TestFixture]
@@ -14,11 +17,33 @@ namespace SimplePNML.Tests
         }
 
         [Test]
+        public void SetText_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                label.Text = null;
+            });
+        }
+
+        [Test]
+        public void SetGraphics_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                label.Graphics = null;
+            });
+        }
+
+        [Test]
+        public void Collect_NewInstance_ContainsOneThanOneElement()
+        {
+            Assert.Greater(label.Collect().Count(), 1);
+        }
+
+        [Test]
         public void IsDefault_NewInstance_True()
         {
-            var isDefault = label.IsDefault();
-
-            Assert.IsTrue(isDefault);
+            Assert.IsTrue(label.IsDefault());
         }
 
         [Test]
@@ -26,11 +51,15 @@ namespace SimplePNML.Tests
         {
             label.Text = "Lorem ipsum";
 
-            var isDefault = label.IsDefault();
-
-            Assert.IsFalse(isDefault);
+            Assert.IsFalse(label.IsDefault());
         }
 
+        [Test]
+        public void IsDefault_GraphicsNotDefault_False()
+        {
+            label.Graphics.Line.Color = "red";
 
+            Assert.IsFalse(label.IsDefault());
+        }
     }
 }

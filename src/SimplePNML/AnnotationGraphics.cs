@@ -66,8 +66,6 @@ namespace SimplePNML
                 && Font.IsDefault();
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeOffset() => !Offset.IsDefault();
@@ -84,6 +82,5 @@ namespace SimplePNML
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeFont() => !Font.IsDefault();
 
-        #endregion
     }
 }

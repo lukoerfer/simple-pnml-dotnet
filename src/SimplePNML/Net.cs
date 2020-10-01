@@ -95,13 +95,9 @@ namespace SimplePNML
                 .Collect();
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeName() => !Name.IsDefault();
-
-        #endregion
 
     }
 }

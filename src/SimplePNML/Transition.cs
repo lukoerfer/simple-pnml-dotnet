@@ -70,8 +70,6 @@ namespace SimplePNML
                 .Collect();
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeName() => !Name.IsDefault();
@@ -79,7 +77,5 @@ namespace SimplePNML
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeGraphics() => !Graphics.IsDefault();
-
-        #endregion
     }
 }

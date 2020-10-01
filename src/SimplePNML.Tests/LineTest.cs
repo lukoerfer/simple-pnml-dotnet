@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 
+using System;
 using System.Linq;
 
 namespace SimplePNML.Tests
@@ -16,11 +17,18 @@ namespace SimplePNML.Tests
         }
         
         [Test]
+        public void SetColor_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                line.Color = null;
+            });
+        }
+
+        [Test]
         public void IsDefault_NewInstance_True()
         {
-            var isDefault = line.IsDefault();
-
-            Assert.IsTrue(isDefault);
+            Assert.IsTrue(line.IsDefault());
         }
 
         [Test]
@@ -28,24 +36,36 @@ namespace SimplePNML.Tests
         {
             line.Color = "green";
 
-            var isDefault = line.IsDefault();
+            Assert.IsFalse(line.IsDefault());
+        }
 
-            Assert.IsFalse(isDefault);
+        [Test]
+        public void IsDefault_WidthNotZero_False()
+        {
+            line.Width = 2.5;
+
+            Assert.IsFalse(line.IsDefault());
+        }
+
+        [Test]
+        public void IsDefault_ShapeNotLine_False()
+        {
+            line.Shape = LineShape.Curve;
+
+            Assert.IsFalse(line.IsDefault());
+        }
+
+        [Test]
+        public void IsDefault_StyleNotSolid_False()
+        {
+            line.Style = LineStyle.Dot;
+
+            Assert.IsFalse(line.IsDefault());
         }
 
         [Test]
         public void Collect_NewInstance_ContainsOneElement()
         {
-            var children = line.Collect();
-
-            Assert.AreEqual(1, children.Count());
-        }
-
-        [Test]
-        public void Collect_ColorNotEmpty_ContainsOneElement()
-        {
-            line.Color = "green";
-
             var children = line.Collect();
 
             Assert.AreEqual(1, children.Count());

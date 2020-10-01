@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 
+using System;
 using System.Linq;
 
 namespace SimplePNML.Tests
@@ -16,11 +17,27 @@ namespace SimplePNML.Tests
         }
 
         [Test]
+        public void SetPositions_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                graphics.Positions = null;
+            });
+        }
+
+        [Test]
+        public void SetLine_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                graphics.Line = null;
+            });
+        }
+
+        [Test]
         public void IsDefault_NewInstance_True()
         {
-            var isDefault = graphics.IsDefault();
-
-            Assert.IsTrue(isDefault);
+            Assert.IsTrue(graphics.IsDefault());
         }
 
         [Test]
@@ -28,13 +45,19 @@ namespace SimplePNML.Tests
         {
             graphics.Positions.Add(new Position(4.2, 1.3));
 
-            var isDefault = graphics.IsDefault();
-
-            Assert.IsFalse(isDefault);
+            Assert.IsFalse(graphics.IsDefault());
         }
 
         [Test]
-        public void Collect_NewInstance_ContainsOneThanMoreElement()
+        public void IsDefault_LineNotDefault_False()
+        {
+            graphics.Line.Color = "red";
+
+            Assert.IsFalse(graphics.IsDefault());
+        }
+
+        [Test]
+        public void Collect_NewInstance_ContainsMoreThanOneElement()
         {
             var children = graphics.Collect();
 

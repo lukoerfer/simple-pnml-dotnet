@@ -61,8 +61,6 @@ namespace SimplePNML
                 && Style.IsDefault();
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeColor() => !Color.IsEmpty();
@@ -78,8 +76,6 @@ namespace SimplePNML
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeStyle() => !Style.IsDefault();
-
-        #endregion
 
     }
 }

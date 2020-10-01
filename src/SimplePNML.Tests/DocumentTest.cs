@@ -1,60 +1,44 @@
-﻿using System.IO;
+﻿using NUnit.Framework;
+
+using System;
 using System.Linq;
-using System.Xml.Serialization;
-
-using AutoFixture;
-using AutoFixture.NUnit3;
-
-using KellermanSoftware.CompareNetObjects;
-
-using NUnit.Framework;
-
-using SimplePNML.Tests.Resources;
 
 namespace SimplePNML.Tests
 {
     [TestFixture]
     public class DocumentTest
     {
-        [Ignore("")]
-        [Test, DocumentAutoData]
-        public void GeneratedDocumentEqualsAfterSerialization(Document document)
+        private Document document;
+
+        [SetUp]
+        public void Setup()
         {
-            var serializer = new XmlSerializer(typeof(Document));
-            using (var stream = new MemoryStream())
-            {
-                serializer.Serialize(stream, document);
-                stream.Position = 0;
-                var result = (Document) serializer.Deserialize(stream);
-                Assert.AreEqual(document, result, new CompareLogic().Compare(document, result).DifferencesString);
-            }
+            document = new Document();
         }
 
         [Test]
-        public void CanImportExampleDocument()
+        public void SetNets_NullValue_Fails()
         {
-            var serializer = new XmlSerializer(typeof(Document));
-            using (var reader = Resource.Read("Example.pnml"))
+            Assert.Throws<ArgumentNullException>(() =>
             {
-                var document = (Document) serializer.Deserialize(reader);
-                Assert.AreEqual(1, document.Nets.Count);
-            }
+                document.Nets = null;
+            });
         }
 
-        private class DocumentAutoDataAttribute : AutoDataAttribute
+        [Test]
+        public void Collect_NewInstance_ContainsOneElement()
         {
-            public DocumentAutoDataAttribute() : base(Setup) { }
+            Assert.AreEqual(1, document.Collect().Count());
+        }
 
-            private static Fixture Setup()
-            {
-                var fixture = new Fixture();
-                fixture.Behaviors.OfType<ThrowingRecursionBehavior>()
-                    .ToList().ForEach(behavior => fixture.Behaviors.Remove(behavior));
-                fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-                fixture.Customize<ToolSpecific>(customize =>
-                    customize.Without(toolSpecific => toolSpecific.Contents));
-                return fixture;
-            }
+        [Test]
+        public void Collect_WithAdditionalNet_ContainsMoreElements()
+        {
+            var countBefore = document.Collect().Count();
+
+            document.Nets.Add(new Net());
+
+            Assert.Greater(document.Collect().Count(), countBefore);
         }
     }
 }

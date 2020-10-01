@@ -63,8 +63,6 @@ namespace SimplePNML
                 && Line.IsDefault();
         }
 
-        #region Internal Serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeSize() => !Size.IsDefault();
@@ -77,6 +75,5 @@ namespace SimplePNML
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeLine() => !Line.IsDefault();
 
-        #endregion
     }
 }

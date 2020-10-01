@@ -19,7 +19,7 @@ namespace SimplePNML
         private List<Arc> arcs = new List<Arc>();
         private List<ToolSpecific> toolSpecifics = new List<ToolSpecific>();
 
-        [XmlElement("id")]
+        [XmlAttribute("id")]
         public string Id
         {
             get => id ??= Guid.NewGuid().ToString();
@@ -118,8 +118,6 @@ namespace SimplePNML
                 .Collect();
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeName() => !Name.IsDefault();
@@ -128,6 +126,5 @@ namespace SimplePNML
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeGraphics() => !Graphics.IsDefault();
 
-        #endregion
     }
 }

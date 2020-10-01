@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 
+using System;
 using System.Linq;
 
 namespace SimplePNML.Tests
@@ -16,11 +17,45 @@ namespace SimplePNML.Tests
         }
 
         [Test]
+        public void SetOffset_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                graphics.Offset = null;
+            });
+        }
+
+        [Test]
+        public void SetFill_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                graphics.Fill = null;
+            });
+        }
+
+        [Test]
+        public void SetLine_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                graphics.Line = null;
+            });
+        }
+
+        [Test]
+        public void SetFont_NullValue_Fails()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                graphics.Font = null;
+            });
+        }
+
+        [Test]
         public void IsDefault_NewInstance_True()
         {
-            var isDefault = graphics.IsDefault();
-
-            Assert.IsTrue(isDefault);
+            Assert.IsTrue(graphics.IsDefault());
         }
 
         [Test]
@@ -28,17 +63,13 @@ namespace SimplePNML.Tests
         {
             graphics.Offset = new Offset(2.2, 5.6);
 
-            var isDefault = graphics.IsDefault();
-
-            Assert.IsFalse(isDefault);
+            Assert.IsFalse(graphics.IsDefault());
         }
 
         [Test]
         public void Collect_NewInstance_ContainsMoreThanOneElement()
         {
-            var children = graphics.Collect();
-
-            Assert.Greater(children.Count(), 1);
+            Assert.Greater(graphics.Collect().Count(), 1);
         }
     }
 }

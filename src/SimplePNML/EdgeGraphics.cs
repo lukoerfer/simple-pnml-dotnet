@@ -56,12 +56,9 @@ namespace SimplePNML
                 && Positions.Count == 0;
         }
 
-        #region Internal serialization
-
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeLine() => !Line.IsDefault();
 
-        #endregion
     }
 }

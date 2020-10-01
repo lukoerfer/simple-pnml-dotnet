@@ -59,12 +59,9 @@ namespace SimplePNML
                 && Graphics.IsDefault();
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeGraphics() => !Graphics.IsDefault();
 
-        #endregion
     }
 }

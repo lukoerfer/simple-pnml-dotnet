@@ -78,8 +78,6 @@ namespace SimplePNML
                 && Rotation == 0.0;
         }
 
-        #region Internal serialization
-
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeFamily() => !Family.IsEmpty();
@@ -107,8 +105,6 @@ namespace SimplePNML
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeRotation() => Rotation != 0.0;
-
-        #endregion
 
     }
 }
